@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,9 +16,10 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.gameObject.SetActive(false);
     }
 
-    public void StartDialogue()
+    public void StartDialogue(string[] lines)
     {
-        dialogueBox.gameObject.SetActive(true);
+        dialogueBox.lines = lines;
+        dialogueBox.StartDialogue();
         Debug.Log("Starting dialogue...");
     }
 }

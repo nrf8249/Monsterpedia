@@ -10,34 +10,36 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
 
     private int index;
+    private bool isTyping;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         textComponent.text = string.Empty;
-        //StartDialogue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StartDialogue()
     {
         gameObject.SetActive(true);
         index = 0;
-        StartCoroutine(TypeLine());
+
+        textComponent.text = string.Empty;
+        StartCoroutine(TypeLine(lines[index]));
     }
 
-    IEnumerator TypeLine()
+    IEnumerator TypeLine(string line)
     {
-        foreach (char c in lines[index].ToCharArray())
+        isTyping = true;
+        textComponent.text = string.Empty;
+
+        yield return null; // Wait one frame to avoid skipping the first character
+
+        foreach (char c in line.ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        isTyping = false;
     }
 
     void NextLine()
@@ -45,30 +47,29 @@ public class Dialogue : MonoBehaviour
         if (index < lines.Length - 1)
         {
             index++;
-            textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine(lines[index]));
         }
         else
         {
             gameObject.SetActive(false);
             textComponent.text = string.Empty;
-            // End of dialogue logic here
         }
     }
 
     public void UpdateDialogue(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!context.performed) return;
+        
+        if (isTyping)
         {
-            if (textComponent.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
-            }
+            StopAllCoroutines();
+            textComponent.text = lines[index];
+            isTyping = false;
         }
+        else
+        {
+            NextLine();
+        }
+        
     }
 }

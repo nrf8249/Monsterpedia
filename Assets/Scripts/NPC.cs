@@ -27,10 +27,10 @@ public class NPC : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.performed && playerInRange)
+        if (context.started && playerInRange)
         {
             Debug.Log("interacted with NPC");
-            DialogueManager.Instance.StartDialogue();
+            DialogueManager.Instance.StartDialogue(dialogueLines);
         }
     }
 }
