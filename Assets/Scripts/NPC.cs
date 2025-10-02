@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class NPC : MonoBehaviour
 {
-    public string[] dialogueLines; // Assign in Inspector
+    public string[] dialogueLines;
     private bool playerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -11,7 +12,7 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("Player entered NPC range. Show prompt UI here!");
+            Debug.Log("player entered NPC range, show UI");
         }
     }
 
@@ -20,16 +21,16 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            Debug.Log("Player left NPC range. Hide prompt UI.");
+            Debug.Log("player left NPC range, hide UI");
         }
     }
 
-    // This method will be called from Player Input → Interact event
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed && playerInRange)
         {
-            //DialogueManager.Instance.StartDialogue(dialogueLines);
+            Debug.Log("interacted with NPC");
+            DialogueManager.Instance.StartDialogue();
         }
     }
 }

@@ -1,22 +1,23 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance; // Singleton (easy global access)
+    public static DialogueManager Instance;
+    public Dialogue dialogueBox;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        dialogueBox = GameObject.Find("DialogueBox").GetComponent<Dialogue>();
+        dialogueBox.gameObject.SetActive(false);
     }
 
-    public void StartDialogue(string[] lines)
+    public void StartDialogue()
     {
+        dialogueBox.gameObject.SetActive(true);
         Debug.Log("Starting dialogue...");
-        foreach (string line in lines)
-        {
-            Debug.Log(line);
-        }
-        // TODO: Replace with actual UI dialogue display
     }
 }
