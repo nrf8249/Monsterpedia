@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class NPC : MonoBehaviour
 {
     public string[] dialogueLines;
+    public string[] accusationLines;
     private bool playerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +24,7 @@ public class NPC : MonoBehaviour
             playerInRange = false;
             Debug.Log("player left NPC range, hide UI");
             DialogueManager.Instance.StopDialogue();
+            AccusationManager.Instance.StopAccusation();
         }
     }
 
@@ -40,7 +42,7 @@ public class NPC : MonoBehaviour
         if (context.started && playerInRange)
         {
             Debug.Log("accused NPC!");
-            AccusationManager.Instance.StartAccusation(this);
+            AccusationManager.Instance.StartAccusation(accusationLines);
         }
     }
 }

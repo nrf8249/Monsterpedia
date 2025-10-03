@@ -3,21 +3,25 @@ using UnityEngine;
 public class AccusationManager : MonoBehaviour
 {
     public static AccusationManager Instance;
+    public Dialogue accusationBox;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
+        accusationBox = GameObject.Find("AccusationBox").GetComponent<Dialogue>();
+        accusationBox.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartAccusation(string[] lines)
     {
-        
+        accusationBox.lines = lines;
+        accusationBox.StartDialogue();
+        Debug.Log("Starting dialogue...");
     }
-
-    public void StartAccusation(NPC npc)
+    public void StopAccusation()
     {
-
+        accusationBox.StopDialogue();
     }
 }
