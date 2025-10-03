@@ -22,6 +22,7 @@ public class NPC : MonoBehaviour
         {
             playerInRange = false;
             Debug.Log("player left NPC range, hide UI");
+            DialogueManager.Instance.StopDialogue();
         }
     }
 
@@ -31,6 +32,15 @@ public class NPC : MonoBehaviour
         {
             Debug.Log("interacted with NPC");
             DialogueManager.Instance.StartDialogue(dialogueLines);
+        }
+    }
+
+    public void OnAccuse(InputAction.CallbackContext context)
+    {
+        if (context.started && playerInRange)
+        {
+            Debug.Log("accused NPC!");
+            AccusationManager.Instance.StartAccusation(this);
         }
     }
 }

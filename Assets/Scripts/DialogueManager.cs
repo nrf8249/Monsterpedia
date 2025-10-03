@@ -16,10 +16,15 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.gameObject.SetActive(false);
     }
 
-    public void StartDialogue(string[] lines)
+    public void StartDialogue(string[] lines) //change later to accept NPC parameter
     {
         dialogueBox.lines = lines;
         dialogueBox.StartDialogue();
         Debug.Log("Starting dialogue...");
+    }
+
+    public void StopDialogue()
+    {
+        dialogueBox.StopDialogue();
     }
 }
