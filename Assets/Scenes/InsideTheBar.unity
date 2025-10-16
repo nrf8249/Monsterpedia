@@ -5200,7 +5200,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000658862eb
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -5349,7 +5349,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -6492,7 +6492,7 @@ Transform:
   m_GameObject: {fileID: 777009437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.15, y: -2.06, z: -1}
+  m_LocalPosition: {x: 10.16, y: -1.87, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7630,11 +7630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8365213861621480853, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.56
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8365213861621480853, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.63
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 8365213861621480853, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_LocalPosition.z
