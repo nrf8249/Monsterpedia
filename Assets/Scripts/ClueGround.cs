@@ -10,6 +10,8 @@ public class ClueGround : MonoBehaviour
     public Inventory inventory;
     public string evidenceName;
     public string description;
+    public Sprite image;
+    public GameObject invClueTEMP;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -33,13 +35,15 @@ public class ClueGround : MonoBehaviour
     {
         if (context.started && playerInRange)
         {
-            Debug.Log("interacted with NPC");
+            Debug.Log("interacted with item");
             DialogueManager.Instance.StartDialogue(dialogueLines);
             ClueGround.Destroy(this.gameObject);
             InventoryEvidence evidence = ScriptableObject.CreateInstance<InventoryEvidence>();
             evidence.evidenceName = evidenceName;
             evidence.description = description;
+            evidence.image = image;
             inventory.inventory.Add(evidence);
+            invClueTEMP.SetActive(true);
         }
     }
 }

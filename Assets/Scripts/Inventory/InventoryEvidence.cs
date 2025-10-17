@@ -5,4 +5,5 @@ public class InventoryEvidence : ScriptableObject
 {
     public string evidenceName;
     public string description;
+    public Sprite image;
 }
