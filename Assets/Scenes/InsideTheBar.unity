@@ -3746,7 +3746,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -7321,7 +7321,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -3898893390162587338, guid: 5e707e9b5a9bdf347ae8f96d42e176d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7342,7 +7342,7 @@ Transform:
   m_GameObject: {fileID: 777009437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.16, y: -1.87, z: -1}
+  m_LocalPosition: {x: 10.96, y: -1.48, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7774,7 +7774,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7824012394713347814, guid: 040d9b6cf17bc8941847b5888d96a74f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7795,8 +7795,8 @@ Transform:
   m_GameObject: {fileID: 942819882}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: -1}
-  m_LocalScale: {x: 0.4078, y: 0.4078, z: 0.4078}
+  m_LocalPosition: {x: 1.55, y: -1.46, z: -1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8438,7 +8438,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -8786,7 +8786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 488, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1338555235
@@ -9508,7 +9508,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 71504785174066796, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6342367625951455674, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -9696,8 +9696,8 @@ SceneRoots:
   - {fileID: 1792363909}
   - {fileID: 2040103732275543670}
   - {fileID: 777009442}
-  - {fileID: 1216856810}
   - {fileID: 942819884}
+  - {fileID: 1216856810}
   - {fileID: 1046332825}
   - {fileID: 2032478842}
   - {fileID: 1070751097}
