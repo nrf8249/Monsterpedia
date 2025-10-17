@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6778042f3c0cd3f4eade28215a68112a
+guid: 040d9b6cf17bc8941847b5888d96a74f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3455223771459212522
-    second: Clue_TornCloth_0
+      213: 7824012394713347814
+    second: Clue_TornCloth_Outlined_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,56 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Clue_TornCloth_0
+      name: Clue_TornCloth_Outlined_0
       rect:
         serializedVersion: 2
         x: 9
         y: 9
-        width: 302
-        height: 302
+        width: 311
+        height: 311
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61b20b259449c00d0800000000000000
-      internalID: -3455223771459212522
+      spriteID: 6e67421d1d9749c60800000000000000
+      internalID: 7824012394713347814
       vertices: []
       indices: 
       edges: []
@@ -135,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Clue_TornCloth_0: -3455223771459212522
+      Clue_TornCloth_Outlined_0: 7824012394713347814
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
