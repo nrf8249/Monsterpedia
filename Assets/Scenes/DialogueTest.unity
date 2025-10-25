@@ -481,6 +481,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1278132291}
     m_Modifications:
+    - target: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_margin.w
+      value: 8.675607
+      objectReference: {fileID: 0}
+    - target: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_margin.x
+      value: 9.216248
+      objectReference: {fileID: 0}
+    - target: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_margin.y
+      value: -6.8222094
+      objectReference: {fileID: 0}
+    - target: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_margin.z
+      value: 11.868866
+      objectReference: {fileID: 0}
+    - target: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1585760675055939240, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -499,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585760675055939240, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.295479
+      value: 0.25270832
       objectReference: {fileID: 0}
     - target: {fileID: 1585760675055939240, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_AnchorMin.y
@@ -560,6 +580,10 @@ PrefabInstance:
     - target: {fileID: 1585760675055939240, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503820314034736993, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_Name
+      value: DialogueText
       objectReference: {fileID: 0}
     - target: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_Name
