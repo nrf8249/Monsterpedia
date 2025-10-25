@@ -6899,8 +6899,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   inventory: []
-  openButtonCanvas: {fileID: 0}
-  inventoryCanvas: {fileID: 0}
+  openButtonCanvas: {fileID: 1584824820}
+  inventoryCanvas: {fileID: 1775291984}
 --- !u!4 &1199683473
 Transform:
   m_ObjectHideFlags: 0
@@ -6998,6 +6998,16 @@ Transform:
 --- !u!224 &1338555234 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1842731727250737115, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+  m_PrefabInstance: {fileID: 1594748447061959046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1584824820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6818475549579019839, guid: c9ed5ca9e246d98448b5418af8ec16a6, type: 3}
+  m_PrefabInstance: {fileID: 8533355995445378922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1775291984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1945665986658196992, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
   m_PrefabInstance: {fileID: 1594748447061959046}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1792363907
