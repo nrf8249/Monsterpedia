@@ -37,12 +37,6 @@ public class ClueGround : MonoBehaviour
         {
             Debug.Log("interacted with item");
             DialogueManager.Instance.StartDialogue(dialogueLines);
-            ClueGround.Destroy(this.gameObject);
-            InventoryEvidence evidence = ScriptableObject.CreateInstance<InventoryEvidence>();
-            evidence.evidenceName = evidenceName;
-            evidence.description = description;
-            evidence.image = image;
-            inventory.inventory.Add(evidence);
             invClueTEMP.SetActive(true);
         }
     }
