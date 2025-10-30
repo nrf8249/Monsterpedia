@@ -1,7 +1,10 @@
+using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InventoryEvidence", menuName = "Scriptable Objects/InventoryEvidence")]
-public class InventoryEvidence : ScriptableObject
+public class InventoryEvidence : MonoBehaviour
 {
     public string evidenceName;
     public string description;
