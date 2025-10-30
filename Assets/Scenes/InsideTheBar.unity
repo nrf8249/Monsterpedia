@@ -7562,7 +7562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3650140464772424144, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 424
       objectReference: {fileID: 0}
     - target: {fileID: 3650140464772424144, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7707,6 +7707,10 @@ PrefabInstance:
     - target: {fileID: 8135245506650992738, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356308722748594169, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8609254209738745101, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7959,7 +7963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6312935683625276764, guid: e0f3edff9456b584c84136fceb1de79f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1778aa410ce18ed4aafe8985c8dec0a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
