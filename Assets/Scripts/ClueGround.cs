@@ -1,22 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ClueGround : MonoBehaviour
 {
-    [Header("ÏßË÷Êı¾İ£¨ScriptableObject£©")]
+    [Header("çº¿ç´¢æ•°æ®ï¼ˆScriptableObjectï¼‰")]
     public ClueData data;
 
-    [Header("½»»¥ÌáÊ¾£¨ÊÀ½çÄÚĞ¡Í¼±ê»òWorld Space Canvas£©")]
+    [Header("äº¤äº’æç¤ºï¼ˆä¸–ç•Œå†…å°å›¾æ ‡æˆ–World Space Canvasï¼‰")]
     public GameObject interactHint;
     public Vector3 hintOffset = new Vector3(0, 1.0f, 0.0f);
     public bool faceCamera = true;
 
-    [Header("¿É¼ûĞÔÓëÅÅĞò£¨×Ô¶¯ÖÃ¶¥£©")]
-    public string sortingLayerName = "UI"; // Ã»ÓĞ¾ÍÔÚ Tags & Layers ÀïĞÂ½¨Ò»¸ö UI
+    [Header("å¯è§æ€§ä¸æ’åºï¼ˆè‡ªåŠ¨ç½®é¡¶ï¼‰")]
+    public string sortingLayerName = "UI";
     public int sortingOrder = 100;
 
-    [Header("µ÷ÊÔ")]
+    [Header("è°ƒè¯•")]
     public bool debugLogs = true;
 
     private bool playerInRange = false;
@@ -34,12 +34,13 @@ public class ClueGround : MonoBehaviour
         }
         else if (debugLogs)
         {
-            Debug.LogWarning($"{name} | interactHint Î´¸³Öµ£¨½øÈë·¶Î§Ò²²»»áÏÔÊ¾Í¼±ê£©¡£", this);
+            Debug.LogWarning($"{name} | interactHint æœªèµ‹å€¼ï¼ˆè¿›å…¥èŒƒå›´ä¹Ÿä¸ä¼šæ˜¾ç¤ºå›¾æ ‡ï¼‰ã€‚", this);
         }
     }
 
     private void Update()
     {
+        // ä»ä¿ç•™é”®ç›˜Eäº¤äº’ï¼ˆæ–¹ä¾¿è°ƒè¯•ï¼‰
         if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             TriggerMonologue();
@@ -70,10 +71,16 @@ public class ClueGround : MonoBehaviour
         playerInRange = false;
 
         if (interactHint) interactHint.SetActive(false);
-        if (debugLogs) Debug.Log($"{name} | Íæ¼ÒÀë¿ªÏßË÷·¶Î§£¬Òş²ØÌáÊ¾¡£", this);
+        if (debugLogs) Debug.Log($"{name} | ç©å®¶ç¦»å¼€çº¿ç´¢èŒƒå›´ï¼Œéšè—æç¤ºã€‚", this);
+
+        // âœ… æ–°å¢ï¼šç»Ÿä¸€é€šè¿‡ DialogueManager å…³é—­ UI
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.StopDialogue();
+            if (debugLogs) Debug.Log($"{name} | ç©å®¶ç¦»å¼€çº¿ç´¢èŒƒå›´ï¼Œå…³é—­ Monologue UIã€‚", this);
+        }
     }
 
-    // ÈôÄãÓÃÊäÈëÂ·ÓÉ£¨·½°¸B£©£¬Õâ¸öÒ²ÄÜ½Ó
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (!(ctx.started || ctx.performed)) return;
@@ -83,16 +90,18 @@ public class ClueGround : MonoBehaviour
 
     private void TryShowHint(string reason)
     {
-        if (interactHint == null) { if (debugLogs) Debug.LogWarning($"{name} | {reason}: interactHint Îª¿Õ¡£", this); return; }
+        if (interactHint == null)
+        {
+            if (debugLogs) Debug.LogWarning($"{name} | {reason}: interactHint ä¸ºç©ºã€‚", this);
+            return;
+        }
 
-        // ÏÈ¼¤»î
         interactHint.SetActive(true);
 
-        // Ç¿ÖÆÖÃ¶¥£¨SpriteRenderer »ò World-Space Canvas£©
+        // ç½®é¡¶å±‚çº§
         var sr = interactHint.GetComponentInChildren<SpriteRenderer>(true);
         if (sr)
         {
-            // Èç¹ûÏîÄ¿Àï»¹Ã»ÓĞÕâ¸ö Sorting Layer£¬Çëµ½ Project Settings > Tags and Layers ÀïÌí¼Ó
             sr.sortingLayerName = sortingLayerName;
             sr.sortingOrder = sortingOrder;
         }
@@ -102,35 +111,33 @@ public class ClueGround : MonoBehaviour
         {
             canvas.sortingLayerName = sortingLayerName;
             canvas.sortingOrder = sortingOrder;
-            // È·±£¿É¼û
             var cg = interactHint.GetComponentInChildren<CanvasGroup>(true);
             if (cg) cg.alpha = 1f;
         }
 
-        // Á¢¼´°Úµ½Í·¶¥Î»ÖÃ
         interactHint.transform.position = transform.position + hintOffset;
         if (faceCamera && cam) interactHint.transform.forward = cam.transform.forward;
-
-        if (debugLogs)
-        {
-            string active = $"activeSelf={interactHint.activeSelf}, activeInHierarchy={interactHint.activeInHierarchy}";
-            string pos = $"worldPos={interactHint.transform.position}  offsetTarget={transform.position + hintOffset}";
-            string srInfo = sr ? $"SR[sprite={(sr.sprite ? sr.sprite.name : "null")}, layer={sr.sortingLayerName}, order={sr.sortingOrder}, a={sr.color.a:F2}]" : "SR[null]";
-            string cvInfo = canvas ? $"Canvas[mode={canvas.renderMode}, layer={canvas.sortingLayerName}, order={canvas.sortingOrder}]" : "Canvas[null]";
-            Debug.Log($"{name} | ÏÔÊ¾ÌáÊ¾£¨{reason}£© -> {active}; {pos}\n    {srInfo}; {cvInfo}", this);
-        }
     }
 
     private void TriggerMonologue()
     {
-        if (DialogueManager.Instance == null) { Debug.LogError($"{name} | DialogueManager.Instance Îª¿Õ¡£", this); return; }
-        if (data == null) { Debug.LogWarning($"{name} | ClueData Î´°ó¶¨¡£", this); return; }
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogError($"{name} | DialogueManager.Instance ä¸ºç©ºã€‚", this);
+            return;
+        }
 
-        // ÓÅÏÈ SO£»·ñÔòÓÃ fallback ÎÄ±¾°ü³ÉÒ»ĞĞ
+        if (data == null)
+        {
+            Debug.LogWarning($"{name} | ClueData æœªç»‘å®šã€‚", this);
+            return;
+        }
+
+        // ä¼˜å…ˆä½¿ç”¨ SO
         if (data.monologueData && data.monologueData.lines != null && data.monologueData.lines.Length > 0)
         {
             DialogueManager.Instance.StartMonologue(data.monologueData);
-            if (debugLogs) Debug.Log($"{name} | Monologue by DialogueData£¨ĞĞÊı={data.monologueData.lines.Length}£©", this);
+            if (debugLogs) Debug.Log($"{name} | Monologue by DialogueDataï¼ˆè¡Œæ•°={data.monologueData.lines.Length}ï¼‰", this);
         }
         else if (!string.IsNullOrWhiteSpace(data.monologueFallbackText))
         {
@@ -146,7 +153,7 @@ public class ClueGround : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{name} | ClueData Àï¼ÈÎŞ monologueData Ò²ÎŞ fallback ÎÄ±¾¡£", this);
+            Debug.LogWarning($"{name} | ClueData é‡Œæ—¢æ—  monologueData ä¹Ÿæ—  fallback æ–‡æœ¬ã€‚", this);
         }
     }
 
