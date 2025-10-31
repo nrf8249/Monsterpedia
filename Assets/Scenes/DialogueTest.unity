@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 1308863650}
   - component: {fileID: 1308863649}
   - component: {fileID: 1308863648}
+  - component: {fileID: 1308863651}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -366,6 +367,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1308863651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308863647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!224 &2039929676 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1585760675055939240, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
@@ -501,6 +546,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 595129665878606576, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1585760675055939240, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -583,7 +632,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4503820314034736993, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_Name
-      value: DialogueText
+      value: DialogueStartText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503820314034736993, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_Name
@@ -592,8 +645,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5067275414860923560}
   m_SourcePrefab: {fileID: 100100000, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+--- !u!114 &5067275414860923557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+  m_PrefabInstance: {fileID: 5067275414860923556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &5067275414860923558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1690978647138212399, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+  m_PrefabInstance: {fileID: 5067275414860923556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5067275414860923559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+  m_PrefabInstance: {fileID: 5067275414860923556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5067275414860923560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067275414860923559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101b0a54702cde4418f2c0e9cfe6bb99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeBox
+  dialogueGroup: {fileID: 5067275414860923559}
+  targetNameBar: {fileID: 5067275414860923558}
+  nameText: {fileID: 5067275414860923557}
+  narrativeText: {fileID: 0}
+  buttonGroup: {fileID: 0}
+  talkButton: {fileID: 0}
+  showButton: {fileID: 0}
+  accuseButton: {fileID: 0}
+  textSpeed: 0.02
+  lines: []
+  onTalkClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onAccuseClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
