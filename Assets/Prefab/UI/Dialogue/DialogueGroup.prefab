@@ -1187,7 +1187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeBox
   dialogueGroup: {fileID: 8934157663372087274}
-  portrait: {fileID: 3954265214124695194}
+  portraitImage: {fileID: 3862275580899978646}
+  nameText: {fileID: 521660638536563740}
   narrativeStartText: {fileID: 8616923603755727761}
   narrativeText: {fileID: 5174902150220468527}
   buttonGroup: {fileID: 595129665878606576}

@@ -1,42 +1,46 @@
 using UnityEngine;
 
 /// <summary>
-/// 统一外部调用入口：根据场景里拖进来的 NarrativeBox 来显示 Intro / Dialogue / Monologue。
+/// DialogueManager：统一的对话系统入口，内部转发给 NarrativeBox。
+/// 所有 NPC/物件 都通过它来显示 Intro / Dialogue / Monologue。
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
-    [SerializeField] private NarrativeBox narrativeBox; // 在Inspector拖 DialogueGroup 上的 NarrativeBox
+    [SerializeField] private NarrativeBox narrativeBox; // 在 Inspector 里把 DialogueGroup 上的 NarrativeBox 拖进来
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        if (narrativeBox == null)
+            Debug.LogError("DialogueManager：NarrativeBox 未赋值，请在 Inspector 中拖入 DialogueGroup 上的组件。");
     }
 
-    // —— Intro（NPC交互时按钮上方的提示文本）——
-
+    // —— Intro ——
     public void ShowIntro(string introText, bool showButtons = true)
         => narrativeBox.ShowIntro(introText, showButtons);
 
     public void ShowIntro(DialogueData introData, bool showButtons = true, int useLineIndex = 0)
         => narrativeBox.ShowIntro(introData, showButtons, useLineIndex);
 
-    // —— 正式对话 ——（逐字打印 narrativeText）
-
+    // —— Dialogue ——
     public void StartDialogue(DialogueData data)
         => narrativeBox.StartDialogue(data);
 
-    // —— 独白/线索提示 ——（逐字打印 narrativeText，无按钮）
+    public void StartDialogue(NarrativePayload payload)
+        => narrativeBox.StartDialogue(payload);
 
+    // —— Monologue ——
     public void StartMonologue(DialogueData data)
         => narrativeBox.StartMonologue(data);
 
     public void StartMonologue(string[] lines)
         => narrativeBox.StartMonologue(lines);
 
-    // —— 停止并隐藏 —— 
+    // —— Stop ——
     public void StopDialogue()
         => narrativeBox.StopAllNarrative();
 }

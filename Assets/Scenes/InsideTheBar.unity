@@ -5197,6 +5197,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3862275580899978646, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592339432923125562, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+      propertyPath: portraitImage
+      value: 
+      objectReference: {fileID: 835017554}
     - target: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
       propertyPath: m_Name
       value: DialogueGroup
@@ -6791,7 +6799,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   talkData: {fileID: 11400000, guid: d2727c20cc66f1947971741981246bd3, type: 2}
+  portrait: {fileID: 21300000, guid: 5b222e21bed8d5544a794850268f0f8b, type: 3}
+  npcName: 
   interactHint: {fileID: 0}
+--- !u!114 &835017554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3862275580899978646, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
+  m_PrefabInstance: {fileID: 548456402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &942819882
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,7 +7114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070751092}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -7.5}
   m_LocalScale: {x: 1, y: 0.53344, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8163,7 +8184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7884456976036920185, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_Name
-      value: detective_player_0
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8365213861621480853, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_LocalScale.x
@@ -8331,9 +8352,9 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1792363909}
   - {fileID: 2040103732275543670}
+  - {fileID: 1070751097}
   - {fileID: 777009442}
   - {fileID: 942819884}
   - {fileID: 2032478842}
-  - {fileID: 1070751097}
   - {fileID: 695088466}
   - {fileID: 1216856810}
