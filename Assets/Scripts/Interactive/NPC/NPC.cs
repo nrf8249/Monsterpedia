@@ -81,11 +81,43 @@ public class NPC : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (!context.started || !playerInRange) return;
+        // 接受两种阶段，避免被拦
+        if (!(context.started || context.performed)) return;
 
+        if (!playerInRange)
+        {
+            Debug.LogWarning($"[{name}] 按下交互但不在范围内。");
+            return;
+        }
         if (talkData == null)
         {
-            if (debugLogs) Debug.LogWarning($"{name} | 未设置 talkData，对话无法开始。", this);
+            Debug.LogError($"[{name}] talkData 为空。");
+            return;
+        }
+
+        Debug.Log($"[{name}] 触发对话，phase={context.phase}, lines={talkData.lines?.Length ?? 0}");
+
+        var payload = new NarrativePayload(
+            data: talkData,
+            portrait: portrait,
+            characterName: string.IsNullOrEmpty(npcName) ? null : npcName,
+            asMonologue: false
+        );
+
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogError($"[{name}] DialogueManager.Instance 为空。");
+            return;
+        }
+
+        DialogueManager.Instance.StartDialogue(payload);
+    }
+
+    public void TriggerDialogueFromPlayer()
+    {
+        if (talkData == null)
+        {
+            Debug.LogWarning($"{name} | talkData 为空。");
             return;
         }
 
@@ -96,9 +128,9 @@ public class NPC : MonoBehaviour
             asMonologue: false
         );
 
-        if (debugLogs) Debug.Log($"{name} | 按键交互开始对话。Data 行数 = {talkData.lines?.Length ?? 0}", this);
         DialogueManager.Instance.StartDialogue(payload);
     }
+
 
     private void TryShowHint(string reason)
     {
