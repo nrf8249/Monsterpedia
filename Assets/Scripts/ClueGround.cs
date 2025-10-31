@@ -36,7 +36,7 @@ public class ClueGround : MonoBehaviour
         if (context.started && playerInRange)
         {
             Debug.Log("interacted with item");
-            DialogueManager.Instance.StartDialogue(dialogueLines);
+            //DialogueManager.Instance.StartDialogue(dialogueLines);
             invClueTEMP.SetActive(true);
         }
     }
