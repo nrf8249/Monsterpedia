@@ -16,7 +16,7 @@ public class NPC : MonoBehaviour
     public bool faceCamera = true;
 
     [Header("调试")]
-    public bool debugLogs = true;                   // 开关
+    public bool debugLogs = false;                  // 需要时打开
     public Color gizmoColor = new Color(1f, 0.85f, 0f, 0.8f);
 
     private bool playerInRange = false;
@@ -32,9 +32,14 @@ public class NPC : MonoBehaviour
             hintTransform = interactHint.transform;
             interactHint.SetActive(false);
         }
-        else
+    }
+
+    private void Update()
+    {
+        // 在范围内，直接监听 E 键（不再依赖外部把 Action 路由到 NPC）
+        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if (debugLogs) Debug.LogWarning($"{name} | interactHint 未赋值。进入范围时不会显示提示。", this);
+            TryStartDialogue();
         }
     }
 
@@ -52,72 +57,37 @@ public class NPC : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = true;
-        TryShowHint("OnTriggerEnter2D");
+        if (interactHint) interactHint.SetActive(true);
+        if (debugLogs) Debug.Log($"{name} | 玩家进入交互范围");
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
-
         if (interactHint) interactHint.SetActive(false);
-        DialogueManager.Instance.StopDialogue();
-
-        if (debugLogs) Debug.Log($"{name} | 玩家离开范围，隐藏提示 + 关闭对话框。", this);
+        if (DialogueManager.Instance != null) DialogueManager.Instance.StopDialogue();
+        if (debugLogs) Debug.Log($"{name} | 玩家离开交互范围，隐藏提示 + 关闭对话框");
     }
 
-    // 为了排查“卡边缘进不去”的情况，持续报告
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (!debugLogs) return;
-        if (!other.CompareTag("Player")) return;
-
-        // 每秒左右打一条（避免刷屏）
-        if (Time.frameCount % 60 == 0)
-        {
-            Debug.Log($"{name} | OnTriggerStay2D: 玩家仍在范围内。", this);
-        }
-    }
-
+    // 仍保留：若你后面走“Player路由到NPC”的方案B，这个回调仍然可用
     public void OnInteract(InputAction.CallbackContext context)
     {
-        // 接受两种阶段，避免被拦
         if (!(context.started || context.performed)) return;
+        if (!playerInRange) return;
+        TryStartDialogue();
+    }
 
-        if (!playerInRange)
-        {
-            Debug.LogWarning($"[{name}] 按下交互但不在范围内。");
-            return;
-        }
+    private void TryStartDialogue()
+    {
         if (talkData == null)
         {
-            Debug.LogError($"[{name}] talkData 为空。");
+            if (debugLogs) Debug.LogWarning($"{name} | talkData 为空，无法开始对话");
             return;
         }
-
-        Debug.Log($"[{name}] 触发对话，phase={context.phase}, lines={talkData.lines?.Length ?? 0}");
-
-        var payload = new NarrativePayload(
-            data: talkData,
-            portrait: portrait,
-            characterName: string.IsNullOrEmpty(npcName) ? null : npcName,
-            asMonologue: false
-        );
-
         if (DialogueManager.Instance == null)
         {
-            Debug.LogError($"[{name}] DialogueManager.Instance 为空。");
-            return;
-        }
-
-        DialogueManager.Instance.StartDialogue(payload);
-    }
-
-    public void TriggerDialogueFromPlayer()
-    {
-        if (talkData == null)
-        {
-            Debug.LogWarning($"{name} | talkData 为空。");
+            Debug.LogError($"{name} | DialogueManager.Instance 为空（场景里没挂或被禁用）");
             return;
         }
 
@@ -129,59 +99,16 @@ public class NPC : MonoBehaviour
         );
 
         DialogueManager.Instance.StartDialogue(payload);
-    }
-
-
-    private void TryShowHint(string reason)
-    {
-        if (interactHint == null)
-        {
-            if (debugLogs) Debug.LogWarning($"{name} | {reason}: interactHint 为空，无法显示提示。", this);
-            return;
-        }
-
-        // 先设为 true
-        interactHint.SetActive(true);
-
-        if (debugLogs)
-        {
-            // 打印当前状态 & 组件信息
-            string active = $"activeSelf={interactHint.activeSelf}, activeInHierarchy={interactHint.activeInHierarchy}";
-            string pos = $"worldPos={interactHint.transform.position}  offsetTarget={transform.position + hintOffset}";
-
-            // SpriteRenderer 路线（世界内 sprite）
-            var sr = interactHint.GetComponentInChildren<SpriteRenderer>(true);
-            string srInfo = sr
-                ? $"SR[sprite={(sr.sprite ? sr.sprite.name : "null")}, color.a={sr.color.a:F2}, layer={SortingLayer.IDToName(sr.sortingLayerID)}, order={sr.sortingOrder}]"
-                : "SR[null]";
-
-            // UI 路线（World Space/Overlay）
-            var canvas = interactHint.GetComponentInChildren<Canvas>(true);
-            var img = interactHint.GetComponentInChildren<Image>(true);
-            var cg = interactHint.GetComponentInChildren<CanvasGroup>(true);
-
-            string canvasInfo = canvas
-                ? $"Canvas[mode={canvas.renderMode}, sortingLayer={SortingLayer.IDToName(canvas.sortingLayerID)}, order={canvas.sortingOrder}]"
-                : "Canvas[null]";
-            string imgInfo = img
-                ? $"Image[sprite={(img.sprite ? img.sprite.name : "null")}, color.a={img.color.a:F2}]"
-                : "Image[null]";
-            string cgInfo = cg ? $"CanvasGroup[alpha={cg.alpha:F2}, blocks={cg.blocksRaycasts}, interactable={cg.interactable}]" : "CanvasGroup[null]";
-
-            Debug.Log($"{name} | 显示提示（{reason}） -> {active}; {pos}\n    {srInfo}; {canvasInfo}; {imgInfo}; {cgInfo}", this);
-        }
-
-        // 立刻把它放到正确的位置（避免下一帧才移动）
-        interactHint.transform.position = transform.position + hintOffset;
-        if (faceCamera && mainCam) interactHint.transform.forward = mainCam.transform.forward;
+        if (debugLogs) Debug.Log($"{name} | 已开始对话（行数={talkData.lines?.Length ?? 0}）");
     }
 
     // 在场景视图里可见提示位置
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = gizmoColor;
-        Vector3 p = Application.isPlaying ? (transform.position + hintOffset) : (transform.position + hintOffset);
+        Vector3 p = transform.position + hintOffset;
         Gizmos.DrawWireSphere(p, 0.1f);
         Gizmos.DrawLine(transform.position, p);
     }
 }
+
