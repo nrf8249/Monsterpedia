@@ -74,9 +74,9 @@ public class ClueGround : MonoBehaviour
         if (debugLogs) Debug.Log($"{name} | 玩家离开线索范围，隐藏提示。", this);
 
         // ✅ 新增：统一通过 DialogueManager 关闭 UI
-        if (DialogueManager.Instance != null)
+        if (NarrativeBoxManager.Instance != null)
         {
-            DialogueManager.Instance.StopDialogue();
+            NarrativeBoxManager.Instance.StopDialogue();
             if (debugLogs) Debug.Log($"{name} | 玩家离开线索范围，关闭 Monologue UI。", this);
         }
     }
@@ -121,7 +121,7 @@ public class ClueGround : MonoBehaviour
 
     private void TriggerMonologue()
     {
-        if (DialogueManager.Instance == null)
+        if (NarrativeBoxManager.Instance == null)
         {
             Debug.LogError($"{name} | DialogueManager.Instance 为空。", this);
             return;
@@ -136,7 +136,7 @@ public class ClueGround : MonoBehaviour
         // 优先使用 SO
         if (data.monologueData && data.monologueData.lines != null && data.monologueData.lines.Length > 0)
         {
-            DialogueManager.Instance.StartMonologue(data.monologueData);
+            NarrativeBoxManager.Instance.StartMonologue(data.monologueData);
             if (debugLogs) Debug.Log($"{name} | Monologue by DialogueData（行数={data.monologueData.lines.Length}）", this);
         }
         else if (!string.IsNullOrWhiteSpace(data.monologueFallbackText))
@@ -148,7 +148,7 @@ public class ClueGround : MonoBehaviour
                     new DialogueData.DialogueLine{ speaker="", content=data.monologueFallbackText }
                 }
             };
-            DialogueManager.Instance.StartMonologue(oneLine);
+            NarrativeBoxManager.Instance.StartMonologue(oneLine);
             if (debugLogs) Debug.Log($"{name} | Monologue by FallbackText", this);
         }
         else

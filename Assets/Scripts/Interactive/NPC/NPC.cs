@@ -66,7 +66,7 @@ public class NPC : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
         if (interactHint) interactHint.SetActive(false);
-        if (DialogueManager.Instance != null) DialogueManager.Instance.StopDialogue();
+        if (NarrativeBoxManager.Instance != null) NarrativeBoxManager.Instance.StopDialogue();
         if (debugLogs) Debug.Log($"{name} | 玩家离开交互范围，隐藏提示 + 关闭对话框");
     }
 
@@ -85,7 +85,7 @@ public class NPC : MonoBehaviour
             if (debugLogs) Debug.LogWarning($"{name} | talkData 为空，无法开始对话");
             return;
         }
-        if (DialogueManager.Instance == null)
+        if (NarrativeBoxManager.Instance == null)
         {
             Debug.LogError($"{name} | DialogueManager.Instance 为空（场景里没挂或被禁用）");
             return;
@@ -98,7 +98,7 @@ public class NPC : MonoBehaviour
             asMonologue: false
         );
 
-        DialogueManager.Instance.StartDialogue(payload);
+        NarrativeBoxManager.Instance.StartDialogue(payload);
         if (debugLogs) Debug.Log($"{name} | 已开始对话（行数={talkData.lines?.Length ?? 0}）");
     }
 
