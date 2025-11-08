@@ -13,7 +13,7 @@ public class NarrativeBox : MonoBehaviour
     [SerializeField] private Image portraitImage;
 
     [Header("名字文本（可选）")]
-    [SerializeField] private TextMeshProUGUI nameText;     // ← 新增：NPC 名字显示（可为空）
+    [SerializeField] private TextMeshProUGUI nameText;
 
     [Header("文本引用")]
     [SerializeField] private TextMeshProUGUI narrativeStartText;
@@ -25,13 +25,20 @@ public class NarrativeBox : MonoBehaviour
     [Header("打字机参数")]
     [SerializeField] private float textSpeed = 0.02f;
 
-    private DialogueData curData;
-    private string[] legacyLines;
-    private bool usingSO = false;
+    private DialogueData curDiaData;
+    private MonologueData curMonoData;
     private int index = 0;
     private Coroutine typingRoutine;
 
-    private enum Mode { Hidden, Intro, Narrative }
+    private enum Mode
+    {
+        Start,
+        InTalk,
+        InShow,
+        InAccuse,
+        Hidden,
+        InMonologue
+    }
     private Mode mode = Mode.Hidden;
 
     private void Reset()
@@ -44,67 +51,55 @@ public class NarrativeBox : MonoBehaviour
         HideAll();
     }
 
-    // -------------------- Public API --------------------
-
-    public void ShowIntro(string introText, bool showButtons = true)
+    private void Update()
     {
-        StopTypingIfAny();
-
-        mode = Mode.Intro;
-        EnsureGroupVisible(true);
-
-        SetPortraitVisible(portraitImage != null && portraitImage.sprite != null);
-        // 名字：保留上一次设置的可见状态，不强制改动
-        SetStartText(introText);
-        SetNarrativeText("");
-        SetNarrativeVisible(false);
-
-        SetButtonsVisible(showButtons);
+        switch (mode)
+        {
+            case Mode.Start:
+                EnsureGroupVisible(true);
+                SetNarrativeVisible(false);
+                SetButtonsVisible(true);
+                break;
+            case Mode.InTalk:
+                SetButtonsVisible(false);
+                SetStartVisible(false);
+                break;
+            case Mode.InShow:
+                SetButtonsVisible(false);
+                SetStartVisible(false);
+                break;
+            case Mode.InAccuse:
+                SetButtonsVisible(false);
+                SetStartVisible(false);
+                break;
+            case Mode.Hidden:
+                StopAllNarrative();
+                HideAll();
+                break;
+            case Mode.InMonologue:
+                EnsureGroupVisible(true);
+                SetButtonsVisible(false);
+                SetStartVisible(false);
+                break;
+        }
     }
-
+    // -------------------- Public API --------------------
+    // show intro from DialogueData ScriptableObject
     public void ShowIntro(DialogueData introData, bool showButtons = true, int useLineIndex = 0)
     {
-        if (introData == null || introData.lines == null || introData.lines.Length == 0)
-        {
-            ShowIntro("", showButtons);
-            return;
-        }
-        var line = Mathf.Clamp(useLineIndex, 0, introData.lines.Length - 1);
-        ShowIntro(introData.lines[line].content, showButtons);
+        
     }
 
-    public void StartDialogue(DialogueData data)
+
+    // show dialogue from DialogueData ScriptableObject
+    public void DisplayDialogue(DialogueData data)
     {
-        if (data == null || data.lines == null || data.lines.Length == 0)
-        {
-            StopAllNarrative();
-            return;
-        }
-
-        StopTypingIfAny();
-        usingSO = true;
-        curData = data;
-        index = 0;
-
-        mode = Mode.Narrative;
-        EnsureGroupVisible(true);
-
-        SetStartVisible(false);
-        SetNarrativeVisible(true);
-        SetButtonsVisible(false);
-
-        // 若之前没通过 payload 设置名字，这里可用首行 speaker 兜底
-        if (nameText && string.IsNullOrEmpty(nameText.text))
-        {
-            var firstSpeaker = curData.lines[0].speaker;
-            SetNameText(string.IsNullOrEmpty(firstSpeaker) ? null : firstSpeaker);
-        }
-
-        StartTyping(curData.lines[index].content);
+        
     }
 
-    public void StartDialogue(NarrativePayload payload)
+    public void StartDialogue(DialoguePayload payload)
     {
+        mode = Mode.Start;
         if (payload == null || payload.data == null || payload.data.lines == null || payload.data.lines.Length == 0)
         {
             StopAllNarrative();
@@ -126,110 +121,68 @@ public class NarrativeBox : MonoBehaviour
         }
 
         // 名字：优先 payload.characterName；否则用首行 speaker；再不然隐藏
-        string displayName = !string.IsNullOrEmpty(payload.characterName)
-            ? payload.characterName
-            : (payload.data.lines.Length > 0 ? payload.data.lines[0].speaker : null);
+        string displayName = payload.characterName;
         SetNameText(string.IsNullOrEmpty(displayName) ? null : displayName);
-
-        // 正常对话流程
-        StartDialogue(payload.data);
-
-        if (payload.asMonologue) SetButtonsVisible(false);
     }
 
-    public void StartMonologue(DialogueData data)
+    // show monologue from MonologueData ScriptableObject
+    public void StartMonologue(MonologuePayload payload)
     {
-        StartDialogue(data);
-        SetButtonsVisible(false);
-    }
-
-    public void StartMonologue(string[] lines)
-    {
-        if (lines == null || lines.Length == 0)
+        if (payload == null || payload.data == null || payload.data.lines == null || payload.data.lines.Length == 0)
         {
             StopAllNarrative();
             return;
         }
 
-        StopTypingIfAny();
-        usingSO = false;
-        legacyLines = lines;
-        index = 0;
+        if (portraitImage)
+        {
+            if (payload.portrait != null)
+            {
+                portraitImage.sprite = payload.portrait;
+                portraitImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                portraitImage.gameObject.SetActive(false);
+            }
+        }
 
-        mode = Mode.Narrative;
-        EnsureGroupVisible(true);
+        // 名字：优先 payload.characterName；否则用首行 speaker；再不然隐藏
+        string displayName = payload.clueName;
+        SetNameText(string.IsNullOrEmpty(displayName) ? null : displayName);
 
-        SetStartVisible(false);
-        SetNarrativeVisible(true);
-        SetButtonsVisible(false);
-
-        // 独白不显示名字
-        SetNameText(null);
-
-        StartTyping(legacyLines[index]);
+        mode = Mode.InTalk;
+        DisplayMonologue(payload.data);
     }
 
+    public void DisplayMonologue(MonologueData data)
+    {
+        
+
+    }
+
+    // stop all narrative
     public void StopAllNarrative()
     {
         StopTypingIfAny();
         HideAll();
     }
 
+    // advance narrative (to be called by Input System)
     public void OnAdvance(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
-        if (mode != Mode.Narrative) return;
-        if (!dialogueGroup || !dialogueGroup.activeSelf) return;
-
-        if (usingSO)
-        {
-            var full = curData.lines[index].content;
-            if (narrativeText.text == full)
-            {
-                if (index < curData.lines.Length - 1)
-                {
-                    index++;
-                    StartTyping(curData.lines[index].content);
-                }
-                else
-                {
-                    StopAllNarrative();
-                }
-            }
-            else
-            {
-                SkipTypingTo(full);
-            }
-        }
-        else
-        {
-            var full = legacyLines[index];
-            if (narrativeText.text == full)
-            {
-                if (index < legacyLines.Length - 1)
-                {
-                    index++;
-                    StartTyping(legacyLines[index]);
-                }
-                else
-                {
-                    StopAllNarrative();
-                }
-            }
-            else
-            {
-                SkipTypingTo(full);
-            }
-        }
+        
     }
 
     // -------------------- Internals --------------------
 
+    // show/hide helpers
     private void EnsureGroupVisible(bool show)
     {
         if (dialogueGroup) dialogueGroup.SetActive(show);
     }
 
+    // hide all UI elements
     private void HideAll()
     {
         mode = Mode.Hidden;
@@ -241,6 +194,7 @@ public class NarrativeBox : MonoBehaviour
         SetButtonsVisible(false);
     }
 
+    // UI element setters
     private void SetPortraitVisible(bool show)
     {
         if (portraitImage) portraitImage.gameObject.SetActive(show);

@@ -10,13 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d38cfc144af4854e8b84e66304f53bf, type: 3}
-  m_Name: NewDialogue
+  m_Name: MonologueTest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  defaultName: 
-  defaultPortrait: {fileID: 0}
   lines:
-  - trigger: 2
-    key: 
-    speaker: 
-    content: 
-    order: 0
+  - speaker: Clue
+    content: This is a clue

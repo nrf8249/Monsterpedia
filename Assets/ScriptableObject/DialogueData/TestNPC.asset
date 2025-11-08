@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: Vampire
-    content: 11111111111111111111111111
+    content: This is test for dialogue UI
