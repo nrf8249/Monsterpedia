@@ -645,63 +645,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5067275414860923560}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
---- !u!114 &5067275414860923557 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 521660638536563740, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
-  m_PrefabInstance: {fileID: 5067275414860923556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &5067275414860923558 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1690978647138212399, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
-  m_PrefabInstance: {fileID: 5067275414860923556}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5067275414860923559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8934157663372087274, guid: 91a44c35a1edb35478ee8e377ce26eb2, type: 3}
-  m_PrefabInstance: {fileID: 5067275414860923556}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5067275414860923560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5067275414860923559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101b0a54702cde4418f2c0e9cfe6bb99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NarrativeBox
-  dialogueGroup: {fileID: 5067275414860923559}
-  targetNameBar: {fileID: 5067275414860923558}
-  nameText: {fileID: 5067275414860923557}
-  narrativeText: {fileID: 0}
-  buttonGroup: {fileID: 0}
-  talkButton: {fileID: 0}
-  showButton: {fileID: 0}
-  accuseButton: {fileID: 0}
-  textSpeed: 0.02
-  lines: []
-  onTalkClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onShowClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onAccuseClicked:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

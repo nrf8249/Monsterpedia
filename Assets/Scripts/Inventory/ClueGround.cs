@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ClueGround : MonoBehaviour
 {
     [Header("线索数据（ScriptableObject）")]
-    public ClueData data;
+    public MonologueData data;
 
     [Header("交互提示（世界内小图标或World Space Canvas）")]
     public GameObject interactHint;
@@ -133,28 +133,6 @@ public class ClueGround : MonoBehaviour
             return;
         }
 
-        // 优先使用 SO
-        if (data.monologueData && data.monologueData.lines != null && data.monologueData.lines.Length > 0)
-        {
-            NarrativeBoxManager.Instance.StartMonologue(data.monologueData);
-            if (debugLogs) Debug.Log($"{name} | Monologue by DialogueData（行数={data.monologueData.lines.Length}）", this);
-        }
-        else if (!string.IsNullOrWhiteSpace(data.monologueFallbackText))
-        {
-            var oneLine = new DialogueData
-            {
-                lines = new DialogueData.DialogueLine[]
-                {
-                    new DialogueData.DialogueLine{ speaker="", content=data.monologueFallbackText }
-                }
-            };
-            NarrativeBoxManager.Instance.StartMonologue(oneLine);
-            if (debugLogs) Debug.Log($"{name} | Monologue by FallbackText", this);
-        }
-        else
-        {
-            Debug.LogWarning($"{name} | ClueData 里既无 monologueData 也无 fallback 文本。", this);
-        }
     }
 
     private void OnDrawGizmosSelected()

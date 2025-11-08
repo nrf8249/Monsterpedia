@@ -70,16 +70,10 @@ public class NPC : MonoBehaviour
         if (debugLogs) Debug.Log($"{name} | 玩家离开交互范围，隐藏提示 + 关闭对话框");
     }
 
-    // 仍保留：若你后面走“Player路由到NPC”的方案B，这个回调仍然可用
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (!(context.started || context.performed)) return;
-        if (!playerInRange) return;
-        TryStartDialogue();
-    }
 
     private void TryStartDialogue()
     {
+        // debugging checks
         if (talkData == null)
         {
             if (debugLogs) Debug.LogWarning($"{name} | talkData 为空，无法开始对话");
@@ -91,18 +85,18 @@ public class NPC : MonoBehaviour
             return;
         }
 
-        var payload = new NarrativePayload(
+        // start dialogue
+        var payload = new DialoguePayload(
             data: talkData,
             portrait: portrait,
-            characterName: string.IsNullOrEmpty(npcName) ? null : npcName,
-            asMonologue: false
+            characterName: string.IsNullOrEmpty(npcName) ? null : npcName
         );
 
         NarrativeBoxManager.Instance.StartDialogue(payload);
         if (debugLogs) Debug.Log($"{name} | 已开始对话（行数={talkData.lines?.Length ?? 0}）");
     }
 
-    // 在场景视图里可见提示位置
+    // Gizmos: notice the interact hint position in Editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = gizmoColor;
