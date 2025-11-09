@@ -131,6 +131,17 @@
                 },
                 {
                     "name": "",
+                    "id": "75454003-c184-47e6-bb21-332a26e7fc87",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Advance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c6cd2a3a-df4a-4eef-83cc-35d14db0af16",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",

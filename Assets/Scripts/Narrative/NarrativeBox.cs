@@ -27,22 +27,26 @@ public class NarrativeBox : MonoBehaviour
     [SerializeField] private float textSpeed = 0.02f;
 
     [Header("Input")]
-    [SerializeField] private PlayerInput playerInput;      // Inspector 拖那个 PlayerInput 组件进来
-    [SerializeField] private string playerMap = "Player";  // 必须与 Asset 里的名字一致
-    [SerializeField] private string uiMap = "UI";
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private string playerMap = "Player";// default player map
+    [SerializeField] private string uiMap = "UI";        // default ui map
 
-    [SerializeField] private float reopenCooldown = 0.15f; // 关闭后的消抖时间
+    [SerializeField] private float reopenCooldown = 0.15f;
     private float _lastClosedAt = -999f;
     private bool _requireRelease = false;
 
+    // can start narrative check
     public bool CanStartNarrative
     {
         get
         {
-            if (hasActiveSeq) return false;                                  // 正在播
-            if (Time.unscaledTime - _lastClosedAt < reopenCooldown) return false;  // 刚关不许立即开
+            // if is narrative active
+            if (hasActiveSeq) return false;
+            // cooldown check
+            if (Time.unscaledTime - _lastClosedAt < reopenCooldown) return false;
             var kb = Keyboard.current;
-            if (_requireRelease && kb != null && kb.eKey.isPressed) return false;  // 必须先松键
+            // require release check
+            if (_requireRelease && kb != null && kb.eKey.isPressed) return false;
             return true;
         }
     }
@@ -247,6 +251,7 @@ public class NarrativeBox : MonoBehaviour
         ApplyMode();
     }
 
+    // exit narrative (to be called by Input System)
     public void OnExit(InputAction.CallbackContext ctx)
     {
         mode = Mode.Hidden;
@@ -391,12 +396,12 @@ public class NarrativeBox : MonoBehaviour
         StartTyping(activeSeq.GetContent(index));
     }
 
+    // input map switching
     private void SwitchToUI()
     {
         if (playerInput && playerInput.currentActionMap?.name != uiMap)
             playerInput.SwitchCurrentActionMap(uiMap);
     }
-
     private void SwitchToPlayer()
     {
         if (playerInput && playerInput.currentActionMap?.name != playerMap)
