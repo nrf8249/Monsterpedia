@@ -6,6 +6,7 @@ public class ClueGround : MonoBehaviour
 {
     [Header("线索数据（ScriptableObject）")]
     public MonologueData data;
+    public string clueName;
 
     [Header("交互提示（世界内小图标或World Space Canvas）")]
     public GameObject interactHint;
@@ -38,15 +39,6 @@ public class ClueGround : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // 仍保留键盘E交互（方便调试）
-        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            TriggerMonologue();
-        }
-    }
-
     private void LateUpdate()
     {
         if (interactHint && interactHint.activeSelf)
@@ -73,7 +65,6 @@ public class ClueGround : MonoBehaviour
         if (interactHint) interactHint.SetActive(false);
         if (debugLogs) Debug.Log($"{name} | 玩家离开线索范围，隐藏提示。", this);
 
-        // ✅ 新增：统一通过 DialogueManager 关闭 UI
         if (NarrativeBoxManager.Instance != null)
         {
             NarrativeBoxManager.Instance.StopDialogue();
@@ -83,9 +74,10 @@ public class ClueGround : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!(ctx.started || ctx.performed)) return;
-        if (!playerInRange) return;
-        TriggerMonologue();
+
+        if (!playerInRange)
+            return;
+        StartMonologue();
     }
 
     private void TryShowHint(string reason)
@@ -119,7 +111,7 @@ public class ClueGround : MonoBehaviour
         if (faceCamera && cam) interactHint.transform.forward = cam.transform.forward;
     }
 
-    private void TriggerMonologue()
+    private void StartMonologue()
     {
         if (NarrativeBoxManager.Instance == null)
         {
@@ -133,6 +125,14 @@ public class ClueGround : MonoBehaviour
             return;
         }
 
+        var payload = new MonologuePayload(
+            data: data,
+            portrait: null,
+            clueName: clueName
+        );
+        if (NarrativeBoxManager.Instance.IsNarrating)
+            return;
+        NarrativeBoxManager.Instance.StartMonologue(payload);
     }
 
     private void OnDrawGizmosSelected()

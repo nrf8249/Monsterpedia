@@ -7,9 +7,11 @@ using UnityEngine;
 public class NarrativeBoxManager : MonoBehaviour
 {
     public static NarrativeBoxManager Instance;
+    public bool IsNarrating => narrativeBox.hasActiveSeq;
 
     [SerializeField] private NarrativeBox narrativeBox; // 在 Inspector 里把 DialogueGroup 上的 NarrativeBox 拖进来
 
+    public bool CanStartNarrative => narrativeBox.CanStartNarrative;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -26,6 +28,20 @@ public class NarrativeBoxManager : MonoBehaviour
         narrativeBox.StartDialogue(payload);
     }
 
+    public void InTalk()
+    {
+        narrativeBox.InTalk();
+    }
+
+    public void InShow()
+    {
+        narrativeBox.InShow();
+    }
+
+    public void InAccuse()
+    {
+        narrativeBox.InAccuse();
+    }
     // —— Monologue ——
     public void StartMonologue(MonologuePayload payload)
     {

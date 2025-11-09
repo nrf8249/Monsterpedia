@@ -17,15 +17,10 @@ public class DialogueData : ScriptableObject
     public class Line
     {
         public Trigger trigger;
-        public string key;                  // 仅 Trigger=Clue 时使用（如线索ID）
-        public string speaker;              // 可选
+        public string key; 
         [TextArea(2, 5)] public string content;
         public int order = 0;               // 当 trigger=Talk 时用于排序；同序按数组顺序
     }
-
-    [Header("可选：该 NPC 的显示名/立绘（若用payload传，这里可留空）")]
-    public string defaultName;
-    public Sprite defaultPortrait;
 
     [Header("台词（带触发条件）")]
     public Line[] lines;

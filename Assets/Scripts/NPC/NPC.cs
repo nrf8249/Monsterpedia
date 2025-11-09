@@ -34,18 +34,8 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // 在范围内，直接监听 E 键（不再依赖外部把 Action 路由到 NPC）
-        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            TryStartDialogue();
-        }
-    }
-
     private void LateUpdate()
     {
-        // 头顶跟随 + 面向相机
         if (interactHint != null && interactHint.activeSelf)
         {
             hintTransform.position = transform.position + hintOffset;
@@ -70,8 +60,13 @@ public class NPC : MonoBehaviour
         if (debugLogs) Debug.Log($"{name} | 玩家离开交互范围，隐藏提示 + 关闭对话框");
     }
 
+    public void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (!playerInRange) return;
+        StartDialogue();
+    }
 
-    private void TryStartDialogue()
+    private void StartDialogue()
     {
         // debugging checks
         if (talkData == null)
@@ -91,7 +86,8 @@ public class NPC : MonoBehaviour
             portrait: portrait,
             characterName: string.IsNullOrEmpty(npcName) ? null : npcName
         );
-
+        if (NarrativeBoxManager.Instance.IsNarrating)
+            return;
         NarrativeBoxManager.Instance.StartDialogue(payload);
         if (debugLogs) Debug.Log($"{name} | 已开始对话（行数={talkData.lines?.Length ?? 0}）");
     }

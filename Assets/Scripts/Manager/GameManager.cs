@@ -1,7 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    public PlayerInput playerInput;
+
     enum GameState
     {
         MainMenu,

@@ -3,33 +3,56 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class NarrativeBox : MonoBehaviour
 {
-    [Header("对话框根节点（整个面板的父物体）")]
+    [Header("All the UI group")]
     [SerializeField] private GameObject dialogueGroup;
 
-    [Header("立绘（可选）")]
+    [Header("Portrait")]
     [SerializeField] private Image portraitImage;
 
-    [Header("名字文本（可选）")]
+    [Header("Name text")]
     [SerializeField] private TextMeshProUGUI nameText;
 
-    [Header("文本引用")]
+    [Header("Intro text & Narrative text")]
     [SerializeField] private TextMeshProUGUI narrativeStartText;
     [SerializeField] private TextMeshProUGUI narrativeText;
 
-    [Header("按钮容器（可选）")]
+    [Header("Buttons")]
     [SerializeField] private GameObject buttonGroup;
 
-    [Header("打字机参数")]
+    [Header("Speed of type")]
     [SerializeField] private float textSpeed = 0.02f;
 
+    [Header("Input")]
+    [SerializeField] private PlayerInput playerInput;      // Inspector 拖那个 PlayerInput 组件进来
+    [SerializeField] private string playerMap = "Player";  // 必须与 Asset 里的名字一致
+    [SerializeField] private string uiMap = "UI";
+
+    [SerializeField] private float reopenCooldown = 0.15f; // 关闭后的消抖时间
+    private float _lastClosedAt = -999f;
+    private bool _requireRelease = false;
+
+    public bool CanStartNarrative
+    {
+        get
+        {
+            if (hasActiveSeq) return false;                                  // 正在播
+            if (Time.unscaledTime - _lastClosedAt < reopenCooldown) return false;  // 刚关不许立即开
+            var kb = Keyboard.current;
+            if (_requireRelease && kb != null && kb.eKey.isPressed) return false;  // 必须先松键
+            return true;
+        }
+    }
+
+    // -------------------- Internal State --------------------
     private DialogueData curDiaData;
     private MonologueData curMonoData;
     private int index = 0;
     private Coroutine typingRoutine;
-
+    private Mode mode;
     private enum Mode
     {
         Start,
@@ -39,30 +62,44 @@ public class NarrativeBox : MonoBehaviour
         Hidden,
         InMonologue
     }
-    private Mode mode = Mode.Hidden;
 
+    // text sequence struct
+    private struct TextSequence
+    {
+        public int Count;                          // total number of entries
+        public System.Func<int, string> GetContent;// function to get content by index
+        public System.Action OnEnd;                // action to perform on end
+    }
+    private TextSequence activeSeq;
+    public bool hasActiveSeq = false;
+
+    // -------------------- Unity Callbacks --------------------
     private void Reset()
     {
         if (dialogueGroup == null) dialogueGroup = gameObject;
     }
-
     private void Awake()
     {
-        HideAll();
+        mode = Mode.Hidden;
+        ApplyMode();
     }
 
-    private void Update()
+    // apply current mode
+    private void ApplyMode()
     {
         switch (mode)
         {
             case Mode.Start:
+                Debug.Log("Mode: Start");
                 EnsureGroupVisible(true);
+                SetStartVisible(true);      
                 SetNarrativeVisible(false);
                 SetButtonsVisible(true);
                 break;
             case Mode.InTalk:
                 SetButtonsVisible(false);
                 SetStartVisible(false);
+                DisplayDialogue(curDiaData);
                 break;
             case Mode.InShow:
                 SetButtonsVisible(false);
@@ -73,67 +110,34 @@ public class NarrativeBox : MonoBehaviour
                 SetStartVisible(false);
                 break;
             case Mode.Hidden:
-                StopAllNarrative();
+                hasActiveSeq = false;
+                index = 0;
+                StopTypingIfAny();
                 HideAll();
+                SwitchToPlayer();
                 break;
             case Mode.InMonologue:
-                EnsureGroupVisible(true);
+                ShowAll();
                 SetButtonsVisible(false);
                 SetStartVisible(false);
+                DisplayMonologue(curMonoData);
                 break;
         }
     }
+
     // -------------------- Public API --------------------
-    // show intro from DialogueData ScriptableObject
-    public void ShowIntro(DialogueData introData, bool showButtons = true, int useLineIndex = 0)
-    {
-        
-    }
-
-
-    // show dialogue from DialogueData ScriptableObject
-    public void DisplayDialogue(DialogueData data)
-    {
-        
-    }
-
-    public void StartDialogue(DialoguePayload payload)
-    {
-        mode = Mode.Start;
-        if (payload == null || payload.data == null || payload.data.lines == null || payload.data.lines.Length == 0)
-        {
-            StopAllNarrative();
-            return;
-        }
-
-        // 立绘
-        if (portraitImage)
-        {
-            if (payload.portrait != null)
-            {
-                portraitImage.sprite = payload.portrait;
-                portraitImage.gameObject.SetActive(true);
-            }
-            else
-            {
-                portraitImage.gameObject.SetActive(false);
-            }
-        }
-
-        // 名字：优先 payload.characterName；否则用首行 speaker；再不然隐藏
-        string displayName = payload.characterName;
-        SetNameText(string.IsNullOrEmpty(displayName) ? null : displayName);
-    }
-
-    // show monologue from MonologueData ScriptableObject
+    // —— Monologue ——
     public void StartMonologue(MonologuePayload payload)
     {
+        SwitchToUI();
+        // null check
         if (payload == null || payload.data == null || payload.data.lines == null || payload.data.lines.Length == 0)
         {
             StopAllNarrative();
             return;
         }
 
+        // Protrait
         if (portraitImage)
         {
             if (payload.portrait != null)
@@ -147,45 +151,135 @@ public class NarrativeBox : MonoBehaviour
             }
         }
 
-        // 名字：优先 payload.characterName；否则用首行 speaker；再不然隐藏
+        // Name
         string displayName = payload.clueName;
         SetNameText(string.IsNullOrEmpty(displayName) ? null : displayName);
 
-        mode = Mode.InTalk;
-        DisplayMonologue(payload.data);
+        // Data
+        curMonoData = payload.data;
+        mode = Mode.InMonologue;
+        ApplyMode();
     }
-
     public void DisplayMonologue(MonologueData data)
     {
-        
+        if (data == null || data.lines == null || data.lines.Length == 0)
+        { StopAllNarrative(); return; }
 
+        StartSequence(new TextSequence
+        {
+            Count = data.lines.Length,
+            GetContent = i => data.lines[i].content ?? "",
+            OnEnd = () => { StopAllNarrative(); } // ← 独白的结束行为
+        });
+    }
+
+    // —— Dialogue ——
+    public void StartDialogue(DialoguePayload payload)
+    {
+        SwitchToUI();
+        // null check
+        if (payload == null || payload.data == null || payload.data.lines == null || payload.data.lines.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+
+        // portrait
+        if (portraitImage)
+        {
+            if (payload.portrait != null)
+            {
+                portraitImage.sprite = payload.portrait;
+                portraitImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                portraitImage.gameObject.SetActive(false);
+            }
+        }
+
+        // name
+        string displayName = payload.characterName;
+        SetNameText(string.IsNullOrEmpty(displayName) ? null : displayName);
+
+        // data
+        curDiaData = payload.data;
+        SetStartText(curDiaData.GetStartText());
+        mode = Mode.Start;
+        ApplyMode();
+    }
+    public void DisplayDialogue(DialogueData data)
+    {
+        if (data == null || data.lines == null || data.lines.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+
+        StartSequence(new TextSequence
+        {
+            Count = data.lines.Length,
+            // 假设 DialogueData 的行结构也有 content 字段；若有 speaker/portrait，可在 ApplyPerLine 设置
+            GetContent = i => data.lines[i].content ?? "",
+            OnEnd = () => { mode = Mode.Start; }
+        });
+    }
+    public void InTalk()
+    {
+        mode = Mode.InTalk;
+        ApplyMode();
+    }
+    public void InShow()
+    {
+        mode = Mode.InShow;
+        ApplyMode();
+    }
+    public void InAccuse()
+    {
+        mode = Mode.InAccuse;
+        ApplyMode();
     }
 
     // stop all narrative
     public void StopAllNarrative()
     {
-        StopTypingIfAny();
-        HideAll();
+        mode = Mode.Hidden;
+        ApplyMode();
+    }
+
+    public void OnExit(InputAction.CallbackContext ctx)
+    {
+        mode = Mode.Hidden;
+        ApplyMode();
     }
 
     // advance narrative (to be called by Input System)
     public void OnAdvance(InputAction.CallbackContext ctx)
     {
-        
+        if (!ctx.performed) return;
+        if (hasActiveSeq)
+        {
+            AdvanceNext();
+            return;
+        }
     }
 
     // -------------------- Internals --------------------
-
     // show/hide helpers
     private void EnsureGroupVisible(bool show)
     {
-        if (dialogueGroup) dialogueGroup.SetActive(show);
+        if (dialogueGroup && dialogueGroup != gameObject)
+            dialogueGroup.SetActive(show);
     }
-
-    // hide all UI elements
+    private void ShowAll()
+    {
+        EnsureGroupVisible(true);
+        SetPortraitVisible(true);
+        SetButtonsVisible(true);
+        SetNarrativeVisible(true);
+    }
     private void HideAll()
     {
-        mode = Mode.Hidden;
         EnsureGroupVisible(false);
         SetPortraitVisible(false);
         SetStartText("");
@@ -193,52 +287,44 @@ public class NarrativeBox : MonoBehaviour
         SetNameText(null);
         SetButtonsVisible(false);
     }
-
-    // UI element setters
     private void SetPortraitVisible(bool show)
     {
         if (portraitImage) portraitImage.gameObject.SetActive(show);
     }
-
     private void SetNameText(string t)
     {
         if (!nameText) return;
         nameText.text = t ?? "";
         nameText.gameObject.SetActive(!string.IsNullOrEmpty(t));
     }
-
     private void SetStartText(string t)
     {
         if (narrativeStartText) narrativeStartText.text = t ?? "";
         SetStartVisible(!string.IsNullOrEmpty(t));
     }
-
     private void SetNarrativeText(string t)
     {
         if (narrativeText) narrativeText.text = t ?? "";
     }
-
     private void SetStartVisible(bool show)
     {
         if (narrativeStartText) narrativeStartText.gameObject.SetActive(show);
     }
-
     private void SetNarrativeVisible(bool show)
     {
         if (narrativeText) narrativeText.gameObject.SetActive(show);
     }
-
     private void SetButtonsVisible(bool show)
     {
         if (buttonGroup) buttonGroup.SetActive(show);
     }
 
+    // typing effect
     private void StartTyping(string content)
     {
         StopTypingIfAny();
         typingRoutine = StartCoroutine(TypeRoutine(content));
     }
-
     private void StopTypingIfAny()
     {
         if (typingRoutine != null)
@@ -247,7 +333,6 @@ public class NarrativeBox : MonoBehaviour
             typingRoutine = null;
         }
     }
-
     private IEnumerator TypeRoutine(string content)
     {
         SetNarrativeText("");
@@ -258,11 +343,66 @@ public class NarrativeBox : MonoBehaviour
         }
         typingRoutine = null;
     }
-
     private void SkipTypingTo(string full)
     {
         StopTypingIfAny();
         SetNarrativeText(full);
     }
+
+    // text sequence management
+    private void StartSequence(TextSequence seq)
+    {
+        if (seq.Count <= 0 || seq.GetContent == null)
+        {
+            StopAllNarrative();
+            return;
+        }
+        activeSeq = seq;
+        hasActiveSeq = true;
+        index = 0;
+
+        EnsureGroupVisible(true);
+        SetStartVisible(false);
+        SetNarrativeVisible(true);
+        SetButtonsVisible(false);
+
+        StartTyping(activeSeq.GetContent(index));
+    }
+    private void AdvanceNext()
+    {
+        if (!hasActiveSeq) return;
+
+        if (typingRoutine != null)
+        {
+            SkipTypingTo(activeSeq.GetContent(index));
+            return;
+        }
+
+        index++;
+        if (index >= activeSeq.Count)
+        {
+            hasActiveSeq = false;
+            // 关键：不同入口给的 OnEnd 不同 → 这里自动做对的事
+            if (activeSeq.OnEnd != null) activeSeq.OnEnd.Invoke();
+            else StopAllNarrative(); // 兜底
+            return;
+        }
+
+        StartTyping(activeSeq.GetContent(index));
+    }
+
+    private void SwitchToUI()
+    {
+        if (playerInput && playerInput.currentActionMap?.name != uiMap)
+            playerInput.SwitchCurrentActionMap(uiMap);
+    }
+
+    private void SwitchToPlayer()
+    {
+        if (playerInput && playerInput.currentActionMap?.name != playerMap)
+            playerInput.SwitchCurrentActionMap(playerMap);
+    }
+
+
 }
 
