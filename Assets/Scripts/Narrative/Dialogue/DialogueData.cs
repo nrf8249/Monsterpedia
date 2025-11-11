@@ -7,10 +7,10 @@ public class DialogueData : ScriptableObject
 {
     public enum Trigger
     {
-        Start,      // 进入生命周期显示的开场文字（startText），通常 1 条
-        Talk,       // 点 Talk 播放的主线对白，可多条，按 order 或数组顺序
-        ShowPrompt, // 点 Show 后显示的一句提示（如“你要给我看什么？”），通常 1 条
-        Clue        // 由 ShowClue(clueKey) 触发，key 匹配
+        Start,      
+        Talk,       
+        ShowPrompt, 
+        Clue        
     }
 
     [Serializable]
@@ -19,25 +19,27 @@ public class DialogueData : ScriptableObject
         public Trigger trigger;
         public string key; 
         [TextArea(2, 5)] public string content;
-        public int order = 0;               // 当 trigger=Talk 时用于排序；同序按数组顺序
+        public int order = 0;               
     }
 
-    [Header("台词（带触发条件）")]
+    [Header("lines")]
     public Line[] lines;
 
-    // —— 便捷查询接口（NarrativeBox 会用到）——
+    // get start line
     public string GetStartText()
     {
         var l = lines?.FirstOrDefault(x => x.trigger == Trigger.Start);
         return l != null ? l.content : string.Empty;
     }
 
+    // get show prompt line
     public string GetShowPrompt()
     {
         var l = lines?.FirstOrDefault(x => x.trigger == Trigger.ShowPrompt);
-        return l != null ? l.content : "你要给我看什么？";
+        return l != null ? l.content : "What do you want to show me?";
     }
 
+    // get all talk lines ordered by 'order' field
     public Line[] GetTalkLinesOrdered()
     {
         if (lines == null) return Array.Empty<Line>();
@@ -45,7 +47,7 @@ public class DialogueData : ScriptableObject
                     .OrderBy(x => x.order)
                     .ThenBy(x =>
                     {
-                        // 数组稳定性：同 order 时按原始索引
+                        // keep original order for same order value
                         for (int i = 0; i < lines.Length; i++)
                             if (lines[i] == x) return i;
                         return int.MaxValue;
@@ -53,6 +55,7 @@ public class DialogueData : ScriptableObject
                     .ToArray();
     }
 
+    // search clue lines by key
     public Line[] GetClueLines(string clueKey)
     {
         if (lines == null || string.IsNullOrEmpty(clueKey)) return Array.Empty<Line>();
