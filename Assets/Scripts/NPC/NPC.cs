@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
+    private Vector2 movement;
+    private Animator animator;
+
     [Header("basic data")]
     public DialogueData talkData;
     public Sprite portrait;
@@ -29,6 +32,7 @@ public class NPC : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
+        animator = GetComponent<Animator>();
 
         if (interactHint != null)
         {
