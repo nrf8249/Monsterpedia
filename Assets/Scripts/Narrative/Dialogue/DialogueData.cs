@@ -1,64 +1,99 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using static DialogueData;
 
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject
 {
-    public enum Trigger
+    public enum NarrativeType
     {
-        Start,      
-        Talk,       
-        ShowPrompt, 
-        Clue        
+        Start,
+        Talk,
+        ShowPrompt,
+        ShowNothing,
+        Clue,
+        Accuse
+    }
+
+    public class NarrativeComponent
+    {
+        public NarrativeType narrativeType;
+        public string key;
+        public string value;
+        [Header("lines")]
+        public Line[] lines;
     }
 
     [Serializable]
     public class Line
     {
-        public Trigger trigger;
-        public string key; 
-        [TextArea(2, 5)] public string content;
-        public int order = 0;               
+        [TextArea(2, 5)] public string content;        
     }
 
-    [Header("lines")]
-    public Line[] lines;
+    public NarrativeComponent[] narrativeComponents;
 
     // get start line
-    public string GetStartText()
+    public NarrativeComponent GetStartText()
     {
-        var l = lines?.FirstOrDefault(x => x.trigger == Trigger.Start);
-        return l != null ? l.content : string.Empty;
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.Start && narrativeComponents[i].lines.Length > 0)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 
     // get show prompt line
-    public string GetShowPrompt()
+    public NarrativeComponent GetShowPrompt()
     {
-        var l = lines?.FirstOrDefault(x => x.trigger == Trigger.ShowPrompt);
-        return l != null ? l.content : "What do you want to show me?";
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.ShowPrompt &&  narrativeComponents[i].lines.Length > 0)
+            {
+                return  narrativeComponents[i];
+            }
+        }
+        return null;
+    }
+
+    public NarrativeComponent GetShowNothing()
+    {
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.ShowNothing && narrativeComponents[i].lines.Length > 0)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 
     // get all talk lines ordered by 'order' field
-    public Line[] GetTalkLinesOrdered()
+    public NarrativeComponent GetTalkDialogue()
     {
-        if (lines == null) return Array.Empty<Line>();
-        return lines.Where(x => x.trigger == Trigger.Talk)
-                    .OrderBy(x => x.order)
-                    .ThenBy(x =>
-                    {
-                        // keep original order for same order value
-                        for (int i = 0; i < lines.Length; i++)
-                            if (lines[i] == x) return i;
-                        return int.MaxValue;
-                    })
-                    .ToArray();
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.Talk)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 
     // search clue lines by key
-    public Line[] GetClueLines(string clueKey)
+    public NarrativeComponent GetClueDialogue(string clueKey)
     {
-        if (lines == null || string.IsNullOrEmpty(clueKey)) return Array.Empty<Line>();
-        return lines.Where(x => x.trigger == Trigger.Clue && x.key == clueKey).ToArray();
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.Clue && narrativeComponents[i].key == clueKey)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 }
