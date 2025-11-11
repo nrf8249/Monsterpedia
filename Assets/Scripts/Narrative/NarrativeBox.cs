@@ -104,8 +104,8 @@ public class NarrativeBox : MonoBehaviour
             case Mode.InTalk:
                 SetButtonsVisible(false);
                 SetStartVisible(false);
+                SetNarrativeVisible(true);
                 DisplayTalkDialogue(curDiaData);
-                BackToStart();
                 break;
             case Mode.InShow:
                 SetButtonsVisible(false);
@@ -212,7 +212,23 @@ public class NarrativeBox : MonoBehaviour
 
         // data
         curDiaData = payload.data;
-        SetStartText(curDiaData.GetStartText().lines.ToString());
+        NarrativeComponent narrative = null;
+        for (int i = 0; i < curDiaData.narrativeComponents.Length; i++)
+        {
+            if (curDiaData.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Start)
+            {
+                narrative = curDiaData.narrativeComponents[i];
+                break;
+            }
+        }
+        if (narrative != null && narrative.lines.Length > 0)
+        {
+            SetStartText(narrative.lines[0].content ?? "");
+        }
+        else
+        {
+            SetStartText("");
+        }
         mode = Mode.Start;
         ApplyMode();
     }

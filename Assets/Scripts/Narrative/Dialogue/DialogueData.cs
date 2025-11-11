@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using static DialogueData;
 
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject
@@ -16,6 +15,7 @@ public class DialogueData : ScriptableObject
         Accuse
     }
 
+    [System.Serializable]
     public class NarrativeComponent
     {
         public NarrativeType narrativeType;
