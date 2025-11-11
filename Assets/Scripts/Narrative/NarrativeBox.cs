@@ -110,6 +110,7 @@ public class NarrativeBox : MonoBehaviour
             case Mode.InShow:
                 SetButtonsVisible(false);
                 SetStartVisible(false);
+                Inventory.instance.OpenInventory();
                 break;
             case Mode.InAccuse:
                 SetButtonsVisible(false);
@@ -266,20 +267,20 @@ public class NarrativeBox : MonoBehaviour
         mode = Mode.InShow;
         ApplyMode();
     }
-    public void DisplayShowDialogue(DialogueData data, string clueKey)
+    public void DisplayShowDialogue(string clueKey)
     {
-        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        if (curDiaData == null || curDiaData.narrativeComponents == null || curDiaData.narrativeComponents.Length == 0)
         {
             StopAllNarrative();
             return;
         }
         NarrativeComponent comp = null;
-        for (int i = 0; i < data.narrativeComponents.Length; i++)
+        for (int i = 0; i < curDiaData.narrativeComponents.Length; i++)
         {
-            if (data.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Clue &&
-                data.narrativeComponents[i].key == clueKey)
+            if (curDiaData.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Clue &&
+                curDiaData.narrativeComponents[i].key == clueKey)
             {
-                comp = data.narrativeComponents[i];
+                comp = curDiaData.narrativeComponents[i];
                 break;
             }
         }
