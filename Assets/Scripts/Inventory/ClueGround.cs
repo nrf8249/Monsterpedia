@@ -1,34 +1,39 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ClueGround : MonoBehaviour
 {
-    [Header("线索数据（ScriptableObject）")]
+    [Header("clue data")]
     public MonologueData data;
+    public string clueName;
 
-    [Header("交互提示（世界内小图标或World Space Canvas）")]
+    [Header("interact hint")]
     public GameObject interactHint;
     public Vector3 hintOffset = new Vector3(0, 1.0f, 0.0f);
     public bool faceCamera = true;
 
-    [Header("可见性与排序（自动置顶）")]
+    [Header("visible sorting")]
     public string sortingLayerName = "UI";
     public int sortingOrder = 100;
 
-    [Header("调试")]
+    [Header("debug")]
     public bool debugLogs = true;
 
     private bool playerInRange = false;
     private Camera cam;
     private Transform hintTf;
+    private Collider2D hintCol;
 
+    // Start is called before the first frame update
     private void Awake()
     {
         cam = Camera.main;
 
         if (interactHint != null)
         {
+            hintCol = interactHint.GetComponent<Collider2D>();
             hintTf = interactHint.transform;
             interactHint.SetActive(false);
         }
@@ -38,15 +43,7 @@ public class ClueGround : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // 仍保留键盘E交互（方便调试）
-        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            TriggerMonologue();
-        }
-    }
-
+    // Update is called once per frame
     private void LateUpdate()
     {
         if (interactHint && interactHint.activeSelf)
@@ -54,8 +51,22 @@ public class ClueGround : MonoBehaviour
             hintTf.position = transform.position + hintOffset;
             if (faceCamera && cam) hintTf.forward = cam.transform.forward;
         }
+        // 鼠标点击检测
+        if (Mouse.current == null || cam == null || hintCol == null) return;
+        if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+
+        // 如果点在 UI 上，直接忽略（防冲突）
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        Vector2 worldPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (hintCol.OverlapPoint(worldPos))
+        {
+            ClickHint();  // 命中 → 调用
+        }
     }
 
+    // player enters the clue range
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -64,6 +75,7 @@ public class ClueGround : MonoBehaviour
         TryShowHint("OnTriggerEnter2D");
     }
 
+    // player leaves the clue range
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -73,7 +85,6 @@ public class ClueGround : MonoBehaviour
         if (interactHint) interactHint.SetActive(false);
         if (debugLogs) Debug.Log($"{name} | 玩家离开线索范围，隐藏提示。", this);
 
-        // ✅ 新增：统一通过 DialogueManager 关闭 UI
         if (NarrativeBoxManager.Instance != null)
         {
             NarrativeBoxManager.Instance.StopDialogue();
@@ -81,13 +92,28 @@ public class ClueGround : MonoBehaviour
         }
     }
 
+    // interact input action
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!(ctx.started || ctx.performed)) return;
-        if (!playerInRange) return;
-        TriggerMonologue();
+
+        if (!playerInRange)
+            return;
+        StartMonologue();
     }
 
+    // click hint to interact
+    public void ClickHint()
+    {
+        if (!playerInRange) return;
+        var gm = GameManager.Instance;
+        if (!NarrativeBoxManager.Instance.CanStartNarrative) return;
+
+        if (debugLogs) Debug.Log($"{name} 被点击 → 开始独白");
+        StartMonologue();
+    }
+
+
+    // try to show the interact hint
     private void TryShowHint(string reason)
     {
         if (interactHint == null)
@@ -119,7 +145,8 @@ public class ClueGround : MonoBehaviour
         if (faceCamera && cam) interactHint.transform.forward = cam.transform.forward;
     }
 
-    private void TriggerMonologue()
+    // Start the monologue dialogue
+    private void StartMonologue()
     {
         if (NarrativeBoxManager.Instance == null)
         {
@@ -133,8 +160,17 @@ public class ClueGround : MonoBehaviour
             return;
         }
 
+        var payload = new MonologuePayload(
+            data: data,
+            portrait: null,
+            clueName: clueName
+        );
+        if (NarrativeBoxManager.Instance.IsNarrating)
+            return;
+        NarrativeBoxManager.Instance.StartMonologue(payload);
     }
 
+    // Gizmos for hint position
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1f, 0.85f, 0f, 0.8f);

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
+  m_Name: Notes about the Body
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  lines:
+  - content: "\"Alright, let's read the last rites. The cause of death... yeah, that's
+      not subtle. A set of deep, parallel gashes across the neck and chest. \r\n"
+  - content: "The edges are ragged, torn. Not a clean knife cut. This was made by
+      something... feral. \r\n\r\n"
+  - content: "Wait, there's more. \r\n\r\n"
+  - content: "Bruising on the ribs and shoulders, deep and dark. He was hit with
+      a blunt object, hard, before the fatal blow. \r\n"
+  - content: 'This was a brawl, not just a murder.
+
+      
+
+'
+  - content: "...And what's this? On the side of the neck. Two neat little punctures.
+      They aren't bleeding; the blood's been withdrawn. \r\n"
+  - content: 'So, multiple wounds. This just got complicated."
+
+'

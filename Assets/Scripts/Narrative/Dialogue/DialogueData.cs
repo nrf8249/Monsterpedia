@@ -5,62 +5,95 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject
 {
-    public enum Trigger
+    public enum NarrativeType
     {
-        Start,      // 进入生命周期显示的开场文字（startText），通常 1 条
-        Talk,       // 点 Talk 播放的主线对白，可多条，按 order 或数组顺序
-        ShowPrompt, // 点 Show 后显示的一句提示（如“你要给我看什么？”），通常 1 条
-        Clue        // 由 ShowClue(clueKey) 触发，key 匹配
+        Start,
+        Talk,
+        ShowPrompt,
+        ShowNothing,
+        Clue,
+        Accuse
+    }
+
+    [System.Serializable]
+    public class NarrativeComponent
+    {
+        public NarrativeType narrativeType;
+        public string key;
+        public string value;
+        [Header("lines")]
+        public Line[] lines;
     }
 
     [Serializable]
     public class Line
     {
-        public Trigger trigger;
-        public string key;                  // 仅 Trigger=Clue 时使用（如线索ID）
-        public string speaker;              // 可选
-        [TextArea(2, 5)] public string content;
-        public int order = 0;               // 当 trigger=Talk 时用于排序；同序按数组顺序
+        [TextArea(2, 5)] public string content;        
     }
 
-    [Header("可选：该 NPC 的显示名/立绘（若用payload传，这里可留空）")]
-    public string defaultName;
-    public Sprite defaultPortrait;
+    public NarrativeComponent[] narrativeComponents;
 
-    [Header("台词（带触发条件）")]
-    public Line[] lines;
-
-    // —— 便捷查询接口（NarrativeBox 会用到）——
-    public string GetStartText()
+    // get start line
+    public NarrativeComponent GetStartText()
     {
-        var l = lines?.FirstOrDefault(x => x.trigger == Trigger.Start);
-        return l != null ? l.content : string.Empty;
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.Start && narrativeComponents[i].lines.Length > 0)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 
-    public string GetShowPrompt()
+    // get show prompt line
+    public NarrativeComponent GetShowPrompt()
     {
-        var l = lines?.FirstOrDefault(x => x.trigger == Trigger.ShowPrompt);
-        return l != null ? l.content : "你要给我看什么？";
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.ShowPrompt &&  narrativeComponents[i].lines.Length > 0)
+            {
+                return  narrativeComponents[i];
+            }
+        }
+        return null;
     }
 
-    public Line[] GetTalkLinesOrdered()
+    public NarrativeComponent GetShowNothing()
     {
-        if (lines == null) return Array.Empty<Line>();
-        return lines.Where(x => x.trigger == Trigger.Talk)
-                    .OrderBy(x => x.order)
-                    .ThenBy(x =>
-                    {
-                        // 数组稳定性：同 order 时按原始索引
-                        for (int i = 0; i < lines.Length; i++)
-                            if (lines[i] == x) return i;
-                        return int.MaxValue;
-                    })
-                    .ToArray();
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.ShowNothing && narrativeComponents[i].lines.Length > 0)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 
-    public Line[] GetClueLines(string clueKey)
+    // get all talk lines ordered by 'order' field
+    public NarrativeComponent GetTalkDialogue()
     {
-        if (lines == null || string.IsNullOrEmpty(clueKey)) return Array.Empty<Line>();
-        return lines.Where(x => x.trigger == Trigger.Clue && x.key == clueKey).ToArray();
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.Talk)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
+    }
+
+    // search clue lines by key
+    public NarrativeComponent GetClueDialogue(string clueKey)
+    {
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.Clue && narrativeComponents[i].key == clueKey)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
     }
 }

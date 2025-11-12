@@ -14,18 +14,20 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;              // 2D 顶视角通常要关重力
-        rb.freezeRotation = true;         // 不要因碰撞旋转
+        rb.gravityScale = 0;              // uasually set gravityScale to 0 for top-down games
+        rb.freezeRotation = true;         // freezeRotation avoid physics rotation
 
         animator = GetComponent<Animator>();
     }
 
+    // FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
         Vector2 newPos = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(newPos);
     }
 
+    // move input action
     public void OnMove(InputAction.CallbackContext context)
     {
         animator.SetBool("isWalking", true);
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         animator.SetFloat("InputY", movement.y);
     }
 
+    // trigger when colliding with collectible items
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Collectible"))

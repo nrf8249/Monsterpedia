@@ -1,58 +1,72 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    [Header("基础信息")]
+    private Vector2 movement;
+    private Animator animator;
+
+    [Header("basic data")]
     public DialogueData talkData;
     public Sprite portrait;
-    [Tooltip("NPC 名字（显示在对话框上）")]
+    [Tooltip("NPC name")]
     public string npcName;
 
-    [Header("交互提示（挂在 NPC 身上）")]
-    public GameObject interactHint;                 // 图标/气泡
+    [Header("interact hint")]
+    public GameObject interactHint;                 
     public Vector3 hintOffset = new Vector3(0, 1.2f, 0);
     public bool faceCamera = true;
 
-    [Header("调试")]
-    public bool debugLogs = false;                  // 需要时打开
+    [Header("debug")]
+    public bool debugLogs = false;                  
     public Color gizmoColor = new Color(1f, 0.85f, 0f, 0.8f);
 
     private bool playerInRange = false;
-    private Camera mainCam;
+    private Camera cam;
     private Transform hintTransform;
+    private Collider2D hintCol;
 
+    // Start is called before the first frame update
     private void Awake()
     {
-        mainCam = Camera.main;
+        cam = Camera.main;
+        animator = GetComponent<Animator>();
 
         if (interactHint != null)
         {
+            hintCol = interactHint.GetComponent<Collider2D>();
             hintTransform = interactHint.transform;
             interactHint.SetActive(false);
         }
     }
 
-    private void Update()
-    {
-        // 在范围内，直接监听 E 键（不再依赖外部把 Action 路由到 NPC）
-        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            TryStartDialogue();
-        }
-    }
-
+    // Update is called once per frame
     private void LateUpdate()
     {
-        // 头顶跟随 + 面向相机
+        // update hint position and rotation
         if (interactHint != null && interactHint.activeSelf)
         {
             hintTransform.position = transform.position + hintOffset;
-            if (faceCamera && mainCam) hintTransform.forward = mainCam.transform.forward;
+            if (faceCamera && cam) hintTransform.forward = cam.transform.forward;
+        }
+        // 鼠标点击检测
+        if (Mouse.current == null || cam == null || hintCol == null) return;
+        if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+
+        // 如果点在 UI 上，直接忽略（防冲突）
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        Vector2 worldPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (hintCol.OverlapPoint(worldPos))
+        {
+            ClickHint();  // 命中 → 调用
         }
     }
 
+    // player enters the NPC range
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -61,6 +75,7 @@ public class NPC : MonoBehaviour
         if (debugLogs) Debug.Log($"{name} | 玩家进入交互范围");
     }
 
+    // player leaves the NPC range
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -70,8 +85,27 @@ public class NPC : MonoBehaviour
         if (debugLogs) Debug.Log($"{name} | 玩家离开交互范围，隐藏提示 + 关闭对话框");
     }
 
+    // interact input action
+    public void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (!playerInRange) return;
+        StartDialogue();
+    }
 
-    private void TryStartDialogue()
+    // click interact hint
+    public void ClickHint()
+    {
+        if (!playerInRange) return;
+
+        var gm = GameManager.Instance;
+        if (!NarrativeBoxManager.Instance.CanStartNarrative) return;
+
+        if (debugLogs) Debug.Log($"{name} 被点击 → 开始对话");
+        StartDialogue();
+    }
+
+    // start dialogue with this NPC
+    private void StartDialogue()
     {
         // debugging checks
         if (talkData == null)
@@ -91,9 +125,9 @@ public class NPC : MonoBehaviour
             portrait: portrait,
             characterName: string.IsNullOrEmpty(npcName) ? null : npcName
         );
-
+        if (NarrativeBoxManager.Instance.IsNarrating)
+            return;
         NarrativeBoxManager.Instance.StartDialogue(payload);
-        if (debugLogs) Debug.Log($"{name} | 已开始对话（行数={talkData.lines?.Length ?? 0}）");
     }
 
     // Gizmos: notice the interact hint position in Editor
