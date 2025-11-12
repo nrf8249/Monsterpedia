@@ -136,7 +136,7 @@ public class NarrativeBox : MonoBehaviour
     }
 
     // -------------------- Public API --------------------
-    // â€”â€” Monologue â€”â€”
+    // ¡ª¡ª Monologue ¡ª¡ª
     public void StartMonologue(MonologuePayload payload)
     {
         SwitchToUI();
@@ -179,11 +179,11 @@ public class NarrativeBox : MonoBehaviour
         {
             Count = data.lines.Length,
             GetContent = i => data.lines[i].content ?? "",
-            OnEnd = () => { StopAllNarrative(); } // â† ç‹¬ç™½çš„ç»“æŸè¡Œä¸º
+            OnEnd = () => { StopAllNarrative(); } // ¡û ¶À°×µÄ½áÊøĞĞÎª
         });
     }
 
-    // â€”â€” Dialogue â€”â€”
+    // ¡ª¡ª Dialogue ¡ª¡ª
     public void StartDialogue(DialoguePayload payload)
     {
         SwitchToUI();
@@ -258,7 +258,7 @@ public class NarrativeBox : MonoBehaviour
         StartSequence(new TextSequence
         {
             Count = comp.lines.Length,
-            // å‡è®¾ DialogueData çš„è¡Œç»“æ„ä¹Ÿæœ‰ content å­—æ®µï¼›è‹¥æœ‰ speaker/portraitï¼Œå¯åœ¨ ApplyPerLine è®¾ç½®
+            // ¼ÙÉè DialogueData µÄĞĞ½á¹¹Ò²ÓĞ content ×Ö¶Î£»ÈôÓĞ speaker/portrait£¬¿ÉÔÚ ApplyPerLine ÉèÖÃ
             GetContent = i => comp.lines[i].content ?? "",
             OnEnd = () => { BackToStart(); }
         });
@@ -268,20 +268,20 @@ public class NarrativeBox : MonoBehaviour
         mode = Mode.InShow;
         ApplyMode();
     }
-    public void DisplayShowDialogue(string clueKey)
+    public void DisplayShowDialogue(DialogueData data, string clueKey)
     {
-        if (curDiaData == null || curDiaData.narrativeComponents == null || curDiaData.narrativeComponents.Length == 0)
+        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
         {
             StopAllNarrative();
             return;
         }
         NarrativeComponent comp = null;
-        for (int i = 0; i < curDiaData.narrativeComponents.Length; i++)
+        for (int i = 0; i < data.narrativeComponents.Length; i++)
         {
-            if (curDiaData.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Clue &&
-                curDiaData.narrativeComponents[i].key == clueKey)
+            if (data.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Clue &&
+                data.narrativeComponents[i].key == clueKey)
             {
-                comp = curDiaData.narrativeComponents[i];
+                comp = data.narrativeComponents[i];
                 break;
             }
         }
@@ -446,9 +446,9 @@ public class NarrativeBox : MonoBehaviour
         if (index >= activeSeq.Count)
         {
             hasActiveSeq = false;
-            // å…³é”®ï¼šä¸åŒå…¥å£ç»™çš„ OnEnd ä¸åŒ â†’ è¿™é‡Œè‡ªåŠ¨åšå¯¹çš„äº‹
+            // ¹Ø¼ü£º²»Í¬Èë¿Ú¸øµÄ OnEnd ²»Í¬ ¡ú ÕâÀï×Ô¶¯×ö¶ÔµÄÊÂ
             if (activeSeq.OnEnd != null) activeSeq.OnEnd.Invoke();
-            else StopAllNarrative(); // å…œåº•
+            else StopAllNarrative(); // ¶µµ×
             return;
         }
 
