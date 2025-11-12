@@ -10090,6 +10090,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 2426835270120929249, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1651598396}
+    - target: {fileID: 2426835270120929249, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InShow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426835270120929249, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NarrativeBox, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426835270120929249, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3728347462195913196, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0009765625
@@ -10102,6 +10118,34 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 2032478843}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1651598396}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InAccuse
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NarrativeBox, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6919194534397931375, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10185,6 +10229,22 @@ PrefabInstance:
     - target: {fileID: 7638045785058978273, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872436650233368690, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1651598396}
+    - target: {fileID: 7872436650233368690, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InTalk
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872436650233368690, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NarrativeBox, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872436650233368690, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12446,7 +12506,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.51527274, y: -0.26145744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -12456,7 +12516,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.54, y: 7.22}
+  m_Size: {x: 3.037655, y: 2.0354652}
   m_EdgeRadius: 0
 --- !u!114 &1968450826
 MonoBehaviour:
@@ -14443,7 +14503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7313147122466160160, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: moveSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7884456976036920185, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_Name
