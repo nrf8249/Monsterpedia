@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class DynamicLayers : MonoBehaviour
 {
-    private TilemapRenderer tilemapRenderer;
+    private SpriteRenderer spriteRenderer;
     private SpriteRenderer playerRenderer;
     private Transform playerTransform;
     public GameObject player;
@@ -11,7 +11,7 @@ public class DynamicLayers : MonoBehaviour
     void Start()
     {
         // Get this object's renderer
-        tilemapRenderer = GetComponent<TilemapRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Get player references
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,13 +23,13 @@ public class DynamicLayers : MonoBehaviour
     {
         playerTransform = player.transform;
         // If player is above this object, draw this behind the player
-        if (playerTransform.position.y > transform.position.y)
+        if (playerTransform.position.y - 0.5 < transform.position.y)
         {
-            tilemapRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
+            spriteRenderer.sortingOrder = playerRenderer.sortingOrder - 5;
         }
         else
         {
-            tilemapRenderer.sortingOrder = playerRenderer.sortingOrder + 1;
+            spriteRenderer.sortingOrder = playerRenderer.sortingOrder + 5;
         }
     }
 }
