@@ -92,6 +92,7 @@ public class NarrativeBox : MonoBehaviour
     // apply current mode
     private void ApplyMode()
     {
+        Inventory.instance.ShowModeToggle(false);
         switch (mode)
         {
             case Mode.Start:
@@ -110,6 +111,7 @@ public class NarrativeBox : MonoBehaviour
             case Mode.InShow:
                 SetButtonsVisible(false);
                 SetStartVisible(false);
+                Inventory.instance.ShowModeToggle(true);
                 break;
             case Mode.InAccuse:
                 SetButtonsVisible(false);
