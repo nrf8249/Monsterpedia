@@ -92,6 +92,7 @@ public class NarrativeBox : MonoBehaviour
     // apply current mode
     private void ApplyMode()
     {
+        Inventory.instance.ShowModeToggle(false);
         switch (mode)
         {
             case Mode.Start:
@@ -110,7 +111,7 @@ public class NarrativeBox : MonoBehaviour
             case Mode.InShow:
                 SetButtonsVisible(false);
                 SetStartVisible(false);
-                Inventory.instance.OpenInventory();
+                Inventory.instance.ShowModeToggle(true);
                 break;
             case Mode.InAccuse:
                 SetButtonsVisible(false);
@@ -135,7 +136,7 @@ public class NarrativeBox : MonoBehaviour
     }
 
     // -------------------- Public API --------------------
-    // ¡ª¡ª Monologue ¡ª¡ª
+    // â€”â€” Monologue â€”â€”
     public void StartMonologue(MonologuePayload payload)
     {
         SwitchToUI();
@@ -178,11 +179,11 @@ public class NarrativeBox : MonoBehaviour
         {
             Count = data.lines.Length,
             GetContent = i => data.lines[i].content ?? "",
-            OnEnd = () => { StopAllNarrative(); } // ¡û ¶À°×µÄ½áÊøĞĞÎª
+            OnEnd = () => { StopAllNarrative(); } // â† ç‹¬ç™½çš„ç»“æŸè¡Œä¸º
         });
     }
 
-    // ¡ª¡ª Dialogue ¡ª¡ª
+    // â€”â€” Dialogue â€”â€”
     public void StartDialogue(DialoguePayload payload)
     {
         SwitchToUI();
@@ -257,7 +258,7 @@ public class NarrativeBox : MonoBehaviour
         StartSequence(new TextSequence
         {
             Count = comp.lines.Length,
-            // ¼ÙÉè DialogueData µÄĞĞ½á¹¹Ò²ÓĞ content ×Ö¶Î£»ÈôÓĞ speaker/portrait£¬¿ÉÔÚ ApplyPerLine ÉèÖÃ
+            // å‡è®¾ DialogueData çš„è¡Œç»“æ„ä¹Ÿæœ‰ content å­—æ®µï¼›è‹¥æœ‰ speaker/portraitï¼Œå¯åœ¨ ApplyPerLine è®¾ç½®
             GetContent = i => comp.lines[i].content ?? "",
             OnEnd = () => { BackToStart(); }
         });
@@ -445,9 +446,9 @@ public class NarrativeBox : MonoBehaviour
         if (index >= activeSeq.Count)
         {
             hasActiveSeq = false;
-            // ¹Ø¼ü£º²»Í¬Èë¿Ú¸øµÄ OnEnd ²»Í¬ ¡ú ÕâÀï×Ô¶¯×ö¶ÔµÄÊÂ
+            // å…³é”®ï¼šä¸åŒå…¥å£ç»™çš„ OnEnd ä¸åŒ â†’ è¿™é‡Œè‡ªåŠ¨åšå¯¹çš„äº‹
             if (activeSeq.OnEnd != null) activeSeq.OnEnd.Invoke();
-            else StopAllNarrative(); // ¶µµ×
+            else StopAllNarrative(); // å…œåº•
             return;
         }
 

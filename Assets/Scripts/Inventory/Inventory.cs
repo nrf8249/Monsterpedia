@@ -17,6 +17,8 @@ public class Inventory : MonoBehaviour
     public GameObject displayImage;
     public GameObject displayTitle;
     public GameObject displayDescription;
+    public GameObject showButton;
+    private bool showMode;
 
     void Awake()
     {
@@ -53,11 +55,24 @@ public class Inventory : MonoBehaviour
         displayImage.GetComponent<Image>().sprite = clue.GetComponent<InventoryEvidence>().image;
         grid.SetActive(false);
         detailedView.SetActive(true);
+        if (showMode)
+        {
+            showButton.SetActive(true);
+        }
+        else
+        {
+            showButton.SetActive(false);
+        }
     }
 
     public void GridView()
     {
         grid.SetActive(true);
         detailedView.SetActive(false);
+    }
+
+    public void ShowModeToggle(bool show)
+    {
+        showMode = show;
     }
 }
