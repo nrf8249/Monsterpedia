@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using static DialogueData;
 
 public class NarrativeBox : MonoBehaviour
 {
@@ -103,7 +104,8 @@ public class NarrativeBox : MonoBehaviour
             case Mode.InTalk:
                 SetButtonsVisible(false);
                 SetStartVisible(false);
-                DisplayDialogue(curDiaData);
+                SetNarrativeVisible(true);
+                DisplayTalkDialogue(curDiaData);
                 break;
             case Mode.InShow:
                 SetButtonsVisible(false);
@@ -116,6 +118,8 @@ public class NarrativeBox : MonoBehaviour
             case Mode.Hidden:
                 hasActiveSeq = false;
                 index = 0;
+                curDiaData = null;
+                curMonoData = null;
                 StopTypingIfAny();
                 HideAll();
                 SwitchToPlayer();
@@ -182,7 +186,7 @@ public class NarrativeBox : MonoBehaviour
     {
         SwitchToUI();
         // null check
-        if (payload == null || payload.data == null || payload.data.lines == null || payload.data.lines.Length == 0)
+        if (payload == null || payload.data == null || payload.data.narrativeComponents == null || payload.data.narrativeComponents.Length == 0)
         {
             StopAllNarrative();
             return;
@@ -208,39 +212,92 @@ public class NarrativeBox : MonoBehaviour
 
         // data
         curDiaData = payload.data;
-        SetStartText(curDiaData.GetStartText());
+        NarrativeComponent narrative = null;
+        for (int i = 0; i < curDiaData.narrativeComponents.Length; i++)
+        {
+            if (curDiaData.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Start)
+            {
+                narrative = curDiaData.narrativeComponents[i];
+                break;
+            }
+        }
+        if (narrative != null && narrative.lines.Length > 0)
+        {
+            SetStartText(narrative.lines[0].content ?? "");
+        }
+        else
+        {
+            SetStartText("");
+        }
         mode = Mode.Start;
         ApplyMode();
-    }
-    public void DisplayDialogue(DialogueData data)
-    {
-        if (data == null || data.lines == null || data.lines.Length == 0)
-        {
-            StopAllNarrative();
-            return;
-        }
-
-        StartSequence(new TextSequence
-        {
-            Count = data.lines.Length,
-            // 假设 DialogueData 的行结构也有 content 字段；若有 speaker/portrait，可在 ApplyPerLine 设置
-            GetContent = i => data.lines[i].content ?? "",
-            OnEnd = () => { mode = Mode.Start; }
-        });
     }
     public void InTalk()
     {
         mode = Mode.InTalk;
         ApplyMode();
     }
+    public void DisplayTalkDialogue(DialogueData data)
+    {
+        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+        NarrativeComponent comp = null;
+        for (int i = 0; i < data.narrativeComponents.Length; i++)
+        {
+            if (data.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Talk)
+            {
+                comp = data.narrativeComponents[i];
+                break;
+            }
+        }
+        StartSequence(new TextSequence
+        {
+            Count = comp.lines.Length,
+            // 假设 DialogueData 的行结构也有 content 字段；若有 speaker/portrait，可在 ApplyPerLine 设置
+            GetContent = i => comp.lines[i].content ?? "",
+            OnEnd = () => { BackToStart(); }
+        });
+    }
     public void InShow()
     {
         mode = Mode.InShow;
         ApplyMode();
     }
+    public void DisplayShowDialogue(DialogueData data, string clueKey)
+    {
+        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+        NarrativeComponent comp = null;
+        for (int i = 0; i < data.narrativeComponents.Length; i++)
+        {
+            if (data.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Clue &&
+                data.narrativeComponents[i].key == clueKey)
+            {
+                comp = data.narrativeComponents[i];
+                break;
+            }
+        }
+        StartSequence(new TextSequence
+        {
+            Count = comp.lines.Length,
+            GetContent = i => comp.lines[i].content ?? "",
+            OnEnd = () => { BackToStart(); }
+        });
+    }
     public void InAccuse()
     {
         mode = Mode.InAccuse;
+        ApplyMode();
+    }
+    public void BackToStart()
+    {
+        mode = Mode.Start;
         ApplyMode();
     }
 

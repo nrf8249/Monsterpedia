@@ -128,7 +128,6 @@ public class NPC : MonoBehaviour
         if (NarrativeBoxManager.Instance.IsNarrating)
             return;
         NarrativeBoxManager.Instance.StartDialogue(payload);
-        if (debugLogs) Debug.Log($"{name} | 已开始对话（行数={talkData.lines?.Length ?? 0}）");
     }
 
     // Gizmos: notice the interact hint position in Editor
