@@ -5870,7 +5870,6 @@ MonoBehaviour:
   evidenceName: Test Icon
   description: This is just part of the UI, what's going on here!?
   image: {fileID: 6312935683625276764, guid: e0f3edff9456b584c84136fceb1de79f, type: 3}
-  key: icon
 --- !u!114 &599466921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11104,7 +11103,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 5b222e21bed8d5544a794850268f0f8b, type: 3}
   npcName: Bartender
   interactHint: {fileID: 800502289}
-  hintOffset: {x: 0, y: 0.7, z: 0}
+  hintOffset: {x: 0, y: 1.33, z: 0}
   faceCamera: 1
   debugLogs: 1
   gizmoColor: {r: 1, g: 0.85, b: 0, a: 0.8}
@@ -14347,7 +14346,6 @@ MonoBehaviour:
   evidenceName: Torn Cloth
   description: This cloth is torn.
   image: {fileID: -3455223771459212522, guid: 6778042f3c0cd3f4eade28215a68112a, type: 3}
-  key: cloth
 --- !u!222 &1594748447061959054
 CanvasRenderer:
   m_ObjectHideFlags: 0
