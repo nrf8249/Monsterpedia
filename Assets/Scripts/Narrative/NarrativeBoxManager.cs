@@ -1,15 +1,15 @@
 using UnityEngine;
 
 /// <summary>
-/// DialogueManager£ºÍ³Ò»µÄ¶Ô»°ÏµÍ³Èë¿Ú£¬ÄÚ²¿×ª·¢¸ø NarrativeBox¡£
-/// ËùÓĞ NPC/Îï¼ş ¶¼Í¨¹ıËüÀ´ÏÔÊ¾ Intro / Dialogue / Monologue¡£
+/// DialogueManagerï¼šç»Ÿä¸€çš„å¯¹è¯ç³»ç»Ÿå…¥å£ï¼Œå†…éƒ¨è½¬å‘ç»™ NarrativeBoxã€‚
+/// æ‰€æœ‰ NPC/ç‰©ä»¶ éƒ½é€šè¿‡å®ƒæ¥æ˜¾ç¤º Intro / Dialogue / Monologueã€‚
 /// </summary>
 public class NarrativeBoxManager : MonoBehaviour
 {
     public static NarrativeBoxManager Instance;
     public bool IsNarrating => narrativeBox.hasActiveSeq;
 
-    [SerializeField] private NarrativeBox narrativeBox; // ÔÚ Inspector Àï°Ñ DialogueGroup ÉÏµÄ NarrativeBox ÍÏ½øÀ´
+    [SerializeField] private NarrativeBox narrativeBox; // åœ¨ Inspector é‡ŒæŠŠ DialogueGroup ä¸Šçš„ NarrativeBox æ‹–è¿›æ¥
 
     public bool CanStartNarrative => narrativeBox.CanStartNarrative;
 
@@ -19,10 +19,10 @@ public class NarrativeBoxManager : MonoBehaviour
         else Destroy(gameObject);
 
         if (narrativeBox == null)
-            Debug.LogError("NarrativeBoxManager£ºNarrativeBox Î´¸³Öµ£¬ÇëÔÚ Inspector ÖĞÍÏÈë DialogueGroup ÉÏµÄ×é¼ş¡£");
+            Debug.LogError("NarrativeBoxManagerï¼šNarrativeBox æœªèµ‹å€¼ï¼Œè¯·åœ¨ Inspector ä¸­æ‹–å…¥ DialogueGroup ä¸Šçš„ç»„ä»¶ã€‚");
     }
 
-    // ¡ª¡ª Dialogue ¡ª¡ª
+    // â€”â€” Dialogue â€”â€”
     public void StartDialogue(DialoguePayload payload)
     {
         narrativeBox.StartDialogue(payload);
@@ -44,13 +44,14 @@ public class NarrativeBoxManager : MonoBehaviour
     {
         narrativeBox.DisplayShowDialogue(clueKey);
     }
-    // ¡ª¡ª Monologue ¡ª¡ª
+
+    // â€”â€” Monologue â€”â€”
     public void StartMonologue(MonologuePayload payload)
     {
         narrativeBox.StartMonologue(payload);
     }
 
-    // ¡ª¡ª Stop ¡ª¡ª
+    // â€”â€” Stop â€”â€”
     public void StopDialogue()
     {
         narrativeBox.StopAllNarrative();
