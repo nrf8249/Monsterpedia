@@ -21,6 +21,9 @@ public class NarrativeBox : MonoBehaviour
     [SerializeField] private TextMeshProUGUI narrativeStartText;
     [SerializeField] private TextMeshProUGUI narrativeText;
 
+    [Header("ContinuousIcon")]
+    [SerializeField] private Image ContinuousIcon;
+
     [Header("Buttons")]
     [SerializeField] private GameObject buttonGroup;
 
@@ -179,7 +182,7 @@ public class NarrativeBox : MonoBehaviour
         {
             Count = data.lines.Length,
             GetContent = i => data.lines[i].content ?? "",
-            OnEnd = () => { StopAllNarrative(); } // ← 独白的结束行为
+            OnEnd = () => { StopAllNarrative(); } // end monologue
         });
     }
 
@@ -214,22 +217,14 @@ public class NarrativeBox : MonoBehaviour
 
         // data
         curDiaData = payload.data;
-        NarrativeComponent narrative = null;
-        for (int i = 0; i < curDiaData.narrativeComponents.Length; i++)
-        {
-            if (curDiaData.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Start)
-            {
-                narrative = curDiaData.narrativeComponents[i];
-                break;
-            }
-        }
+        NarrativeComponent narrative = curDiaData.GetStartText();
         if (narrative != null && narrative.lines.Length > 0)
         {
             SetStartText(narrative.lines[0].content ?? "");
         }
         else
         {
-            SetStartText("");
+            SetStartText("Hello");
         }
         mode = Mode.Start;
         ApplyMode();
@@ -246,19 +241,10 @@ public class NarrativeBox : MonoBehaviour
             StopAllNarrative();
             return;
         }
-        NarrativeComponent comp = null;
-        for (int i = 0; i < data.narrativeComponents.Length; i++)
-        {
-            if (data.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Talk)
-            {
-                comp = data.narrativeComponents[i];
-                break;
-            }
-        }
+        NarrativeComponent comp = curDiaData.GetTalkDialogue();
         StartSequence(new TextSequence
         {
             Count = comp.lines.Length,
-            // 假设 DialogueData 的行结构也有 content 字段；若有 speaker/portrait，可在 ApplyPerLine 设置
             GetContent = i => comp.lines[i].content ?? "",
             OnEnd = () => { BackToStart(); }
         });
@@ -268,23 +254,14 @@ public class NarrativeBox : MonoBehaviour
         mode = Mode.InShow;
         ApplyMode();
     }
-    public void DisplayShowDialogue(DialogueData data, string clueKey)
+    public void DisplayShowDialogue(string clueKey)
     {
-        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        if (curDiaData == null || curDiaData.narrativeComponents == null || curDiaData.narrativeComponents.Length == 0)
         {
             StopAllNarrative();
             return;
         }
-        NarrativeComponent comp = null;
-        for (int i = 0; i < data.narrativeComponents.Length; i++)
-        {
-            if (data.narrativeComponents[i].narrativeType == DialogueData.NarrativeType.Clue &&
-                data.narrativeComponents[i].key == clueKey)
-            {
-                comp = data.narrativeComponents[i];
-                break;
-            }
-        }
+        NarrativeComponent comp = curDiaData.GetClueDialogue(clueKey);
         StartSequence(new TextSequence
         {
             Count = comp.lines.Length,
@@ -350,6 +327,7 @@ public class NarrativeBox : MonoBehaviour
         SetNarrativeText("");
         SetNameText(null);
         SetButtonsVisible(false);
+        SetContinuousIconVisible(false);
     }
     private void SetPortraitVisible(bool show)
     {
@@ -382,11 +360,16 @@ public class NarrativeBox : MonoBehaviour
     {
         if (buttonGroup) buttonGroup.SetActive(show);
     }
+    private void SetContinuousIconVisible(bool show)
+    {
+        if (ContinuousIcon) ContinuousIcon.gameObject.SetActive(show);
+    }
 
     // typing effect
     private void StartTyping(string content)
     {
         StopTypingIfAny();
+        SetContinuousIconVisible(false);
         typingRoutine = StartCoroutine(TypeRoutine(content));
     }
     private void StopTypingIfAny()
@@ -406,11 +389,13 @@ public class NarrativeBox : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
         typingRoutine = null;
+        SetContinuousIconVisible(true);
     }
     private void SkipTypingTo(string full)
     {
         StopTypingIfAny();
         SetNarrativeText(full);
+        SetContinuousIconVisible(true);
     }
 
     // text sequence management
