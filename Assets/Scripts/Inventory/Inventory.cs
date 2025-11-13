@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
     public GameObject grid;
     public GameObject detailedView;
     public GameObject displayImage;
+    private string clueName;
     public GameObject displayTitle;
     public GameObject displayDescription;
     public GameObject showButton;
@@ -50,7 +51,8 @@ public class Inventory : MonoBehaviour
 
     public void DetailedView(GameObject clue)
     {
-        displayTitle.GetComponent<TMPro.TextMeshProUGUI>().text = clue.GetComponent<InventoryEvidence>().evidenceName;
+        clueName = clue.GetComponent<InventoryEvidence>().evidenceName;
+        displayTitle.GetComponent<TMPro.TextMeshProUGUI>().text = clueName;
         displayDescription.GetComponent<TMPro.TextMeshProUGUI>().text = clue.GetComponent<InventoryEvidence>().description;
         displayImage.GetComponent<Image>().sprite = clue.GetComponent<InventoryEvidence>().image;
         grid.SetActive(false);
@@ -74,5 +76,13 @@ public class Inventory : MonoBehaviour
     public void ShowModeToggle(bool show)
     {
         showMode = show;
+    }
+
+    public void SendShowInfo()
+    {
+        //NarrativeBoxManager.Instance.DisplayShowDialogue(clueName); //uncomment once we get real clue keys in
+        showButton.SetActive(false);
+        showMode = false;
+        CloseInventory();
     }
 }
