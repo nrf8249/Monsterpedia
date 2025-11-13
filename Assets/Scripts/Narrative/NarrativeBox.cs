@@ -115,6 +115,7 @@ public class NarrativeBox : MonoBehaviour
                 SetButtonsVisible(false);
                 SetStartVisible(false);
                 Inventory.instance.ShowModeToggle(true);
+                Inventory.instance.OpenInventory();
                 break;
             case Mode.InAccuse:
                 SetButtonsVisible(false);

@@ -5870,6 +5870,7 @@ MonoBehaviour:
   evidenceName: Test Icon
   description: This is just part of the UI, what's going on here!?
   image: {fileID: 6312935683625276764, guid: e0f3edff9456b584c84136fceb1de79f, type: 3}
+  key: icon
 --- !u!114 &599466921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9721,7 +9722,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1253717101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1199683472}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: SendShowInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1253717101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14334,6 +14347,7 @@ MonoBehaviour:
   evidenceName: Torn Cloth
   description: This cloth is torn.
   image: {fileID: -3455223771459212522, guid: 6778042f3c0cd3f4eade28215a68112a, type: 3}
+  key: cloth
 --- !u!222 &1594748447061959054
 CanvasRenderer:
   m_ObjectHideFlags: 0
