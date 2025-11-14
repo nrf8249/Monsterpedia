@@ -22,14 +22,28 @@ public class DynamicLayers : MonoBehaviour
     void Update()
     {
         playerTransform = player.transform;
-        // If player is above this object, draw this behind the player
-        if (playerTransform.position.y - 0.25 > transform.position.y)
+
+        if (gameObject.tag == "NPC")
         {
-            propRenderer.sortingOrder = playerRenderer.sortingOrder + 1;
+            if (playerTransform.position.y - 0.25 > transform.position.y)
+            {
+                propRenderer.sortingOrder = playerRenderer.sortingOrder + 2;
+            }
+            else
+            {
+                propRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
+            }
         }
         else
         {
-            propRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
+            if (playerTransform.position.y - 0.25 > transform.position.y)
+            {
+                propRenderer.sortingOrder = playerRenderer.sortingOrder + 1;
+            }
+            else
+            {
+                propRenderer.sortingOrder = playerRenderer.sortingOrder - 3;
+            }
         }
     }
 }
