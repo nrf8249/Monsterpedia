@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public List<InventoryEvidence> inventory;
+    private List<GameObject> gridItems;
     public static Inventory instance;
     public GameObject openButtonCanvas;
     public GameObject inventoryCanvas;
@@ -31,6 +32,15 @@ public class Inventory : MonoBehaviour
         inventory = new List<InventoryEvidence>();
         openButtonCanvas.SetActive(true);
         inventoryCanvas.SetActive(false);
+        gridItems = new List<GameObject>();
+        foreach(Transform child in grid.transform)
+        {
+            gridItems.Add(child.gameObject);
+        }
+        for(int i = 0; i < gridItems.Count; i++)
+        {
+            gridItems[i].SetActive(false);
+        }
     }
 
     public void OpenInventory()
@@ -84,5 +94,18 @@ public class Inventory : MonoBehaviour
         showButton.SetActive(false);
         showMode = false;
         CloseInventory();
+    }
+
+    public void GetClue(string clueName)
+    {
+        for(int i = 0; i < gridItems.Count; i++)
+        {
+            Debug.Log(gridItems[i].GetComponentInChildren<InventoryEvidence>().evidenceName);
+            Debug.Log(clueName);
+            if (gridItems[i].GetComponentInChildren<InventoryEvidence>().evidenceName == clueName)
+            {
+                gridItems[i].SetActive(true);
+            }
+        }
     }
 }

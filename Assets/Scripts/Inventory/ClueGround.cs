@@ -168,6 +168,7 @@ public class ClueGround : MonoBehaviour
         if (NarrativeBoxManager.Instance.IsNarrating)
             return;
         NarrativeBoxManager.Instance.StartMonologue(payload);
+        Inventory.instance.GetClue(clueName);
     }
 
     // Gizmos for hint position
