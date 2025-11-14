@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
+  m_Name: BrokenChair
+  m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  lines:
+  - content: This wasn't a simple bar fight. These... the metal legs... they're bent
+      out of shape. Warped. Like someone grabbed them and just... squeezed.
+  - content: Takes more than a few too many whiskeys to do that. That's raw, supernatural
+      strength.
+  - content: ...And... lemon. Faint scent of wood polish. Someone was wiping these
+      down. Trying to clean up a clue.
