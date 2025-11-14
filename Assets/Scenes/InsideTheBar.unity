@@ -8443,7 +8443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: 1d12595e315827646896e00c06121dc7, type: 2}
   clueName: Broken Chair
   interactHint: {fileID: 584885324}
   hintOffset: {x: 0, y: 0.7, z: 0}
@@ -11354,7 +11354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: 170114cecd037d940a8a5fb4597c2ae7, type: 2}
   clueName: Victim's Sandwich
   interactHint: {fileID: 1157921128}
   hintOffset: {x: 0, y: 0.7, z: 0}
@@ -12178,7 +12178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: e9bf76d92d59a5d44924ad8999cac6be, type: 2}
   clueName: Out of Order
   interactHint: {fileID: 1310172049}
   hintOffset: {x: 0, y: 0.7, z: 0}
@@ -14019,7 +14019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: 3ca150e53244ab14499453e65ef9ebde, type: 2}
   clueName: Blood Splatter
   interactHint: {fileID: 420057501}
   hintOffset: {x: 0, y: 0.7, z: 0}

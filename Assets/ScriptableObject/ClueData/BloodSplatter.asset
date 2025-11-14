@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
+  m_Name: BloodSplatter
+  m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  lines:
+  - content: The body is the anchor, but the room tells the story. This wall... it's
+      a Jackson Pollock in crimson.
+  - content: It's not a smear, it's a fine, arterial spray. That tells me two things.
+  - content: 'One: his heart was still beating a drum solo when the wound was exposed.'
+  - content: 'Two: the spray is high, arcing down. He was standing when he took the
+      hit. A high-velocity slash, fast and fatal.'

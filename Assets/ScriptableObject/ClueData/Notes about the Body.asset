@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Notes about the Body
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
   lines:
-  - content: "\"Alright, let's read the last rites. The cause of death... yeah, that's
+  - content: "Alright, let's read the last rites. The cause of death... yeah, that's
       not subtle. A set of deep, parallel gashes across the neck and chest. \r\n"
   - content: "The edges are ragged, torn. Not a clean knife cut. This was made by
       something... feral. \r\n\r\n"
@@ -22,11 +22,11 @@ MonoBehaviour:
       a blunt object, hard, before the fatal blow. \r\n"
   - content: 'This was a brawl, not just a murder.
 
-      
+
 
 '
   - content: "...And what's this? On the side of the neck. Two neat little punctures.
       They aren't bleeding; the blood's been withdrawn. \r\n"
-  - content: 'So, multiple wounds. This just got complicated."
+  - content: 'So, multiple wounds. This just got complicated.
 
 '
