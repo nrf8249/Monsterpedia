@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
+  m_Name: BarLedger
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  lines:
+  - content: A quick peek under the bar... past the bottles... a ledger. Let's see
+      who's who.
+  - content: Normal tabs... normal tabs... then there's the Werewolf. His name isn't
+      under a tab. It's under 'Services.' With checkmarks for 'Security.'

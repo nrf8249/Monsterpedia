@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
+  m_Name: BloodyHandkerchief
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  lines:
+  - content: The trash... paper towels on top... and jackpot.
+  - content: A bread knife, right from the bar. Why would a knife be in the bathroom?
+  - content: Seems as though someone is trying to cover something up.
+  - content: Wait, there's more in here, under the knife.
+  - content: "A balled-up handkerchief. It's stained dark. Smells like old pennies...
+      copper. But the cloth itself... that's different. \r\n"
+  - content: Sweet, spicy. Cloves. Someone with an expensive habit was wiping their
+      mouth.

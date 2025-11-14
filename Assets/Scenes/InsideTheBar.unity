@@ -8720,7 +8720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: 1967ce8b5e090a04ca2449be01d48c58, type: 2}
   clueName: Cleaning Rag
   interactHint: {fileID: 1785831942}
   hintOffset: {x: 0, y: 0.7, z: 0}
@@ -8837,7 +8837,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.13350111, y: -0.4111145}
+  m_Offset: {x: -0.13350111, y: -0.30804527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8847,7 +8847,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0670022, y: 3.1223602}
+  m_Size: {x: 1.0670022, y: 2.9162219}
   m_EdgeRadius: 0
 --- !u!1001 &1041769418
 PrefabInstance:
@@ -10399,8 +10399,12 @@ PrefabInstance:
       value: BarCounter
       objectReference: {fileID: 0}
     - target: {fileID: 8314204394507194550, guid: 9de711ed99bf6264898689e933f86fec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314204394507194550, guid: 9de711ed99bf6264898689e933f86fec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.28
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 8314204394507194550, guid: 9de711ed99bf6264898689e933f86fec, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11447,7 +11451,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.13453293, y: -0.89113474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -11457,7 +11461,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 1.8866005, y: 2.5822687}
   m_EdgeRadius: 0
 --- !u!1 &1633730780
 GameObject:
@@ -14780,10 +14784,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 71504785174066796, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7884456976036920185, guid: ce6609707474aed459dba60c99d32f3c, type: 3}
       propertyPath: m_Name
       value: Player
