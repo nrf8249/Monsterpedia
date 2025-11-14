@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IInteractableTarget
 {
     private Vector2 movement;
     private Animator animator;
@@ -23,10 +23,13 @@ public class NPC : MonoBehaviour
     public bool debugLogs = false;                  
     public Color gizmoColor = new Color(1f, 0.85f, 0f, 0.8f);
 
+    public bool IsPlayerInRange => playerInRange;
     private bool playerInRange = false;
     private Camera cam;
     private Transform hintTransform;
     private Collider2D hintCol;
+
+    private int talkTimes = 1;
 
     // Start is called before the first frame update
     private void Awake()
@@ -71,24 +74,42 @@ public class NPC : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = true;
-        if (interactHint) interactHint.SetActive(true);
+
+        // 不再直接开关自己的 Hint，交给 Manager 统一决定
+        if (InteractManager.Instance != null)
+            InteractManager.Instance.Register(this);
+
         if (debugLogs) Debug.Log($"{name} | 玩家进入交互范围");
     }
 
-    // player leaves the NPC range
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
+
+        if (InteractManager.Instance != null)
+            InteractManager.Instance.Unregister(this);
+
+        // 保险起见自己也关一下
         if (interactHint) interactHint.SetActive(false);
-        if (NarrativeBoxManager.Instance != null) NarrativeBoxManager.Instance.StopDialogue();
+
+        if (NarrativeBoxManager.Instance != null)
+            NarrativeBoxManager.Instance.StopDialogue();
+
         if (debugLogs) Debug.Log($"{name} | 玩家离开交互范围，隐藏提示 + 关闭对话框");
     }
+
 
     // interact input action
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (!playerInRange) return;
+
+        // 关键：只允许当前最近的那个响应
+        if (InteractManager.Instance != null &&
+            !InteractManager.Instance.IsCurrent(this))
+            return;
+
         StartDialogue();
     }
 
@@ -96,6 +117,10 @@ public class NPC : MonoBehaviour
     public void ClickHint()
     {
         if (!playerInRange) return;
+
+        if (InteractManager.Instance != null &&
+            !InteractManager.Instance.IsCurrent(this))
+            return;
 
         var gm = GameManager.Instance;
         if (!NarrativeBoxManager.Instance.CanStartNarrative) return;
@@ -128,6 +153,7 @@ public class NPC : MonoBehaviour
         if (NarrativeBoxManager.Instance.IsNarrating)
             return;
         NarrativeBoxManager.Instance.StartDialogue(payload);
+        talkTimes += 1;
     }
 
     // Gizmos: notice the interact hint position in Editor
@@ -137,6 +163,12 @@ public class NPC : MonoBehaviour
         Vector3 p = transform.position + hintOffset;
         Gizmos.DrawWireSphere(p, 0.1f);
         Gizmos.DrawLine(transform.position, p);
+    }
+
+    public void SetHintVisible(bool visible)
+    {
+        if (interactHint == null) return;
+        interactHint.SetActive(visible);
     }
 }
 

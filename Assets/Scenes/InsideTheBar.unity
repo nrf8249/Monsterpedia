@@ -5688,7 +5688,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.94, y: 1.82}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!212 &558209005
 SpriteRenderer:
@@ -6173,7 +6173,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &630382590 stripped
 GameObject:
@@ -7953,7 +7953,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.31347358, y: -0.22609925}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7963,7 +7963,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.4196236, y: 2.1021981}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &814375340
 MonoBehaviour:
@@ -8257,7 +8257,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03925991, y: -0.20916522}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8267,7 +8267,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5614529, y: 1.6557434}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1001 &868821425
 PrefabInstance:
@@ -8464,7 +8464,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.07455063, y: -0.36580276}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8474,7 +8474,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.9508991, y: 5.4383945}
+  m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &952261608
 MonoBehaviour:
@@ -8488,8 +8488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e93e3165bd87ae468691539723d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  talkData: {fileID: 11400000, guid: d2727c20cc66f1947971741981246bd3, type: 2}
-  portrait: {fileID: 0}
+  talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
+  portrait: {fileID: 21300000, guid: 4851d676c843cb846a0a25fb4dcb4e2a, type: 3}
   npcName: Vampire
   interactHint: {fileID: 630382590}
   hintOffset: {x: 0, y: 1.2, z: 0}
@@ -8837,7 +8837,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.13350111, y: -0.30804527}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8847,7 +8847,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0670022, y: 2.9162219}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!1001 &1041769418
 PrefabInstance:
@@ -9834,6 +9834,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253717097}
   m_CullTransparentMesh: 1
+--- !u!1 &1259133458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1259133459}
+  - component: {fileID: 1259133460}
+  m_Layer: 0
+  m_Name: InteractManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1259133459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259133458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2032478842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259133460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259133458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0cfb17844cbb04c89711e7f41758d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractManager
 --- !u!1001 &1272002800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9886,6 +9930,10 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 2032478843}
+    - target: {fileID: 5458599572779875925, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
+      propertyPath: playerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d49213210aa1154c8f48c23e675cf4f, type: 3}
     - target: {fileID: 6540011192189329464, guid: f54a8fcb61335fd42af5832c34457fda, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -10544,7 +10592,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.3679514, y: 0.18439406}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10554,7 +10602,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2857151, y: 1.0081059}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &1460347206
 MonoBehaviour:
@@ -10705,7 +10753,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.7286531}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10715,7 +10763,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.07, y: 10.6}
+  m_Size: {x: 4.07, y: 3.0485055}
   m_EdgeRadius: 0
 --- !u!114 &1490645199
 MonoBehaviour:
@@ -10729,7 +10777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e93e3165bd87ae468691539723d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  talkData: {fileID: 11400000, guid: d2727c20cc66f1947971741981246bd3, type: 2}
+  talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
   portrait: {fileID: 21300000, guid: 5b222e21bed8d5544a794850268f0f8b, type: 3}
   npcName: Bartender
   interactHint: {fileID: 800502289}
@@ -11871,7 +11919,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 6764101506541231091, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12898,8 +12946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e93e3165bd87ae468691539723d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  talkData: {fileID: 11400000, guid: d2727c20cc66f1947971741981246bd3, type: 2}
-  portrait: {fileID: 0}
+  talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
+  portrait: {fileID: 21300000, guid: 5bd3a234604634a47ae120ed3aeeba83, type: 3}
   npcName: Werewolf
   interactHint: {fileID: 918457339}
   hintOffset: {x: 0, y: 1.2, z: 0}
@@ -13443,6 +13491,7 @@ Transform:
   m_Children:
   - {fileID: 25773207}
   - {fileID: 1199683473}
+  - {fileID: 1259133459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2032478843
@@ -14310,10 +14359,6 @@ PrefabInstance:
     - target: {fileID: 3650140464772424144, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_SizeDelta.x
       value: 424
-      objectReference: {fileID: 0}
-    - target: {fileID: 3650140464772424144, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3650140464772424144, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchoredPosition.x

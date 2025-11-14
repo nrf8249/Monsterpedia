@@ -20,7 +20,7 @@ public class DialogueData : ScriptableObject
     {
         public NarrativeType narrativeType;
         public string key;
-        public string value;
+        public int talkTimes;
         [Header("lines")]
         public Line[] lines;
     }

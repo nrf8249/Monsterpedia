@@ -13,6 +13,7 @@ public class NarrativeBox : MonoBehaviour
 
     [Header("Portrait")]
     [SerializeField] private Image portraitImage;
+    [SerializeField] private Sprite playerPortrait;
 
     [Header("Name text")]
     [SerializeField] private TextMeshProUGUI nameText;
@@ -126,6 +127,7 @@ public class NarrativeBox : MonoBehaviour
                 index = 0;
                 curDiaData = null;
                 curMonoData = null;
+                portraitImage.sprite = playerPortrait;
                 StopTypingIfAny();
                 HideAll();
                 SwitchToPlayer();

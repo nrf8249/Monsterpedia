@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ClueGround : MonoBehaviour
+public class ClueGround : MonoBehaviour, IInteractableTarget
 {
     [Header("clue data")]
     public MonologueData data;
@@ -21,6 +21,7 @@ public class ClueGround : MonoBehaviour
     [Header("debug")]
     public bool debugLogs = true;
 
+    public bool IsPlayerInRange => playerInRange;
     private bool playerInRange = false;
     private Camera cam;
     private Transform hintTf;
@@ -72,15 +73,20 @@ public class ClueGround : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         playerInRange = true;
-        TryShowHint("OnTriggerEnter2D");
+
+        // ✅ 交给 Manager 管理谁显示
+        if (InteractManager.Instance != null)
+            InteractManager.Instance.Register(this);
     }
 
-    // player leaves the clue range
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
         playerInRange = false;
+
+        if (InteractManager.Instance != null)
+            InteractManager.Instance.Unregister(this);
 
         if (interactHint) interactHint.SetActive(false);
         if (debugLogs) Debug.Log($"{name} | 玩家离开线索范围，隐藏提示。", this);
@@ -92,25 +98,34 @@ public class ClueGround : MonoBehaviour
         }
     }
 
+
     // interact input action
     public void OnInteract(InputAction.CallbackContext ctx)
     {
+        if (!playerInRange) return;
 
-        if (!playerInRange)
+        if (InteractManager.Instance != null &&
+            !InteractManager.Instance.IsCurrent(this))
             return;
+
         StartMonologue();
     }
 
-    // click hint to interact
     public void ClickHint()
     {
         if (!playerInRange) return;
+
+        if (InteractManager.Instance != null &&
+            !InteractManager.Instance.IsCurrent(this))
+            return;
+
         var gm = GameManager.Instance;
         if (!NarrativeBoxManager.Instance.CanStartNarrative) return;
 
         if (debugLogs) Debug.Log($"{name} 被点击 → 开始独白");
         StartMonologue();
     }
+
 
 
     // try to show the interact hint
@@ -178,5 +193,20 @@ public class ClueGround : MonoBehaviour
         var p = transform.position + hintOffset;
         Gizmos.DrawWireSphere(p, 0.1f);
         Gizmos.DrawLine(transform.position, p);
+    }
+
+    public void SetHintVisible(bool visible)
+    {
+        if (interactHint == null) return;
+
+        if (visible)
+        {
+            // 复用你原来的显示逻辑，保证 sortingLayer 等正常
+            TryShowHint("InteractManager");
+        }
+        else
+        {
+            interactHint.SetActive(false);
+        }
     }
 }
