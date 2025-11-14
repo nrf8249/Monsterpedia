@@ -5636,7 +5636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: 37e35b966a236aa4e9ea6ce1332f988f, type: 2}
   clueName: Spilled Drink
   interactHint: {fileID: 2098638458}
   hintOffset: {x: 0, y: 0.7, z: 0}
@@ -6047,7 +6047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: b04e21b4f943b6c4ca22c36e12e1c4b8, type: 2}
   clueName: Bloody Handkerchief
   interactHint: {fileID: 1099454884}
   hintOffset: {x: 0, y: 0.7, z: 0}
@@ -11817,7 +11817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ae8e5e96484dc4f895d821889e4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
-  data: {fileID: 11400000, guid: cbeb68a47fa3bab4ab734b5211795c30, type: 2}
+  data: {fileID: 11400000, guid: c29d5163f42eaca47b8913ba623e5cdd, type: 2}
   clueName: Bar Ledger
   interactHint: {fileID: 1312108912}
   hintOffset: {x: 0, y: 0.7, z: 0}
