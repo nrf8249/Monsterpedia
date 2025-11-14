@@ -6620,7 +6620,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 108
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -8348,7 +8348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8390,6 +8390,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f1748ea1f204f6449a55da432b9dee70, type: 3}
+    - target: {fileID: 7768503117118546560, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 204
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8537,7 +8541,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 120
   m_Sprite: {fileID: -3565398899964878240, guid: d03c84c7286667345acb2c4c5481509b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8861,7 +8865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8903,6 +8907,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f1748ea1f204f6449a55da432b9dee70, type: 3}
+    - target: {fileID: 7768503117118546560, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 204
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10031,7 +10039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10702,7 +10710,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 5b222e21bed8d5544a794850268f0f8b, type: 3}
   npcName: Bartender
   interactHint: {fileID: 800502289}
-  hintOffset: {x: 0, y: 1.33, z: 0}
+  hintOffset: {x: 0, y: 1.2, z: 0}
   faceCamera: 1
   debugLogs: 1
   gizmoColor: {r: 1, g: 0.85, b: 0, a: 0.8}
@@ -10752,7 +10760,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 120
   m_Sprite: {fileID: 5695608412248545883, guid: 2c752df73919db04980a8375ebcd8a3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12858,7 +12866,7 @@ MonoBehaviour:
   portrait: {fileID: 0}
   npcName: Werewolf
   interactHint: {fileID: 918457339}
-  hintOffset: {x: 0, y: 0.7, z: 0}
+  hintOffset: {x: 0, y: 1.2, z: 0}
   faceCamera: 1
   debugLogs: 1
   gizmoColor: {r: 1, g: 0.85, b: 0, a: 0.8}
@@ -12908,7 +12916,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 120
   m_Sprite: {fileID: -4273437310685478316, guid: dc08eb536982ce34c81647b502cfb4ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12929,7 +12937,7 @@ Transform:
   m_GameObject: {fileID: 1968450824}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -5.752, z: 0}
+  m_LocalPosition: {x: -4, y: -6.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14052,7 +14060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14094,6 +14102,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f1748ea1f204f6449a55da432b9dee70, type: 3}
+    - target: {fileID: 7768503117118546560, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 204
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
