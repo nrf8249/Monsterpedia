@@ -6620,7 +6620,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 6
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -8542,7 +8542,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 8
   m_Sprite: {fileID: -3565398899964878240, guid: d03c84c7286667345acb2c4c5481509b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9029,8 +9029,8 @@ Camera:
   m_GameObject: {fileID: 1070751092}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -12833,7 +12833,6 @@ GameObject:
   - component: {fileID: 1968450826}
   - component: {fileID: 1968450825}
   - component: {fileID: 1968450829}
-  - component: {fileID: 1968450830}
   m_Layer: 0
   m_Name: Werewolf
   m_TagString: Untagged
@@ -12953,7 +12952,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 7
   m_Sprite: {fileID: -4273437310685478316, guid: dc08eb536982ce34c81647b502cfb4ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13003,19 +13002,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1968450830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968450824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737c3269b9766a24ea6aadd333c68e2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicLayers
-  player: {fileID: 0}
 --- !u!1001 &1977120699
 PrefabInstance:
   m_ObjectHideFlags: 0
