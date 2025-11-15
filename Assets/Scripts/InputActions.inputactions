@@ -106,15 +106,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Exit",
-                    "type": "Button",
-                    "id": "7c4531b1-1682-4e36-a3cc-f8fef944c690",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -131,12 +122,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c6cd2a3a-df4a-4eef-83cc-35d14db0af16",
-                    "path": "<Mouse>/rightButton",
+                    "id": "02e5dafd-903c-4804-a6c9-08bd3274b4b5",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Exit",
+                    "action": "Advance",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
