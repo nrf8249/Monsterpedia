@@ -8,6 +8,7 @@ public class ClueGround : MonoBehaviour, IInteractableTarget
     [Header("clue data")]
     public MonologueData data;
     public string clueName;
+    public int clueID;
 
     [Header("interact hint")]
     public GameObject interactHint;

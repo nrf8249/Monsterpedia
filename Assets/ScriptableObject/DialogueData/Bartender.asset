@@ -15,12 +15,12 @@ MonoBehaviour:
   narrativeComponents:
   - narrativeType: 0
     key: 
-    value: 
+    talkTimes: 0
     lines:
     - content: Good evening
   - narrativeType: 1
     key: 
-    value: 
+    talkTimes: 0
     lines:
     - content: "Detective: \u201CRough night.\u201D"
     - content: "Bartender: \u201CYou could say that. Look, I already told the cops
@@ -28,8 +28,8 @@ MonoBehaviour:
         him. Heard a hell of a crash, came out, and saw... this.\""
     - content: "Detective: \u201CThanks, that\u2019s all I really needed.\u201D"
   - narrativeType: 4
-    key: 
-    value: 
+    key: Notes about the Body
+    talkTimes: 0
     lines:
     - content: I don't know anything about that. That's got nothing to do with me.
         Just a piece of trash.

@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour
 
     public void SendShowInfo()
     {
-        //NarrativeBoxManager.Instance.DisplayShowDialogue(clueName); //uncomment once we get real clue keys in
+        NarrativeBoxManager.Instance.DisplayShowDialogue(clueName);
         showButton.SetActive(false);
         showMode = false;
         CloseInventory();

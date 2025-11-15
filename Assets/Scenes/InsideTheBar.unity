@@ -5638,6 +5638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: 37e35b966a236aa4e9ea6ce1332f988f, type: 2}
   clueName: Spilled Drink
+  clueID: 6
   interactHint: {fileID: 2098638458}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -5736,7 +5737,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 8743979916875509666, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6049,6 +6050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: b04e21b4f943b6c4ca22c36e12e1c4b8, type: 2}
   clueName: Bloody Handkerchief
+  clueID: 8
   interactHint: {fileID: 1099454884}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -6101,7 +6103,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 755478545586055465, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7979,6 +7981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: 1d12595e315827646896e00c06121dc7, type: 2}
   clueName: Broken Chair
+  clueID: 3
   interactHint: {fileID: 584885324}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -8031,7 +8034,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -5498428223499117761, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8143,6 +8146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: e9e157affe5ffca4dabd9c86dced5276, type: 2}
   clueName: Notes about the Body
+  clueID: 1
   interactHint: {fileID: 89184552}
   hintOffset: {x: 0, y: 1, z: 0}
   faceCamera: 1
@@ -8195,7 +8199,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 8287457269685533835, guid: 64a5c0ac441f38d41b04919dd7c43c7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8722,6 +8726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: 1967ce8b5e090a04ca2449be01d48c58, type: 2}
   clueName: Cleaning Rag
+  clueID: 4
   interactHint: {fileID: 1785831942}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -10618,6 +10623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: 170114cecd037d940a8a5fb4597c2ae7, type: 2}
   clueName: Victim's Sandwich
+  clueID: 2
   interactHint: {fileID: 1157921128}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -10670,7 +10676,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -3199969162743894064, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11385,6 +11391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: e9bf76d92d59a5d44924ad8999cac6be, type: 2}
   clueName: Out of Order
+  clueID: 7
   interactHint: {fileID: 1310172049}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -11437,7 +11444,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2110540989846578495, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11867,6 +11874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: c29d5163f42eaca47b8913ba623e5cdd, type: 2}
   clueName: Bar Ledger
+  clueID: 9
   interactHint: {fileID: 1312108912}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -13145,6 +13153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueGround
   data: {fileID: 11400000, guid: 3ca150e53244ab14499453e65ef9ebde, type: 2}
   clueName: Blood Splatter
+  clueID: 5
   interactHint: {fileID: 420057501}
   hintOffset: {x: 0, y: 0.7, z: 0}
   faceCamera: 1
@@ -13197,7 +13206,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7721930418561948105, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
