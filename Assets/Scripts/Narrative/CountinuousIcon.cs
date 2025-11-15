@@ -15,11 +15,13 @@ public class CountinuousIcon : MonoBehaviour
     public float minAlpha = 0.3f;   // 最淡
     public float maxAlpha = 1.0f;   // 最亮
 
-    private Vector3 startPos;
+    private Vector3 basePos;   // 固定原始位置
+    private Vector3 startPos;  // 本次循环的起点
     private float timer = 0f;
     private bool goingUp = true;
 
     private CanvasGroup cg;
+    private bool initialized = false;
 
     private void Awake()
     {
@@ -30,11 +32,18 @@ public class CountinuousIcon : MonoBehaviour
 
     private void OnEnable()
     {
-        startPos = transform.localPosition;
+        // 只在第一次记录原始位置
+        if (!initialized)
+        {
+            basePos = transform.localPosition;
+            initialized = true;
+        }
+
+        startPos = basePos;            // 每次启用都从原始位置开始
+        transform.localPosition = basePos;
+
         timer = 0f;
         goingUp = true;
-
-        transform.localPosition = startPos;
         cg.alpha = maxAlpha;
     }
 
@@ -52,11 +61,8 @@ public class CountinuousIcon : MonoBehaviour
                 goingUp = false;
             }
 
-            // --- 上升位置：快速 SmoothStep ---
             float eased = Mathf.SmoothStep(0f, 1f, t);
-            transform.localPosition = startPos + Vector3.up * moveDistance * eased;
-
-            // --- 上升透明度：慢慢变淡 ---
+            transform.localPosition = basePos + Vector3.up * moveDistance * eased;
             cg.alpha = Mathf.Lerp(maxAlpha, minAlpha, eased);
         }
         else
@@ -69,11 +75,8 @@ public class CountinuousIcon : MonoBehaviour
                 goingUp = true;
             }
 
-            // --- 下落位置：缓慢 easeOut ---
             float eased = 1f - (1f - t) * (1f - t);
-            transform.localPosition = startPos + Vector3.up * moveDistance * (1f - eased);
-
-            // --- 下落透明度：慢慢变亮 ---
+            transform.localPosition = basePos + Vector3.up * moveDistance * (1f - eased);
             cg.alpha = Mathf.Lerp(minAlpha, maxAlpha, eased);
         }
     }
