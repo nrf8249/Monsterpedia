@@ -13,6 +13,7 @@ public class NarrativeBox : MonoBehaviour
 
     [Header("Portrait")]
     [SerializeField] private Image portraitImage;
+    [SerializeField] private Sprite playerPortrait;
 
     [Header("Name text")]
     [SerializeField] private TextMeshProUGUI nameText;
@@ -99,41 +100,25 @@ public class NarrativeBox : MonoBehaviour
         switch (mode)
         {
             case Mode.Start:
-                Debug.Log("Mode: Start");
-                EnsureGroupVisible(true);
-                SetStartVisible(true);      
-                SetNarrativeVisible(false);
-                SetButtonsVisible(true);
+                InStartModeVisible();
                 break;
             case Mode.InTalk:
-                SetButtonsVisible(false);
-                SetStartVisible(false);
-                SetNarrativeVisible(true);
+                InTalkModeVisible();
                 DisplayTalkDialogue(curDiaData);
                 break;
             case Mode.InShow:
-                SetButtonsVisible(false);
-                SetStartVisible(false);
+                InShowModeVisible();
                 Inventory.instance.ShowModeToggle(true);
                 Inventory.instance.OpenInventory();
                 break;
             case Mode.InAccuse:
-                SetButtonsVisible(false);
-                SetStartVisible(false);
+                InAccuseModeVisible();
                 break;
             case Mode.Hidden:
-                hasActiveSeq = false;
-                index = 0;
-                curDiaData = null;
-                curMonoData = null;
-                StopTypingIfAny();
-                HideAll();
-                SwitchToPlayer();
+                InHiddenModeVisible();
                 break;
             case Mode.InMonologue:
-                ShowAll();
-                SetButtonsVisible(false);
-                SetStartVisible(false);
+                InMonologueModeVisible();
                 DisplayMonologue(curMonoData);
                 break;
         }
@@ -288,13 +273,6 @@ public class NarrativeBox : MonoBehaviour
         ApplyMode();
     }
 
-    // exit narrative (to be called by Input System)
-    public void OnExit(InputAction.CallbackContext ctx)
-    {
-        mode = Mode.Hidden;
-        ApplyMode();
-    }
-
     // advance narrative (to be called by Input System)
     public void OnAdvance(InputAction.CallbackContext ctx)
     {
@@ -364,6 +342,49 @@ public class NarrativeBox : MonoBehaviour
     private void SetContinuousIconVisible(bool show)
     {
         if (ContinuousIcon) ContinuousIcon.gameObject.SetActive(show);
+    }
+
+    // Mode state changing helpers
+    private void InStartModeVisible()
+    {
+        Debug.Log("Mode: Start");
+        EnsureGroupVisible(true);
+        SetStartVisible(true);
+        SetNarrativeVisible(false);
+        SetButtonsVisible(true);
+    }
+    private void InTalkModeVisible()
+    {
+        SetButtonsVisible(false);
+        SetStartVisible(false);
+        SetNarrativeVisible(true);
+    }
+    private void InShowModeVisible()
+    {
+        SetButtonsVisible(false);
+        SetStartVisible(false);
+    }
+    private void InAccuseModeVisible()
+    {
+        SetButtonsVisible(false);
+        SetStartVisible(false);
+    }
+    private void InHiddenModeVisible()
+    {
+        hasActiveSeq = false;
+        index = 0;
+        curDiaData = null;
+        curMonoData = null;
+        portraitImage.sprite = playerPortrait;
+        StopTypingIfAny();
+        HideAll();
+        SwitchToPlayer();
+    }
+    private void InMonologueModeVisible()
+    {
+        ShowAll();
+        SetButtonsVisible(false);
+        SetStartVisible(false);
     }
 
     // typing effect

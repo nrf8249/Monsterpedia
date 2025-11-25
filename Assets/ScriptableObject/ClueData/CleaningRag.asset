@@ -10,7 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
-  m_Name: ClueTest
-  m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  m_Name: CleaningRag
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueData
   lines:
-  - content: 
+  - content: 'The barkeep hasn''t let go of that rag since I walked in. He''s polishing
+      the bar... but it''s already clean. He''s just wiping.
+
+'
+  - content: 'Let''s see... it''s damp, and smells strongly of lemon polish. The
+      same scent from the broken chairs.
+
+'

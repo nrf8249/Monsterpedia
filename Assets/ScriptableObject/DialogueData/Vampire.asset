@@ -10,17 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d38cfc144af4854e8b84e66304f53bf, type: 3}
-  m_Name: TestNPC
+  m_Name: Vampire
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  narrativeComponents:
-  - narrativeType: 0
-    key: 
-    value: 
-    lines:
-    - content: Testing for Dialogue
-  - narrativeType: 1
-    key: 
-    value: 
-    lines:
-    - content: 11111111
-    - content: 222222222
+  narrativeComponents: []
