@@ -97,6 +97,7 @@ public class NarrativeBox : MonoBehaviour
     private void ApplyMode()
     {
         Inventory.instance.ShowModeToggle(false);
+        Inventory.instance.AccuseModeToggle(false);
         switch (mode)
         {
             case Mode.Start:
@@ -113,6 +114,8 @@ public class NarrativeBox : MonoBehaviour
                 break;
             case Mode.InAccuse:
                 InAccuseModeVisible();
+                Inventory.instance.AccuseModeToggle(true);
+                Inventory.instance.OpenInventory();
                 break;
             case Mode.Hidden:
                 InHiddenModeVisible();
@@ -259,6 +262,21 @@ public class NarrativeBox : MonoBehaviour
     {
         mode = Mode.InAccuse;
         ApplyMode();
+    }
+    public void DisplayAccuseDialogue(string clueKey)
+    {
+        if (curDiaData == null || curDiaData.narrativeComponents == null || curDiaData.narrativeComponents.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+        NarrativeComponent comp = curDiaData.GetClueDialogue(clueKey);
+        StartSequence(new TextSequence
+        {
+            Count = comp.lines.Length,
+            GetContent = i => comp.lines[i].content ?? "",
+            OnEnd = () => { BackToStart(); }
+        });
     }
     public void BackToStart()
     {

@@ -31,5 +31,11 @@ MonoBehaviour:
     key: Notes about the Body
     talkTimes: 0
     lines:
-    - content: I don't know anything about that. That's got nothing to do with me.
-        Just a piece of trash.
+    - content: Figures. That one... always bad news. Sits in that corner every night,
+        just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
+        me one bit.
+  - narrativeType: 4
+    key: Victim's Sandwich
+    talkTimes: 0
+    lines:
+    - content: Want one?

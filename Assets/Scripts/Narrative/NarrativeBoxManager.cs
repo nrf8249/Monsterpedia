@@ -44,6 +44,10 @@ public class NarrativeBoxManager : MonoBehaviour
     {
         narrativeBox.DisplayShowDialogue(clueKey);
     }
+    public void DisplayAccuseDialogue(string clueKey)
+    {
+        narrativeBox.DisplayAccuseDialogue(clueKey);
+    }
 
     // —— Monologue ——
     public void StartMonologue(MonologuePayload payload)

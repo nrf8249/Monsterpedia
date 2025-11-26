@@ -16,11 +16,13 @@ public class Inventory : MonoBehaviour
     public GameObject grid;
     public GameObject detailedView;
     public GameObject displayImage;
-    private string clueName;
+    public string clueName;
     public GameObject displayTitle;
     public GameObject displayDescription;
     public GameObject showButton;
     private bool showMode;
+    public GameObject accuseButton;
+    private bool accuseMode;
 
     void Awake()
     {
@@ -75,6 +77,14 @@ public class Inventory : MonoBehaviour
         {
             showButton.SetActive(false);
         }
+        if(accuseMode)
+        {
+            accuseButton.SetActive(true);
+        }
+        else
+        {
+            accuseButton.SetActive(false);
+        }
     }
 
     public void GridView()
@@ -96,6 +106,19 @@ public class Inventory : MonoBehaviour
         CloseInventory();
     }
 
+    public void AccuseModeToggle(bool accuse)
+    {
+        accuseMode = accuse;
+    }
+
+    public void SendAccuseInfo()
+    {
+        NarrativeBoxManager.Instance.DisplayAccuseDialogue(clueName);
+        accuseButton.SetActive(false);
+        accuseMode = false;
+        CloseInventory();
+    }
+
     public void GetClue(string clueName)
     {
         for(int i = 0; i < gridItems.Count; i++)
@@ -106,6 +129,14 @@ public class Inventory : MonoBehaviour
             {
                 gridItems[i].SetActive(true);
             }
+        }
+    }
+
+    public void GetAllClues()
+    {
+        for(int i = 0; i < gridItems.Count; i++)
+        {
+            gridItems[i].SetActive(true);
         }
     }
 }

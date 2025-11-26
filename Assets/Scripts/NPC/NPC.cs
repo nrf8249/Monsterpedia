@@ -10,6 +10,8 @@ public class NPC : MonoBehaviour, IInteractableTarget
 
     [Header("basic data")]
     public DialogueData talkData;
+    public DialogueData showData;
+    public DialogueData accuseData;
     public Sprite portrait;
     [Tooltip("NPC name")]
     public string npcName;
