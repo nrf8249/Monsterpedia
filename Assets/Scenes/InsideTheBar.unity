@@ -333,8 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Out of Order
-  description: Shouldn't have had that second coffee earlier.
-  image: {fileID: -2110540989846578495, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  description: The only bathroom stall has an Out of Order sign taped on it.
+  image: {fileID: -1995159286, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &30945555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2110540989846578495, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -1995159286, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -520,6 +520,159 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2301127218743047154, guid: 1bffc8a7a15e2c74e80a2ef4c6bd2d9a, type: 3}
   m_PrefabInstance: {fileID: 1299672064}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &95152645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 95152646}
+  - component: {fileID: 95152650}
+  - component: {fileID: 95152649}
+  - component: {fileID: 95152648}
+  - component: {fileID: 95152647}
+  m_Layer: 5
+  m_Name: AccuseButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &95152646
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95152645}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1945634722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 424, y: 100}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &95152647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95152645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 95152648}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1199683472}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: SendShowInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &95152648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95152645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e51fe5c385e406949a55e817238cfefc, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &95152649
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95152645}
+  m_CullTransparentMesh: 1
+--- !u!114 &95152650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95152645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &142088375
 GameObject:
   m_ObjectHideFlags: 0
@@ -5884,7 +6037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Victim's Sandwich
   description: Well, he's not eating it...
-  image: {fileID: -3199969162743894064, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  image: {fileID: -1947232206, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &599466921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5905,7 +6058,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3199969162743894064, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -1947232206, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7613,8 +7766,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Broken Chair
-  description: Actually, that's a stool.
-  image: {fileID: -5498428223499117761, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  description: Metal legs are broken and bent out of shape. Scent of lemon wood polish,
+    wiped down with a treated cloth.
+  image: {fileID: -195418535, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &789613980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7635,7 +7789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5498428223499117761, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -195418535, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8493,6 +8647,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
+  showData: {fileID: 0}
+  accuseData: {fileID: 0}
   portrait: {fileID: 21300000, guid: 4851d676c843cb846a0a25fb4dcb4e2a, type: 3}
   npcName: Vampire
   interactHint: {fileID: 630382590}
@@ -9265,9 +9421,11 @@ MonoBehaviour:
   grid: {fileID: 1558327290}
   detailedView: {fileID: 1558327289}
   displayImage: {fileID: 1558327288}
+  clueName: 
   displayTitle: {fileID: 1558327287}
   displayDescription: {fileID: 1558327286}
   showButton: {fileID: 1253717097}
+  accuseButton: {fileID: 95152645}
 --- !u!4 &1199683473
 Transform:
   m_ObjectHideFlags: 0
@@ -9665,7 +9823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Bloody Handkerchief
   description: Don't mess up the cloth, just grab some paper towel or something.
-  image: {fileID: 755478545586055465, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  image: {fileID: -887317246, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &1242780134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9686,7 +9844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 755478545586055465, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -887317246, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10783,7 +10941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e93e3165bd87ae468691539723d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
+  talkData: {fileID: 11400000, guid: 84264aaa33c36fb4da7e485e0fe42f87, type: 2}
+  showData: {fileID: 0}
+  accuseData: {fileID: 0}
   portrait: {fileID: 21300000, guid: 5b222e21bed8d5544a794850268f0f8b, type: 3}
   npcName: Bartender
   interactHint: {fileID: 800502289}
@@ -11008,8 +11168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Blood Splatter
-  description: And all over the walls too...
-  image: {fileID: 7721930418561948105, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  description: Fine spray on the wall near the body, arc and pattern suggest a high-velocity
+    wound, inflicted while the victim was still standing.
+  image: {fileID: -2120587986, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &1501936632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11030,7 +11191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7721930418561948105, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -2120587986, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11796,8 +11957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Cleaning Rag
-  description: What gets dirtier the more it cleans?
-  image: {fileID: 8297607522508847114, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  description: The barkeeper's rag, smells strongly of lemon wood polish.
+  image: {fileID: -918861724, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &1678771850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11818,7 +11979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8297607522508847114, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -918861724, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12129,8 +12290,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Spilled Drink
-  description: Don't cry over spilled... beer, probably.
-  image: {fileID: 8743979916875509666, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  description: Puddle on the table and small amount on the floor. Crimson, smells
+    faintly metallic and of sweet herbs. Patron 1 claims the victim was clumsy and
+    spilled the drink.
+  image: {fileID: -4454781192897630489, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &1786148822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12151,7 +12314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8743979916875509666, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -4454781192897630489, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12735,7 +12898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Bar Ledger
   description: Might be able to pay off that tab without paying...
-  image: {fileID: 6764101506541231091, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  image: {fileID: -1770716370, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!114 &1864867236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12756,7 +12919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6764101506541231091, guid: 21db7fbbf43e14c48822f47304675c4a, type: 3}
+  m_Sprite: {fileID: -1770716370, guid: addb13db8734de64282f8524756bef81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12876,6 +13039,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &1945634722 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8135245506650992738, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+  m_PrefabInstance: {fileID: 1594748447061959046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1968450824
 GameObject:
   m_ObjectHideFlags: 0
@@ -12955,6 +13123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
+  showData: {fileID: 0}
+  accuseData: {fileID: 0}
   portrait: {fileID: 21300000, guid: 5bd3a234604634a47ae120ed3aeeba83, type: 3}
   npcName: Werewolf
   interactHint: {fileID: 918457339}
@@ -13710,10 +13880,10 @@ MonoBehaviour:
     m_ActionName: 'UI/Advance[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1651598396}
-        m_TargetAssemblyTypeName: NarrativeBox, Assembly-CSharp
-        m_MethodName: OnExit
-        m_Mode: 0
+      - m_Target: {fileID: 1199683472}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: GetAllClues
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13722,8 +13892,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 7c4531b1-1682-4e36-a3cc-f8fef944c690
-    m_ActionName: 'UI/Exit[/Mouse/rightButton]'
+    m_ActionId: 2857b07f-b5b1-4be9-88fe-9d7668db8456
+    m_ActionName: 'Player/Get All Clues[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -14213,6 +14383,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1838042937}
     m_Modifications:
+    - target: {fileID: 1127142376992040535, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_MinWidth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127142376992040535, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_IgnoreLayout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127142376992040535, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_FlexibleHeight
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1497313042579194184, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -14235,6 +14417,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1497313042579194184, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659059083339380763, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_overflowMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1842731727250737115, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
@@ -14394,6 +14580,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3828172604440956260, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828172604440956260, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -14429,6 +14619,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5072034231523426695, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072034231523426695, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5228743767682329212, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_Name
       value: Image
@@ -14436,7 +14634,7 @@ PrefabInstance:
     - target: {fileID: 5310426040424039313, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8287457269685533835, guid: 64a5c0ac441f38d41b04919dd7c43c7b, type: 3}
+      objectReference: {fileID: 269825564, guid: addb13db8734de64282f8524756bef81, type: 3}
     - target: {fileID: 5676090655605467849, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -14466,7 +14664,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523020612389606148, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523020612389606148, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523020612389606148, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523020612389606148, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6523020612389606148, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
@@ -14512,6 +14722,10 @@ PrefabInstance:
     - target: {fileID: 8135245506650992738, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135245506650992738, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600.22
       objectReference: {fileID: 0}
     - target: {fileID: 8135245506650992738, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -14604,6 +14818,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6567699876478503779, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1997459433}
+    - targetCorrespondingSourceObject: {fileID: 8135245506650992738, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 95152646}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5228743767682329212, guid: 8c8bbf4a297b97a49926df04995b5094, type: 3}
       insertIndex: -1
@@ -14776,8 +14993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryEvidence
   evidenceName: Notes about the Body
-  description: He's dead.
-  image: {fileID: 8287457269685533835, guid: 64a5c0ac441f38d41b04919dd7c43c7b, type: 3}
+  description: Deep ragged parallel gashes across neck and chest. Bruising on ribs
+    and shoulders. Holes sunk into neck, not bleeding, blood seems withdrawn.
+  image: {fileID: 269825564, guid: addb13db8734de64282f8524756bef81, type: 3}
 --- !u!222 &1594748447061959054
 CanvasRenderer:
   m_ObjectHideFlags: 0
