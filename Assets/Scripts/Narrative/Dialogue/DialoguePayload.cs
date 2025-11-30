@@ -12,10 +12,12 @@ public class DialoguePayload
 
     // public int currentHP;
 
-    public DialoguePayload(DialogueData data, Sprite portrait = null, string characterName = null)
+    public DialoguePayload(DialogueData data, Sprite portrait = null, string characterName = null, int talkTimes = 0)
     {
         this.data = data;
         this.portrait = portrait;
         this.characterName = characterName;
+        this.talkTimes = talkTimes;
     }
+
 }

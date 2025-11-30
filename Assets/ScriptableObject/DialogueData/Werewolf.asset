@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d38cfc144af4854e8b84e66304f53bf, type: 3}
   m_Name: Werewolf
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  narrativeComponents: []
+  speaker: {fileID: 21300000, guid: 5bd3a234604634a47ae120ed3aeeba83, type: 3}
+  narrativeComponents:
+  - narrativeType: 0
+    key: 
+    talkTimes: 0
+    lines: []
+  - narrativeType: 1
+    key: 
+    talkTimes: 0
+    lines:
+    - isPlayerSpeak: 0
+      content: 
+    - isPlayerSpeak: 0
+      content: 

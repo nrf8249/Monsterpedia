@@ -150,12 +150,13 @@ public class NPC : MonoBehaviour, IInteractableTarget
         var payload = new DialoguePayload(
             data: talkData,
             portrait: portrait,
-            characterName: string.IsNullOrEmpty(npcName) ? null : npcName
+            characterName: string.IsNullOrEmpty(npcName) ? null : npcName, 
+            talkTimes: talkTimes
         );
         if (NarrativeBoxManager.Instance.IsNarrating)
             return;
         NarrativeBoxManager.Instance.StartDialogue(payload);
-        talkTimes += 1;
+        talkTimes++;
     }
 
     // Gizmos: notice the interact hint position in Editor
