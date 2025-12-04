@@ -47,6 +47,18 @@ public class Door : MonoBehaviour, IInteractableTarget
         
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        playerInRange = false;
+
+        if (InteractManager.Instance != null)
+            InteractManager.Instance.Unregister(this);
+
+        if (interactHint) interactHint.SetActive(false);
+    }
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (!playerInRange) return;
@@ -64,5 +76,13 @@ public class Door : MonoBehaviour, IInteractableTarget
     {
         if (interactHint == null) return;
         interactHint.SetActive(visible);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 0.85f, 0f, 0.8f);
+        var p = transform.position + hintOffset;
+        Gizmos.DrawWireSphere(p, 0.1f);
+        Gizmos.DrawLine(transform.position, p);
     }
 }
