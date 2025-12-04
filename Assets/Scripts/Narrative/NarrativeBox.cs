@@ -17,6 +17,8 @@ public class NarrativeBox : MonoBehaviour
 
     [Header("Name text")]
     [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private string playerName = "Detective";
+    private string currentNPCName;
 
     [Header("Intro text & Narrative text")]
     [SerializeField] private TextMeshProUGUI narrativeStartText;
@@ -62,6 +64,7 @@ public class NarrativeBox : MonoBehaviour
     private int index = 0;
     private Coroutine typingRoutine;
     private Mode mode;
+    private int curTalkTimes;
     private enum Mode
     {
         Start,
@@ -75,9 +78,10 @@ public class NarrativeBox : MonoBehaviour
     // text sequence struct
     private struct TextSequence
     {
-        public int Count;                          // total number of entries
-        public System.Func<int, string> GetContent;// function to get content by index
-        public System.Action OnEnd;                // action to perform on end
+        public int Count;                                            // total number of entries
+        public System.Func<int, string> GetContent;
+        public System.Action<int> OnLineStart;                       // function to get content by index
+        public System.Action OnEnd;                                  // action to perform on end
     }
     private TextSequence activeSeq;
     public bool hasActiveSeq = false;
@@ -200,6 +204,9 @@ public class NarrativeBox : MonoBehaviour
             }
         }
 
+        currentNPCName = payload.characterName;
+        curTalkTimes = payload.talkTimes;
+
         // name
         string displayName = payload.characterName;
         SetNameText(string.IsNullOrEmpty(displayName) ? null : displayName);
@@ -230,11 +237,15 @@ public class NarrativeBox : MonoBehaviour
             StopAllNarrative();
             return;
         }
-        NarrativeComponent comp = curDiaData.GetTalkDialogue();
+
+        // 用当前 talk 次数选择合适的一段
+        DialogueData.NarrativeComponent comp = curDiaData.GetTalkDialogue(curTalkTimes);
+
         StartSequence(new TextSequence
         {
             Count = comp.lines.Length,
             GetContent = i => comp.lines[i].content ?? "",
+            OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
             OnEnd = () => { BackToStart(); }
         });
     }
@@ -361,6 +372,35 @@ public class NarrativeBox : MonoBehaviour
     {
         if (ContinuousIcon) ContinuousIcon.gameObject.SetActive(show);
     }
+    private void UpdateSpeakerVisual(DialogueData.Line line)
+    {
+        if (line == null) return;
+
+        if (line.isPlayerSpeak)
+        {
+            // 玩家说话
+            if (portraitImage && playerPortrait)
+            {
+                portraitImage.sprite = playerPortrait;
+                portraitImage.gameObject.SetActive(true);
+            }
+            SetNameText(playerName);
+        }
+        else
+        {
+            // NPC 说话
+            if (portraitImage)
+            {
+                // 优先用 DialogueData 里的 speaker
+                if (curDiaData != null && curDiaData.speaker != null)
+                    portraitImage.sprite = curDiaData.speaker;
+
+                portraitImage.gameObject.SetActive(true);
+            }
+            SetNameText(string.IsNullOrEmpty(currentNPCName) ? null : currentNPCName);
+        }
+    }
+
 
     // Mode state changing helpers
     private void InStartModeVisible()
@@ -455,8 +495,12 @@ public class NarrativeBox : MonoBehaviour
         SetNarrativeVisible(true);
         SetButtonsVisible(false);
 
+        // 行开始回调（切立绘/名字）
+        activeSeq.OnLineStart?.Invoke(index);
+
         StartTyping(activeSeq.GetContent(index));
     }
+
     private void AdvanceNext()
     {
         if (!hasActiveSeq) return;
@@ -471,14 +515,17 @@ public class NarrativeBox : MonoBehaviour
         if (index >= activeSeq.Count)
         {
             hasActiveSeq = false;
-            // 关键：不同入口给的 OnEnd 不同 → 这里自动做对的事
             if (activeSeq.OnEnd != null) activeSeq.OnEnd.Invoke();
-            else StopAllNarrative(); // 兜底
+            else StopAllNarrative();
             return;
         }
 
+        // 新行开始时先切立绘/名字
+        activeSeq.OnLineStart?.Invoke(index);
+
         StartTyping(activeSeq.GetContent(index));
     }
+
 
     // input map switching
     private void SwitchToUI()

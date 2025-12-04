@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d38cfc144af4854e8b84e66304f53bf, type: 3}
   m_Name: Vampire
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: {fileID: 21300000, guid: 4851d676c843cb846a0a25fb4dcb4e2a, type: 3}
   narrativeComponents: []
