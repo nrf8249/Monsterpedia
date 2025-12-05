@@ -19,89 +19,69 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 0
       content: Heya, Detective. Quite a scene in there.
-      givesClue: 0
-      clueKey: 
   - narrativeType: 1
     conditionType: 0
     key: 
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: You're with the police?
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: More or less. Name's Lenny. I'm with the Special Investigations unit.
         I take the 'before' shots, you know, before you types start poking around
         and stirring up the ectoplasm.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 1
       content: Looks like you're the first one on the scene. Standard procedure,
         you get a copy of the primary.
-      givesClue: 1
-      clueKey: Photograph
     - isPlayerSpeak: 0
       content: Looks like you're the first one on the scene. Standard procedure,
         you get a copy of the primary.
-      givesClue: 1
-      clueKey: Photograph
     - isPlayerSpeak: 0
       content: That's the scene exactly as I found it. Don't smudge it. Now, go on,
         do your thing. I've got other ghouls to snap tonight.
-      givesClue: 0
-      clueKey: 
-  - narrativeType: 2
+  - narrativeType: 3
     conditionType: 0
     key: Photograph
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: What can you tell me about this?
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: What, my own work? I just gave you that. It's a picture. Of a bar.
         With a body. You're the detective, you tell me.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: What's the matter, don't trust me? Think I faked it? That I'm the
         real culprit?
-      givesClue: 0
-      clueKey: 
   - narrativeType: 5
     conditionType: 0
     key: Photograph
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 0
       content: I just take the pictures. I'm not involved.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 1
       content: I'm not so sure. This picture you gave me... It's all the proof I
         need!
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: Whoa, easy there, hotshot! You got me! What'd I do, murder the film?
         Frame the... well, frame?
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: You're a natural, kid. That's the right idea, anyway. Find a lie,
         hit 'em with the truth. But, uh, maybe save the real accusations for the
         people inside the bar. They're gonna be a lot less friendly than I am.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: Good luck, detective. Don't get yourself hexed.
-      givesClue: 0
-      clueKey: 

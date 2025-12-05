@@ -24,8 +24,6 @@ MonoBehaviour:
     lines:
     - isPlayerSpeak: 0
       content: '*sighs* What can I do you for?'
-      givesClue: 0
-      clueKey: 
   - narrativeType: 1
     conditionType: 0
     key: 
@@ -36,18 +34,14 @@ MonoBehaviour:
     lines:
     - isPlayerSpeak: 1
       content: Rough night.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: You could say that. Look, I already told the cops everything. I was
         in the kitchen, prepping tonight's special for the... for him. Heard a hell
         of a crash, came out, and saw... this.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 1
       content: "Thanks, that\u2019s all I really needed."
   - narrativeType: 1
-    conditionType: 1
+    conditionType: 0
     key: 
     value: 0
     talkTimes: 2
@@ -56,24 +50,16 @@ MonoBehaviour:
     lines:
     - isPlayerSpeak: 1
       content: I'm starving. How about you make me one of those specials?
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: Are you kidding me? There's a dead body on my floor and you want a
         sandwich?
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 1
       content: You were just making one for him. The kitchen should be all ready
         to go.
-      givesClue: 0
-      clueKey: 
     - isPlayerSpeak: 0
       content: "Fine. Whatever. Just... go sit down. I'll bring it out.\" A few minutes
         later\u2026 \"Here. Today's special. Comes with my house garlic aioli. Hope
         you like it."
-      givesClue: 0
-      clueKey: 
   - narrativeType: 1
     conditionType: 0
     key: 
@@ -85,7 +71,7 @@ MonoBehaviour:
     - isPlayerSpeak: 0
       content: Look, I told you what I know. I've got a business to try and salvage
         here. Let me work.
-  - narrativeType: 4
+  - narrativeType: 3
     conditionType: 0
     key: Notes about the Body
     value: 0
@@ -97,7 +83,7 @@ MonoBehaviour:
       content: Figures. That one... always bad news. Sits in that corner every night,
         just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
         me one bit.
-  - narrativeType: 4
+  - narrativeType: 3
     conditionType: 0
     key: Victim's Sandwich
     value: 0
