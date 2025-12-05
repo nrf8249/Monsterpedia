@@ -266,6 +266,7 @@ public class NarrativeBox : MonoBehaviour
         {
             Count = comp.lines.Length,
             GetContent = i => comp.lines[i].content ?? "",
+            OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
             OnEnd = () => { BackToStart(); }
         });
     }
@@ -286,6 +287,7 @@ public class NarrativeBox : MonoBehaviour
         {
             Count = comp.lines.Length,
             GetContent = i => comp.lines[i].content ?? "",
+            OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
             OnEnd = () => { BackToStart(); }
         });
     }
@@ -398,6 +400,14 @@ public class NarrativeBox : MonoBehaviour
                 portraitImage.gameObject.SetActive(true);
             }
             SetNameText(string.IsNullOrEmpty(currentNPCName) ? null : currentNPCName);
+        }
+    }
+    private void GiveClue(DialogueData.Line line)
+    {
+        if (line == null) return;
+        if(line.givesClue)
+        {
+            Inventory.instance.GetClue(line.clueKey);
         }
     }
 
