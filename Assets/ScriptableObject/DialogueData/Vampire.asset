@@ -21,9 +21,9 @@ MonoBehaviour:
     talkTimes: 0
     lines:
     - isPlayerSpeak: 1
-      content: 'Detective: (You approach the woman in the corner. She''s pale, dressed
-        well, and smells strongly of sweet, spicy cloves. She seems to be purposefully
-        ignoring the body.)'
+      content: Good evening, Detective
+      givesClue: 0
+      clueKey: 
   - narrativeType: 1
     conditionType: 5
     key: "Vampire\u2019s Alibi"
@@ -32,9 +32,13 @@ MonoBehaviour:
     lines:
     - isPlayerSpeak: 1
       content: '"You''re a patron. I need to know what you saw."'
+      givesClue: 0
+      clueKey: 
     - isPlayerSpeak: 0
       content: '"Saw? I saw nothing. I was... indisposed. In the restroom. I came
         back out, and this unfortunate mess had already occurred. A pity."'
+      givesClue: 0
+      clueKey: 
   - narrativeType: 2
     conditionType: 1
     key: "Vampire\u2019s Alibi"
@@ -43,6 +47,10 @@ MonoBehaviour:
     lines:
     - isPlayerSpeak: 1
       content: '"You''re a patron. I need to know what you saw."'
+      givesClue: 0
+      clueKey: 
     - isPlayerSpeak: 0
       content: '"Saw? I saw nothing. I was... indisposed. In the restroom. I came
         back out, and this unfortunate mess had already occurred. A pity."'
+      givesClue: 0
+      clueKey: 

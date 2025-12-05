@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
-  m_Name: SpilledDrink
+  m_Name: SpotlessKitchen
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
   lines:
-  - content: Ugh, what did I just step in?
-  - content: Hm, a spilled drink and some broken glass. Seems that someone around
-      here was a bit clumsy. Perhaps our victim?
+  - content: The barkeep said he was in the kitchen, 'making a special.' Let's see
+      the mess.
+  - content: "...Well, well. Not a drop of aioli out of place. The counters are wiped,
+      cutting boards dry and stacked, no ingredients out. \r\n"
+  - content: He wasn't making a sandwich. He was lying.

@@ -27,11 +27,11 @@ public class DynamicLayers : MonoBehaviour
         {
             if (playerTransform.position.y - 0.25 > transform.position.y)
             {
-                propRenderer.sortingOrder = playerRenderer.sortingOrder + 3;
+                propRenderer.sortingOrder = playerRenderer.sortingOrder + 2;
             }
             else
             {
-                propRenderer.sortingOrder = playerRenderer.sortingOrder + 2;
+                propRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
             }
         }
         else
@@ -42,7 +42,7 @@ public class DynamicLayers : MonoBehaviour
             }
             else
             {
-                propRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
+                propRenderer.sortingOrder = playerRenderer.sortingOrder - 2;
             }
         }
     }
