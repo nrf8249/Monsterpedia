@@ -41,6 +41,8 @@ public class DialogueData : ScriptableObject
     {
         public bool isPlayerSpeak;
         [TextArea(2, 5)] public string content;
+        public bool givesClue;
+        public string clueKey;
     }
 
     public Sprite speaker;
