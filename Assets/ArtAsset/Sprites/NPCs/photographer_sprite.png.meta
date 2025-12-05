@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0baf90666d0a19e4ba9db98ad6641123
-      internalID: 62894700
+      spriteID: c53d7db2f3008b6459f331f8ceeec183
+      internalID: -1147906026
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9e53c5c1b7e4d02428f706b8c46d699a
+    spriteID: f2a42c4aa317db6429b80d4cbe1a956e
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,7 @@ TextureImporter:
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       photographer_sprite_0: -113718759580542925
-      photographer_sprite_1: 62894700
+      photographer_sprite_1: -1147906026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
