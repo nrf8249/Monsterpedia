@@ -94,7 +94,7 @@
                     "name": "",
                     "id": "4af4d144-ec0c-4290-a2f4-3db441c1d621",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",

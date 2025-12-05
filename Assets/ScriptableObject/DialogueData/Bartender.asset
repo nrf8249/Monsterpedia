@@ -19,6 +19,8 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 0
       content: '*sighs* What can I do you for?'
@@ -29,6 +31,8 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 1
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: Rough night.
@@ -42,35 +46,13 @@ MonoBehaviour:
       clueKey: 
     - isPlayerSpeak: 1
       content: "Thanks, that\u2019s all I really needed."
-      givesClue: 0
-      clueKey: 
-  - narrativeType: 4
-    conditionType: 0
-    key: Notes about the Body
-    value: 0
-    talkTimes: 0
-    lines:
-    - isPlayerSpeak: 0
-      content: Figures. That one... always bad news. Sits in that corner every night,
-        just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
-        me one bit.
-      givesClue: 0
-      clueKey: 
-  - narrativeType: 4
-    conditionType: 0
-    key: Victim's Sandwich
-    value: 0
-    talkTimes: 0
-    lines:
-    - isPlayerSpeak: 0
-      content: Want one?
-      givesClue: 0
-      clueKey: 
   - narrativeType: 1
-    conditionType: 0
+    conditionType: 1
     key: 
     value: 0
     talkTimes: 2
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: I'm starving. How about you make me one of those specials?
@@ -97,9 +79,31 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 3
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 0
       content: Look, I told you what I know. I've got a business to try and salvage
         here. Let me work.
-      givesClue: 0
-      clueKey: 
+  - narrativeType: 4
+    conditionType: 0
+    key: Notes about the Body
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: Figures. That one... always bad news. Sits in that corner every night,
+        just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
+        me one bit.
+  - narrativeType: 4
+    conditionType: 0
+    key: Victim's Sandwich
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: Want one?

@@ -248,6 +248,7 @@ public class NarrativeBox : MonoBehaviour
             OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
             OnEnd = () => { BackToStart(); }
         });
+        GiveClue(comp);
     }
     public void InShow()
     {
@@ -402,12 +403,16 @@ public class NarrativeBox : MonoBehaviour
             SetNameText(string.IsNullOrEmpty(currentNPCName) ? null : currentNPCName);
         }
     }
-    private void GiveClue(DialogueData.Line line)
+
+    private void GiveClue(DialogueData.NarrativeComponent dialogue)
     {
-        if (line == null) return;
-        if(line.givesClue)
+        if (dialogue == null) return;
+        if(dialogue.givesClue)
         {
-            Inventory.instance.GetClue(line.clueKey);
+            for (int i = 0; i < dialogue.clueKey.Length; i++)
+            {
+                Inventory.instance.GetClue(dialogue.clueKey[i]);
+            }
         }
     }
 

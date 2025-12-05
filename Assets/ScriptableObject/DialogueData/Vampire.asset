@@ -19,6 +19,8 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: Good evening, Detective
@@ -28,7 +30,9 @@ MonoBehaviour:
     conditionType: 5
     key: "Vampire\u2019s Alibi"
     value: 0
-    talkTimes: 0
+    talkTimes: 1
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: '"You''re a patron. I need to know what you saw."'
@@ -44,6 +48,8 @@ MonoBehaviour:
     key: "Vampire\u2019s Alibi"
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: '"You''re a patron. I need to know what you saw."'
