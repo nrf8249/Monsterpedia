@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/OutsideTheBar.unity
+    guid: cf640d7e89f83f94a87b752d1e6f6910
+  - enabled: 1
     path: Assets/Scenes/InsideTheBar.unity
     guid: 406c0b674ea9279479c070081faa35bc
+  - enabled: 1
+    path: Assets/Scenes/Bathroom.unity
+    guid: af5cb695e6daf0e4b830ac7fc133ceb5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

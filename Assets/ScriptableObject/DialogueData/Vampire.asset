@@ -13,4 +13,36 @@ MonoBehaviour:
   m_Name: Vampire
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: {fileID: 21300000, guid: 4851d676c843cb846a0a25fb4dcb4e2a, type: 3}
-  narrativeComponents: []
+  narrativeComponents:
+  - narrativeType: 0
+    conditionType: 0
+    key: 
+    value: 0
+    talkTimes: 0
+    lines:
+    - isPlayerSpeak: 1
+      content: 'Detective: (You approach the woman in the corner. She''s pale, dressed
+        well, and smells strongly of sweet, spicy cloves. She seems to be purposefully
+        ignoring the body.)'
+  - narrativeType: 1
+    conditionType: 5
+    key: "Vampire\u2019s Alibi"
+    value: 0
+    talkTimes: 0
+    lines:
+    - isPlayerSpeak: 1
+      content: '"You''re a patron. I need to know what you saw."'
+    - isPlayerSpeak: 0
+      content: '"Saw? I saw nothing. I was... indisposed. In the restroom. I came
+        back out, and this unfortunate mess had already occurred. A pity."'
+  - narrativeType: 2
+    conditionType: 1
+    key: "Vampire\u2019s Alibi"
+    value: 0
+    talkTimes: 0
+    lines:
+    - isPlayerSpeak: 1
+      content: '"You''re a patron. I need to know what you saw."'
+    - isPlayerSpeak: 0
+      content: '"Saw? I saw nothing. I was... indisposed. In the restroom. I came
+        back out, and this unfortunate mess had already occurred. A pity."'
