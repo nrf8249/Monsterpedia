@@ -7874,9 +7874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e93e3165bd87ae468691539723d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  talkData: {fileID: 11400000, guid: 2ae7a1a76b98f4243b8c228d53e8a119, type: 2}
-  showData: {fileID: 0}
-  accuseData: {fileID: 0}
+  talkData: {fileID: 11400000, guid: eb9714d5ad8dc754588c954492d69122, type: 2}
+  showData: {fileID: 11400000, guid: eb9714d5ad8dc754588c954492d69122, type: 2}
+  accuseData: {fileID: 11400000, guid: eb9714d5ad8dc754588c954492d69122, type: 2}
   portrait: {fileID: 21300000, guid: 4851d676c843cb846a0a25fb4dcb4e2a, type: 3}
   npcName: Vampire
   interactHint: {fileID: 630382590}
