@@ -13,8 +13,16 @@ PrefabInstance:
       value: 10.964999
       objectReference: {fileID: 0}
     - target: {fileID: 1619461853641295909, guid: 5b0d3dc3414bdc84697cdba5ef2d6000, type: 3}
+      propertyPath: m_Size.y
+      value: 0.490826
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619461853641295909, guid: 5b0d3dc3414bdc84697cdba5ef2d6000, type: 3}
       propertyPath: m_Offset.x
       value: 0.07757139
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619461853641295909, guid: 5b0d3dc3414bdc84697cdba5ef2d6000, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.377962
       objectReference: {fileID: 0}
     - target: {fileID: 1619461853641295909, guid: 5b0d3dc3414bdc84697cdba5ef2d6000, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -26,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257409026794198671, guid: 5b0d3dc3414bdc84697cdba5ef2d6000, type: 3}
       propertyPath: m_Name
-      value: Square 1 Variant
+      value: BarCounter
       objectReference: {fileID: 0}
     - target: {fileID: 3058076413408002713, guid: 5b0d3dc3414bdc84697cdba5ef2d6000, type: 3}
       propertyPath: m_LocalPosition.x
