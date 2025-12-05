@@ -105,15 +105,20 @@ public class NPC : MonoBehaviour, IInteractableTarget
     // interact input action
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!playerInRange) return;
+        // 只在 performed 阶段触发（完成一次“按键”）
+        if (!ctx.performed)
+            return;
 
-        // 关键：只允许当前最近的那个响应
+        if (!playerInRange)
+            return;
+
         if (InteractManager.Instance != null &&
             !InteractManager.Instance.IsCurrent(this))
             return;
 
         StartDialogue();
     }
+
 
     // click interact hint
     public void ClickHint()
@@ -156,6 +161,7 @@ public class NPC : MonoBehaviour, IInteractableTarget
         if (NarrativeBoxManager.Instance.IsNarrating)
             return;
         NarrativeBoxManager.Instance.StartDialogue(payload);
+        Debug.Log($"{name} | 开始对话，当前对话次数：{talkTimes}");
         talkTimes++;
     }
 

@@ -139,4 +139,16 @@ public class Inventory : MonoBehaviour
             gridItems[i].SetActive(true);
         }
     }
+
+    public bool HasClue(string clueName)
+    {
+        for(int i = 0; i < gridItems.Count; i++)
+        {
+            if (gridItems[i].GetComponentInChildren<InventoryEvidence>().evidenceName == clueName && gridItems[i].activeSelf)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

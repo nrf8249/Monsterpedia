@@ -103,6 +103,8 @@ public class ClueGround : MonoBehaviour, IInteractableTarget
     // interact input action
     public void OnInteract(InputAction.CallbackContext ctx)
     {
+        if (!ctx.performed)
+            return;
         if (!playerInRange) return;
 
         if (InteractManager.Instance != null &&

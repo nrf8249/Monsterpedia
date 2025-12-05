@@ -19,6 +19,8 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 0
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 0
       content: Good evening
@@ -27,6 +29,8 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 1
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: Rough night.
@@ -36,29 +40,13 @@ MonoBehaviour:
         of a crash, came out, and saw... this.
     - isPlayerSpeak: 1
       content: "Thanks, that\u2019s all I really needed."
-  - narrativeType: 4
-    conditionType: 0
-    key: Notes about the Body
-    value: 0
-    talkTimes: 0
-    lines:
-    - isPlayerSpeak: 0
-      content: Figures. That one... always bad news. Sits in that corner every night,
-        just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
-        me one bit.
-  - narrativeType: 4
-    conditionType: 0
-    key: Victim's Sandwich
-    value: 0
-    talkTimes: 0
-    lines:
-    - isPlayerSpeak: 0
-      content: Want one?
   - narrativeType: 1
-    conditionType: 0
+    conditionType: 1
     key: 
     value: 0
     talkTimes: 2
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 1
       content: I'm starving. How about you make me one of those specials?
@@ -77,7 +65,31 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 3
+    givesClue: 0
+    clueKey: []
     lines:
     - isPlayerSpeak: 0
       content: Look, I told you what I know. I've got a business to try and salvage
         here. Let me work.
+  - narrativeType: 4
+    conditionType: 0
+    key: Notes about the Body
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: Figures. That one... always bad news. Sits in that corner every night,
+        just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
+        me one bit.
+  - narrativeType: 4
+    conditionType: 0
+    key: Victim's Sandwich
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: Want one?
