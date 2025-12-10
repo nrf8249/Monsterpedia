@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: Notes about the Body
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  clueName: Notes about the Body
   lines:
   - content: "Alright, let's read the last rites. The cause of death... yeah, that's
       not subtle. A set of deep, parallel gashes across the neck and chest. \r\n"

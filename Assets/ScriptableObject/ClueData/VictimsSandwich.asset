@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: VictimsSandwich
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  clueName: Sandwich
   lines:
   - content: The last meal of the victim. What a waste...
   - content: I wonder if the bartender has enough supplies for another.

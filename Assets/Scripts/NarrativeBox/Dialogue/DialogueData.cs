@@ -10,11 +10,15 @@ public class DialogueData : ScriptableObject
     {
         Start,
         Talk,
-        ShowPrompt,
         ShowClue,
+        ShowPrompt,
         ShowNothing,
+        ShowUnRelated,
         Clue,
-        Accuse
+        Accuse,
+        AccusePrompt,
+        AccuseUnRelated,
+
     }
     public enum ConditionType
     {
@@ -84,6 +88,18 @@ public class DialogueData : ScriptableObject
         return null;
     }
 
+    public NarrativeComponent GetShowUnRelated()
+    {
+        for (int i = 0; i < narrativeComponents.Length; i++)
+        {
+            if (narrativeComponents[i].narrativeType == NarrativeType.ShowUnRelated && narrativeComponents[i].lines.Length > 0)
+            {
+                return narrativeComponents[i];
+            }
+        }
+        return null;
+    }
+
     // get all talk lines ordered by 'order' field
     public NarrativeComponent GetTalkDialogue(int talkTimes)
     {
@@ -114,7 +130,7 @@ public class DialogueData : ScriptableObject
                 return narrativeComponents[i];
             }
         }
-        return null;
+        return GetShowUnRelated();
     }
 
     public bool SatisfyCondition(NarrativeComponent component)
@@ -124,7 +140,7 @@ public class DialogueData : ScriptableObject
             case ConditionType.None:
                 return true;
             case ConditionType.AlreadyGetClue:
-                return Inventory.instance.HasClue(component.key);
+                return InventoryManager.Instance.HasClue(component.key);
             default:
                 return false;
         }

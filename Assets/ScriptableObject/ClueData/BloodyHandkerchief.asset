@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: BloodyHandkerchief
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  clueName: Bloody Handkerchief
   lines:
   - content: The trash... paper towels on top... and jackpot.
   - content: A bread knife, right from the bar. Why would a knife be in the bathroom?

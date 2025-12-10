@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: BarLedger
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  clueName: Bar Ledger
   lines:
   - content: A quick peek under the bar... past the bottles... a ledger. Let's see
       who's who.

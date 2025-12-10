@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: BloodSplatter
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  clueName: Blood Splatter
   lines:
   - content: The body is the anchor, but the room tells the story. This wall... it's
       a Jackson Pollock in crimson.

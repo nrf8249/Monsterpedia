@@ -38,6 +38,8 @@ public class NarrativeBox : MonoBehaviour
     [SerializeField] private string playerMap = "Player";// default player map
     [SerializeField] private string uiMap = "UI";        // default ui map
 
+
+
     [SerializeField] private float reopenCooldown = 0.15f;
     private float _lastClosedAt = -999f;
     private bool _requireRelease = false;
@@ -100,8 +102,6 @@ public class NarrativeBox : MonoBehaviour
     // apply current mode
     private void ApplyMode()
     {
-        Inventory.instance.ShowModeToggle(false);
-        Inventory.instance.AccuseModeToggle(false);
         switch (mode)
         {
             case Mode.Start:
@@ -113,13 +113,15 @@ public class NarrativeBox : MonoBehaviour
                 break;
             case Mode.InShow:
                 InShowModeVisible();
-                Inventory.instance.ShowModeToggle(true);
-                Inventory.instance.OpenInventory();
+                if (InventoryManager.Instance.IsHasAnyClue())
+                    DisplayShowPrompt(curDiaData);
+                else
+                    DisplayShowNothing(curDiaData);
                 break;
             case Mode.InAccuse:
                 InAccuseModeVisible();
-                Inventory.instance.AccuseModeToggle(true);
-                Inventory.instance.OpenInventory();
+                InventoryManager.Instance.InCheck();
+                InventoryManager.Instance.InAccuse();
                 break;
             case Mode.Hidden:
                 InHiddenModeVisible();
@@ -177,6 +179,16 @@ public class NarrativeBox : MonoBehaviour
             GetContent = i => data.lines[i].content ?? "",
             OnEnd = () => { StopAllNarrative(); } // end monologue
         });
+
+
+        if (InventoryManager.Instance.HasClue(curMonoData.clueName))
+        {
+            InventoryManager.Instance.GetNewClue(false);
+        }
+        else
+        {
+            InventoryManager.Instance.GetNewClue(true);
+        }
     }
 
     // —— Dialogue ——
@@ -238,7 +250,7 @@ public class NarrativeBox : MonoBehaviour
             return;
         }
 
-        // 用当前 talk 次数选择合适的一段
+        // get talk dialogue by talk times
         DialogueData.NarrativeComponent comp = curDiaData.GetTalkDialogue(curTalkTimes);
 
         StartSequence(new TextSequence
@@ -255,6 +267,61 @@ public class NarrativeBox : MonoBehaviour
         mode = Mode.InShow;
         ApplyMode();
     }
+    
+    public void DisplayShowPrompt(DialogueData data)
+    {
+        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+        NarrativeComponent comp = data.GetShowPrompt();
+        StartSequence(new TextSequence
+        {
+            Count = comp.lines.Length,
+            GetContent = i => comp.lines[i].content ?? "",
+            OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
+            OnEnd = () => {
+                InventoryManager.Instance.InCheck();
+                InventoryManager.Instance.InShow();
+            }
+        });
+    }
+
+    public void DisplayShowNothing(DialogueData data)
+    {
+        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+        NarrativeComponent comp = data.GetShowNothing();
+        StartSequence(new TextSequence
+        {
+            Count = comp.lines.Length,
+            GetContent = i => comp.lines[i].content ?? "",
+            OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
+            OnEnd = () => { BackToStart(); }
+        });
+    }
+
+    public void DisplayShowUnRelated(DialogueData data)
+    {
+        if (data == null || data.narrativeComponents == null || data.narrativeComponents.Length == 0)
+        {
+            StopAllNarrative();
+            return;
+        }
+        NarrativeComponent comp = data.GetShowUnRelated();
+        StartSequence(new TextSequence
+        {
+            Count = comp.lines.Length,
+            GetContent = i => comp.lines[i].content ?? "",
+            OnLineStart = i => UpdateSpeakerVisual(comp.lines[i]),
+            OnEnd = () => { BackToStart(); }
+        });
+    }
+
     public void DisplayShowDialogue(string clueKey)
     {
         if (curDiaData == null || curDiaData.narrativeComponents == null || curDiaData.narrativeComponents.Length == 0)
@@ -262,6 +329,7 @@ public class NarrativeBox : MonoBehaviour
             StopAllNarrative();
             return;
         }
+
         NarrativeComponent comp = curDiaData.GetClueDialogue(clueKey);
         StartSequence(new TextSequence
         {
@@ -381,7 +449,7 @@ public class NarrativeBox : MonoBehaviour
 
         if (line.isPlayerSpeak)
         {
-            // 玩家说话
+            // player speak
             if (portraitImage && playerPortrait)
             {
                 portraitImage.sprite = playerPortrait;
@@ -391,10 +459,10 @@ public class NarrativeBox : MonoBehaviour
         }
         else
         {
-            // NPC 说话
+            // NPC speak
             if (portraitImage)
             {
-                // 优先用 DialogueData 里的 speaker
+                // set NPC portrait
                 if (curDiaData != null && curDiaData.speaker != null)
                     portraitImage.sprite = curDiaData.speaker;
 
@@ -411,8 +479,9 @@ public class NarrativeBox : MonoBehaviour
         {
             for (int i = 0; i < dialogue.clueKey.Length; i++)
             {
-                Inventory.instance.GetClue(dialogue.clueKey[i]);
+                InventoryManager.Instance.GetClue(dialogue.clueKey[i]);
             }
+            InventoryManager.Instance.GetNewClue(true);
         }
     }
 
@@ -510,7 +579,7 @@ public class NarrativeBox : MonoBehaviour
         SetNarrativeVisible(true);
         SetButtonsVisible(false);
 
-        // 行开始回调（切立绘/名字）
+        // start first line
         activeSeq.OnLineStart?.Invoke(index);
 
         StartTyping(activeSeq.GetContent(index));
@@ -535,7 +604,7 @@ public class NarrativeBox : MonoBehaviour
             return;
         }
 
-        // 新行开始时先切立绘/名字
+        // switch to next line
         activeSeq.OnLineStart?.Invoke(index);
 
         StartTyping(activeSeq.GetContent(index));

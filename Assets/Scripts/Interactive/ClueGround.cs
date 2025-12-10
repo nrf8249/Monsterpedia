@@ -110,7 +110,6 @@ public class ClueGround : MonoBehaviour, IInteractableTarget
         if (InteractManager.Instance != null &&
             !InteractManager.Instance.IsCurrent(this))
             return;
-
         StartMonologue();
     }
 
@@ -186,7 +185,7 @@ public class ClueGround : MonoBehaviour, IInteractableTarget
         if (NarrativeBoxManager.Instance.IsNarrating)
             return;
         NarrativeBoxManager.Instance.StartMonologue(payload);
-        Inventory.instance.GetClue(clueName);
+        InventoryManager.Instance.GetClue(clueName);
     }
 
     // Gizmos for hint position

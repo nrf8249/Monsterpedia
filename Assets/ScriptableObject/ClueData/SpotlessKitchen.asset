@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: SpotlessKitchen
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  clueName: Spotless Kitchen
   lines:
   - content: The barkeep said he was in the kitchen, 'making a special.' Let's see
       the mess.

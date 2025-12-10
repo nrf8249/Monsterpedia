@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: OutOfOrder
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  clueName: Out of Order
   lines:
   - content: Every scene has its exits and hiding places. Let's check the restroom.
   - content: ..."Out of Order." The only stall. How wonderfully convenient for anyone

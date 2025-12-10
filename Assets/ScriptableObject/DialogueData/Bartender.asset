@@ -29,8 +29,9 @@ MonoBehaviour:
     key: 
     value: 0
     talkTimes: 1
-    givesClue: 0
-    clueKey: []
+    givesClue: 1
+    clueKey:
+    - Barkeeper Alibi
     lines:
     - isPlayerSpeak: 1
       content: Rough night.
@@ -40,6 +41,8 @@ MonoBehaviour:
         of a crash, came out, and saw... this.
     - isPlayerSpeak: 1
       content: "Thanks, that\u2019s all I really needed."
+    - isPlayerSpeak: 1
+      content: '*/You gains Bartender''s Alibi/*'
   - narrativeType: 1
     conditionType: 0
     key: 
@@ -48,30 +51,10 @@ MonoBehaviour:
     givesClue: 0
     clueKey: []
     lines:
-    - isPlayerSpeak: 1
-      content: I'm starving. How about you make me one of those specials?
-    - isPlayerSpeak: 0
-      content: Are you kidding me? There's a dead body on my floor and you want a
-        sandwich?
-    - isPlayerSpeak: 1
-      content: You were just making one for him. The kitchen should be all ready
-        to go.
-    - isPlayerSpeak: 0
-      content: "Fine. Whatever. Just... go sit down. I'll bring it out.\" A few minutes
-        later\u2026 \"Here. Today's special. Comes with my house garlic aioli. Hope
-        you like it."
-  - narrativeType: 1
-    conditionType: 0
-    key: 
-    value: 0
-    talkTimes: 3
-    givesClue: 0
-    clueKey: []
-    lines:
     - isPlayerSpeak: 0
       content: Look, I told you what I know. I've got a business to try and salvage
         here. Let me work.
-  - narrativeType: 3
+  - narrativeType: 6
     conditionType: 0
     key: Notes about the Body
     value: 0
@@ -83,13 +66,90 @@ MonoBehaviour:
       content: Figures. That one... always bad news. Sits in that corner every night,
         just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
         me one bit.
+    - isPlayerSpeak: 1
+      content: "You\u2019re saying Patron 1 has always been a bit\u2026 suspicious?"
+    - isPlayerSpeak: 0
+      content: "I\u2019m just saying to keep an eye on them. Never know what could
+        happen."
   - narrativeType: 3
     conditionType: 0
-    key: Victim's Sandwich
+    key: 
     value: 0
     talkTimes: 0
     givesClue: 0
     clueKey: []
     lines:
     - isPlayerSpeak: 0
-      content: Want one?
+      content: What do you want to show me?
+  - narrativeType: 4
+    conditionType: 0
+    key: 
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: You have nothing to show me.
+  - narrativeType: 6
+    conditionType: 0
+    key: Bloody Handkerchief
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: Figures. That one... always bad news. Sits in that corner every night,
+        just skulking, staring. Knew she'd be trouble sooner or later. Doesn't surprise
+        me one bit.
+    - isPlayerSpeak: 1
+      content: "You\u2019re saying Patron 1 has always been a bit\u2026 suspicious?"
+    - isPlayerSpeak: 0
+      content: "I\u2019m just saying to keep an eye on them. Never know what could
+        happen."
+  - narrativeType: 6
+    conditionType: 0
+    key: Torn Sleeve
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: I don't know anything about that. That's got nothing to do with me.
+        Just a piece of trash.
+  - narrativeType: 6
+    conditionType: 0
+    key: Ledger
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: I don't know anything about that. That's got nothing to do with me.
+        Just a piece of trash.
+  - narrativeType: 6
+    conditionType: 0
+    key: Discarded Knife
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: Hm, was wondering where that went off to. Looks like the one the patron
+        was using when cutting up his sandwich. Not sure why it would be in the bathroom,
+        though.
+  - narrativeType: 5
+    conditionType: 0
+    key: 
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: What am I supposed to do with this? Doesn't mean anything to me. You're
+        the detective, you figure it out.

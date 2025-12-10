@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: SpilledDrink
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  clueName: Spilled Drink
   lines:
   - content: Ugh, what did I just step in?
   - content: Hm, a spilled drink and some broken glass. Seems that someone around

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: BrokenChair
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  clueName: Broken Chair
   lines:
   - content: This wasn't a simple bar fight. These... the metal legs... they're bent
       out of shape. Warped. Like someone grabbed them and just... squeezed.

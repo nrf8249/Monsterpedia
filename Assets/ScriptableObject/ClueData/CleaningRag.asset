@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba9a41b965fd1b499ba3ebe3020d631, type: 3}
   m_Name: CleaningRag
   m_EditorClassIdentifier: Assembly-CSharp::MonologueData
+  clueName: Cleaning Rag
   lines:
   - content: 'The barkeep hasn''t let go of that rag since I walked in. He''s polishing
       the bar... but it''s already clean. He''s just wiping.

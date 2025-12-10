@@ -12,6 +12,6 @@ public class MonologueData : ScriptableObject
         [TextArea(2, 5)]         
         public string content;   
     }
-
+    public string clueName;
     public MonologueLine[] lines;
 }
