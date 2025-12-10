@@ -9,9 +9,7 @@ public class NPC : MonoBehaviour, IInteractableTarget
     private Animator animator;
 
     [Header("basic data")]
-    public DialogueData talkData;
-    public DialogueData showData;
-    public DialogueData accuseData;
+    public DialogueData DialogueData;
     public Sprite portrait;
     [Tooltip("NPC name")]
     public string npcName;
@@ -140,9 +138,9 @@ public class NPC : MonoBehaviour, IInteractableTarget
     private void StartDialogue()
     {
         // debugging checks
-        if (talkData == null)
+        if (DialogueData == null)
         {
-            if (debugLogs) Debug.LogWarning($"{name} | talkData 为空，无法开始对话");
+            if (debugLogs) Debug.LogWarning($"{name} | DialogueData 为空，无法开始对话");
             return;
         }
         if (NarrativeBoxManager.Instance == null)
@@ -153,7 +151,7 @@ public class NPC : MonoBehaviour, IInteractableTarget
 
         // start dialogue
         var payload = new DialoguePayload(
-            data: talkData,
+            data: DialogueData,
             portrait: portrait,
             characterName: string.IsNullOrEmpty(npcName) ? null : npcName, 
             talkTimes: talkTimes

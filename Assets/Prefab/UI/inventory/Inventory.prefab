@@ -1101,6 +1101,8 @@ MonoBehaviour:
   clueGrid: {fileID: 4443402932975922672}
   clueDetailView: {fileID: 8488487068626443164}
   displayImage: {fileID: 9107188015617712721}
+  commonClueBook: {fileID: 6312935683625276764, guid: e0f3edff9456b584c84136fceb1de79f, type: 3}
+  updatedClueBook: {fileID: -6390542145087046020, guid: bd6fa4cad899bfb448dec419eab2cce3, type: 3}
   clueName: 
   clueDetailTitle: {fileID: 7444015280575428484}
   clueDescription: {fileID: 7672148581306895850}
@@ -2137,9 +2139,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8409661170203203616}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: SendShowInfo
+        m_MethodName: SendAccuseInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3760,7 +3762,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8409661170203203616}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: SendShowInfo
         m_Mode: 1

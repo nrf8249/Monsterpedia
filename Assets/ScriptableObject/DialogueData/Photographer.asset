@@ -28,9 +28,10 @@ MonoBehaviour:
     conditionType: 0
     key: 
     value: 0
-    talkTimes: 0
-    givesClue: 0
-    clueKey: []
+    talkTimes: 1
+    givesClue: 1
+    clueKey:
+    - Photograph
     lines:
     - isPlayerSpeak: 1
       content: You're with the police?
@@ -47,7 +48,9 @@ MonoBehaviour:
     - isPlayerSpeak: 0
       content: That's the scene exactly as I found it. Don't smudge it. Now, go on,
         do your thing. I've got other ghouls to snap tonight.
-  - narrativeType: 3
+    - isPlayerSpeak: 1
+      content: '*/You gains Photograph/*'
+  - narrativeType: 2
     conditionType: 0
     key: Photograph
     value: 0
@@ -63,7 +66,7 @@ MonoBehaviour:
     - isPlayerSpeak: 0
       content: What's the matter, don't trust me? Think I faked it? That I'm the
         real culprit?
-  - narrativeType: 5
+  - narrativeType: 7
     conditionType: 0
     key: Photograph
     value: 0
@@ -85,3 +88,13 @@ MonoBehaviour:
         people inside the bar. They're gonna be a lot less friendly than I am.
     - isPlayerSpeak: 0
       content: Good luck, detective. Don't get yourself hexed.
+  - narrativeType: 4
+    conditionType: 0
+    key: Photograph
+    value: 0
+    talkTimes: 0
+    givesClue: 0
+    clueKey: []
+    lines:
+    - isPlayerSpeak: 0
+      content: You have nothing to show me.

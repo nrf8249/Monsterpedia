@@ -147,8 +147,6 @@ public class Inventory : MonoBehaviour
     {
         for(int i = 0; i < gridItems.Count; i++)
         {
-            Debug.Log(gridItems[i].GetComponentInChildren<InventoryEvidence>().evidenceName);
-            Debug.Log(clueName);
             if (gridItems[i].GetComponentInChildren<InventoryEvidence>().evidenceName == clueName)
             {
                 gridItems[i].SetActive(true);
